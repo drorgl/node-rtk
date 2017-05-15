@@ -107,6 +107,7 @@ function utest3()
 function utest4()
 {
     //double mapfd,mapfw;
+    let mapfw: number;
     let  e1 = [2007,1,16,6,0,0],e2=[2030,12,31,23,59,59];
     let  pos1  = [ 35*D2R, 140*D2R, 100.0];
     let  pos2  = [-80*D2R,-170*D2R,1000.0];
@@ -117,35 +118,35 @@ function utest4()
     let  azel4 = [  0*D2R, 90*D2R];
     let t1=epoch2time(e1),t2=epoch2time(e2);
 
-    let mapfd=tropmapf(t1,pos1,azel1,&mapfw);
+    let mapfd=tropmapf(t1,pos1,azel1,mapfw);
         assert(Math.abs(mapfd-1.035184526466435)<1e-8);
         assert(Math.abs(mapfw-1.035233787448654)<1e-8);
     
-    mapfd=tropmapf(t1,pos1,azel2,&mapfw);
+    mapfd=tropmapf(t1,pos1,azel2,mapfw);
         assert(Math.abs(mapfd-14.643271711748200)<1e-8);
         assert(Math.abs(mapfw-16.455045694559484)<1e-8);
     
-    mapfd=tropmapf(t1,pos1,azel3,&mapfw);
+    mapfd=tropmapf(t1,pos1,azel3,mapfw);
         assert(Math.abs(mapfd-1.154226397147367)<1e-8);
         assert(Math.abs(mapfw-1.154481126139610)<1e-8);
     
-    mapfd=tropmapf(t1,pos1,azel4,&mapfw);
+    mapfd=tropmapf(t1,pos1,azel4,mapfw);
         assert(Math.abs(mapfd-1.000000000000000)<1e-8);
         assert(Math.abs(mapfw-1.000000000000000)<1e-8);
     
-    mapfd=tropmapf(t2,pos1,azel1,&mapfw);
+    mapfd=tropmapf(t2,pos1,azel1,mapfw);
         assert(Math.abs(mapfd-1.035184415128022)<1e-8);
         assert(Math.abs(mapfw-1.035233787448654)<1e-8);
     
-    mapfd=tropmapf(t1,pos2,azel1,&mapfw);
+    mapfd=tropmapf(t1,pos2,azel1,mapfw);
         assert(Math.abs(mapfd-1.035186155749051)<1e-8);
         assert(Math.abs(mapfw-1.035230548304367)<1e-8);
     
-    mapfd=tropmapf(t1,pos3,azel1,&mapfw);
+    mapfd=tropmapf(t1,pos3,azel1,mapfw);
         assert(Math.abs(mapfd-1.035181919429758)<1e-8);
         assert(Math.abs(mapfw-1.035233200318210)<1e-8);
     
-    mapfd=tropmapf(t1,pos1,azel1,NULL);
+    mapfd=tropmapf(t1,pos1,azel1,null);
         assert(Math.abs(mapfd-1.035184526466435)<1e-8);
     
     //printf("%s utest4 : OK\n",__FILE__);

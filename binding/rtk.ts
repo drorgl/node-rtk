@@ -1284,182 +1284,995 @@ export interface gis_t {        /* gis type */
 
 
 /* satellites, systems, codes functions --------------------------------------*/
+
+/* satellite system+prn/slot number to satellite number ------------------------
+* convert satellite system+prn/slot number to satellite number
+* args   : int    sys       I   satellite system (SYS_GPS,SYS_GLO,...)
+*          int    prn       I   satellite prn/slot number
+* return : satellite number (0:error)
+*-----------------------------------------------------------------------------*/
   function satno   ( sys : number,  prn : number) : number{
 
   }
+
+
+/* satellite number to satellite system ----------------------------------------
+* convert satellite number to satellite system
+* args   : int    sat       I   satellite number (1-MAXSAT)
+*          int    *prn      IO  satellite prn/slot number (NULL: no output)
+* return : satellite system (SYS_GPS,SYS_GLO,...)
+*-----------------------------------------------------------------------------*/  
 function   satsys  ( sat : number, prn : number[]) : number{
 
 }
 
+
+/* satellite id to satellite number --------------------------------------------
+* convert satellite id to satellite number
+* args   : char   *id       I   satellite id (nn,Gnn,Rnn,Enn,Jnn,Cnn or Snn)
+* return : satellite number (0: error)
+* notes  : 120-138 and 193-195 are also recognized as sbas and qzss
+*-----------------------------------------------------------------------------*/
 function   satid2no(id : string) : number{
 
 }
+
+/* satellite number to satellite id --------------------------------------------
+* convert satellite number to satellite id
+* args   : int    sat       I   satellite number
+*          char   *id       O   satellite id (Gnn,Rnn,Enn,Jnn,Cnn or nnn)
+* return : none
+*-----------------------------------------------------------------------------*/
 function  satno2id( sat : number, id : string): void{
 
 }
+
+/* obs type string to obs code -------------------------------------------------
+* convert obs code type string to obs code
+* args   : char   *str   I      obs code string ("1C","1P","1Y",...)
+*          int    *freq  IO     frequency (1:L1,2:L2,3:L5,4:L6,5:L7,6:L8,0:err)
+*                               (NULL: no output)
+* return : obs code (CODE_???)
+* notes  : obs codes are based on reference [6] and qzss extension
+*-----------------------------------------------------------------------------*/
 function  obs2code(obs : string, freq : number) : number{
 
 }
+
+
+/* obs code to obs code string -------------------------------------------------
+* convert obs code to obs code string
+* args   : unsigned char code I obs code (CODE_???)
+*          int    *freq  IO     frequency (1:L1,2:L2,3:L5,4:L6,5:L7,6:L8,0:err)
+*                               (NULL: no output)
+* return : obs code string ("1C","1P","1P",...)
+* notes  : obs codes are based on reference [6] and qzss extension
+*-----------------------------------------------------------------------------*/
+
 function code2obs(code : number, freq : number) : string{
 
 }
 
+
+/* test excluded satellite -----------------------------------------------------
+* test excluded satellite
+* args   : int    sat       I   satellite number
+*          int    svh       I   sv health flag
+*          prcopt_t *opt    I   processing options (NULL: not used)
+* return : status (1:excluded,0:not excluded)
+*-----------------------------------------------------------------------------*/
 function  satexclude( sat : number,  svh : number, opt : prcopt_t ) : number{
 
 }
+
+
+
+/* test SNR mask ---------------------------------------------------------------
+* test SNR mask
+* args   : int    base      I   rover or base-station (0:rover,1:base station)
+*          int    freq      I   frequency (0:L1,1:L2,2:L3,...)
+*          double el        I   elevation angle (rad)
+*          double snr       I   C/N0 (dBHz)
+*          snrmask_t *mask  I   SNR mask
+* return : status (1:masked,0:unmasked)
+*-----------------------------------------------------------------------------*/
 function   testsnr( base : number,  freq : number,  el : number,  snr : number,
                     mask : snrmask_t) : number{
 
                     }
+
+
+/* set code priority -----------------------------------------------------------
+* set code priority for multiple codes in a frequency
+* args   : int    sys     I     system (or of SYS_???)
+*          int    freq    I     frequency (1:L1,2:L2,3:L5,4:L6,5:L7,6:L8)
+*          char   *pri    I     priority of codes (series of code characters)
+*                               (higher priority precedes lower)
+* return : none
+*-----------------------------------------------------------------------------*/                
 function setcodepri( sys : number,  freq : number, pri : string) : void{
 
 }
+
+/* get code priority -----------------------------------------------------------
+* get code priority for multiple codes in a frequency
+* args   : int    sys     I     system (SYS_???)
+*          unsigned char code I obs code (CODE_???)
+*          char   *opt    I     code options (NULL:no option)
+* return : priority (15:highest-1:lowest,0:error)
+*-----------------------------------------------------------------------------*/
 function  getcodepri( sys : number,  code : number, opt : string) : number{
 
 }
 
 /* matrix and vector functions -----------------------------------------------*/
+
+/* new matrix ------------------------------------------------------------------
+* allocate memory of matrix 
+* args   : int    n,m       I   number of rows and columns of matrix
+* return : matrix pointer (if n<=0 or m<=0, return NULL)
+*-----------------------------------------------------------------------------*/
 function mat  ( n:number,  m : number):number{}
-function imat ( n : number,  m : number):number{}
-function zeros( n : number,  m : number):number{}
-function eye  ( n : number) : number{}
+
+/* new integer matrix ----------------------------------------------------------
+* allocate memory of integer matrix 
+* args   : int    n,m       I   number of rows and columns of matrix
+* return : matrix pointer (if n<=0 or m<=0, return NULL)
+*-----------------------------------------------------------------------------*/
+function imat ( n : number,  m : number):number[]{}
+
+/* zero matrix -----------------------------------------------------------------
+* generate new zero matrix
+* args   : int    n,m       I   number of rows and columns of matrix
+* return : matrix pointer (if n<=0 or m<=0, return NULL)
+*-----------------------------------------------------------------------------*/
+function zeros( n : number,  m : number):number[]{}
+
+/* identity matrix -------------------------------------------------------------
+* generate new identity matrix
+* args   : int    n         I   number of rows and columns of matrix
+* return : matrix pointer (if n<=0, return NULL)
+*-----------------------------------------------------------------------------*/
+function eye  ( n : number) : number[]{}
+
+/* inner product ---------------------------------------------------------------
+* inner product of vectors
+* args   : double *a,*b     I   vector a,b (n x 1)
+*          int    n         I   size of vector a,b
+* return : a'*b
+*-----------------------------------------------------------------------------*/
 function  dot (a : number[], b : number[],  n : number):number{}
+
+/* euclid norm -----------------------------------------------------------------
+* euclid norm of vector
+* args   : double *a        I   vector a (n x 1)
+*          int    n         I   size of vector a
+* return : || a ||
+*-----------------------------------------------------------------------------*/
 function norm(a : number[],  n : number) : number{}
-function  cross3(a : number[], b : number, c : number) : void{}
+
+/* outer product of 3d vectors -------------------------------------------------
+* outer product of 3d vectors 
+* args   : double *a,*b     I   vector a,b (3 x 1)
+*          double *c        O   outer product (a x b) (3 x 1)
+* return : none
+*-----------------------------------------------------------------------------*/
+function  cross3(a : number[], b : number[], c : number[]) : void{}
+
+/* normalize 3d vector ---------------------------------------------------------
+* normalize 3d vector
+* args   : double *a        I   vector a (3 x 1)
+*          double *b        O   normlized vector (3 x 1) || b || = 1
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
 function   normv3(a : number[], b : number) : number{}
+
+/* copy matrix -----------------------------------------------------------------
+* copy matrix
+* args   : double *A        O   destination matrix A (n x m)
+*          double *B        I   source matrix B (n x m)
+*          int    n,m       I   number of rows and columns of matrix
+* return : none
+*-----------------------------------------------------------------------------*/
 function matcpy(A : number[], B : number[],  n : number,  m : number) : void{}
-function matmul(const char *tr, int n, int k, int m, double alpha,
-                   const double *A, const double *B, double beta, double *C) : void{}
+
+/* multiply matrix (wrapper of blas dgemm) -------------------------------------
+* multiply matrix by matrix (C=alpha*A*B+beta*C)
+* args   : char   *tr       I  transpose flags ("N":normal,"T":transpose)
+*          int    n,k,m     I  size of (transposed) matrix A,B
+*          double alpha     I  alpha
+*          double *A,*B     I  (transposed) matrix A (n x m), B (m x k)
+*          double beta      I  beta
+*          double *C        IO matrix C (n x k)
+* return : none
+*-----------------------------------------------------------------------------*/
+function matmul(tr : string,  n : number,  k : numbe,  m : number,  alpha : number,
+                   A : number[], B : number[],  beta : number, C : number[]) : void{}
+
+/* inverse of matrix -----------------------------------------------------------
+* inverse of matrix (A=A^-1)
+* args   : double *A        IO  matrix (n x n)
+*          int    n         I   size of matrix A
+* return : status (0:ok,0>:error)
+*-----------------------------------------------------------------------------*/
 function  matinv(A : number[],  n : number) : number{}
-function   solve (const char *tr, const double *A, const double *Y, int n,
-                   int m, double *X) : number{}
+
+/* solve linear equation -------------------------------------------------------
+* solve linear equation (X=A\Y or X=A'\Y)
+* args   : char   *tr       I   transpose flag ("N":normal,"T":transpose)
+*          double *A        I   input matrix A (n x n)
+*          double *Y        I   input matrix Y (n x m)
+*          int    n,m       I   size of matrix A,Y
+*          double *X        O   X=A\Y or X=A'\Y (n x m)
+* return : status (0:ok,0>:error)
+* notes  : matirix stored by column-major order (fortran convention)
+*          X can be same as Y
+*-----------------------------------------------------------------------------*/
+function   solve (tr : string, A : number[], Y : number[],  n : number,
+                    m : number, X : number[]) : number{}
+
+/* least square estimation -----------------------------------------------------
+* least square estimation by solving normal equation (x=(A*A')^-1*A*y)
+* args   : double *A        I   transpose of (weighted) design matrix (n x m)
+*          double *y        I   (weighted) measurements (m x 1)
+*          int    n,m       I   number of parameters and measurements (n<=m)
+*          double *x        O   estmated parameters (n x 1)
+*          double *Q        O   esimated parameters covariance matrix (n x n)
+* return : status (0:ok,0>:error)
+* notes  : for weighted least square, replace A and y by A*w and w*y (w=W^(1/2))
+*          matirix stored by column-major order (fortran convention)
+*-----------------------------------------------------------------------------*/
 function  lsq   (A : number[], y : number[],  n : number,  m : number, x : number[],
                    Q : number[]): number {}
-function int  filter(double *x, double *P, const double *H, const double *v,
-                   const double *R, int n, int m);
-function int  smoother(const double *xf, const double *Qf, const double *xb,
-                     const double *Qb, int n, double *xs, double *Qs);
-function void matprint (const double *A, int n, int m, int p, int q);
-function void matfprint(const double *A, int n, int m, int p, int q, FILE *fp);
 
-function void add_fatal(fatalfunc_t *func);
+
+/* kalman filter ---------------------------------------------------------------
+* kalman filter state update as follows:
+*
+*   K=P*H*(H'*P*H+R)^-1, xp=x+K*v, Pp=(I-K*H')*P
+*
+* args   : double *x        I   states vector (n x 1)
+*          double *P        I   covariance matrix of states (n x n)
+*          double *H        I   transpose of design matrix (n x m)
+*          double *v        I   innovation (measurement - model) (m x 1)
+*          double *R        I   covariance matrix of measurement error (m x m)
+*          int    n,m       I   number of states and measurements
+*          double *xp       O   states vector after update (n x 1)
+*          double *Pp       O   covariance matrix of states after update (n x n)
+* return : status (0:ok,<0:error)
+* notes  : matirix stored by column-major order (fortran convention)
+*          if state x[i]==0.0, not updates state x[i]/P[i+i*n]
+*-----------------------------------------------------------------------------*/
+function   filter( x : number[], P : number[], H : number[], v : number,
+                   R : number[],  n : number, m : number) : number{}
+
+
+
+/* smoother --------------------------------------------------------------------
+* combine forward and backward filters by fixed-interval smoother as follows:
+*
+*   xs=Qs*(Qf^-1*xf+Qb^-1*xb), Qs=(Qf^-1+Qb^-1)^-1)
+*
+* args   : double *xf       I   forward solutions (n x 1)
+* args   : double *Qf       I   forward solutions covariance matrix (n x n)
+*          double *xb       I   backward solutions (n x 1)
+*          double *Qb       I   backward solutions covariance matrix (n x n)
+*          int    n         I   number of solutions
+*          double *xs       O   smoothed solutions (n x 1)
+*          double *Qs       O   smoothed solutions covariance matrix (n x n)
+* return : status (0:ok,0>:error)
+* notes  : see reference [4] 5.2
+*          matirix stored by column-major order (fortran convention)
+*-----------------------------------------------------------------------------*/
+
+function   smoother(xf : number[], Qf : number[], xb : number[],
+                     Qb : number[], n : number, xs : number[], Qs : number[]) : number{}
+
+
+/* print matrix ----------------------------------------------------------------
+* print matrix to stdout
+* args   : double *A        I   matrix A (n x m)
+*          int    n,m       I   number of rows and columns of A
+*          int    p,q       I   total columns, columns under decimal point
+*         (FILE  *fp        I   output file pointer)
+* return : none
+* notes  : matirix stored by column-major order (fortran convention)
+*-----------------------------------------------------------------------------*/
+function matprint (A:number[],  n : number,  m:number,  p : number,  q : number) : void{}
+function matfprint(A:number[],  n : number,  m:number,  p : number,  q : number, fp : FILE) : void{}
+
+
+
+//function void add_fatal(fatalfunc_t *func);
 
 /* time and string functions -------------------------------------------------*/
+
+
+/* string to number ------------------------------------------------------------
+* convert substring in string to number
+* args   : char   *s        I   string ("... nnn.nnn ...")
+*          int    i,n       I   substring position and width
+* return : converted number (0.0:error)
+*-----------------------------------------------------------------------------*/
 function   str2num( s : string,  i : number,  n : number):number{}
+
+
+/* string to time --------------------------------------------------------------
+* convert substring in string to gtime_t struct
+* args   : char   *s        I   string ("... yyyy mm dd hh mm ss ...")
+*          int    i,n       I   substring position and width
+*          gtime_t *t       O   gtime_t struct
+* return : status (0:ok,0>:error)
+*-----------------------------------------------------------------------------*/
 function      str2time(s : string,  i : number,  n : number, t : Date):number{}
+
+
+/* time to string --------------------------------------------------------------
+* convert gtime_t struct to string
+* args   : gtime_t t        I   gtime_t struct
+*          char   *s        O   string ("yyyy/mm/dd hh:mm:ss.ssss")
+*          int    n         I   number of decimals
+* return : none
+*-----------------------------------------------------------------------------*/
 export function  time2str(t : Date, str : string,  n : number) : string{}
-export function  epoch2time(ep : number[]) : Date;
+
+
+/* convert calendar day/time to time -------------------------------------------
+* convert calendar day/time to gtime_t struct
+* args   : double *ep       I   day/time {year,month,day,hour,min,sec}
+* return : gtime_t struct
+* notes  : proper in 1970-2037 or 1970-2099 (64bit time_t)
+*-----------------------------------------------------------------------------*/
+export function  epoch2time(ep : number[]) : Date{}
+
+/* time to calendar day/time ---------------------------------------------------
+* convert gtime_t struct to calendar day/time
+* args   : gtime_t t        I   gtime_t struct
+*          double *ep       O   day/time {year,month,day,hour,min,sec}
+* return : none
+* notes  : proper in 1970-2037 or 1970-2099 (64bit time_t)
+*-----------------------------------------------------------------------------*/
 function     time2epoch( t : Date, ep : number[]) : void{}
+
+/* gps time to time ------------------------------------------------------------
+* convert week and tow in gps time to gtime_t struct
+* args   : int    week      I   week number in gps time
+*          double sec       I   time of week in gps time (s)
+* return : gtime_t struct
+*-----------------------------------------------------------------------------*/
 function  gpst2time( week : number,  sec : number) : Date{}
-function double  time2gpst(gtime_t t, int *week);
-function gtime_t gst2time(int week, double sec);
-function double  time2gst(gtime_t t, int *week);
-function gtime_t bdt2time(int week, double sec);
-function double  time2bdt(gtime_t t, int *week);
-function char    *time_str(gtime_t t, int n);
 
-function gtime_t timeadd  (gtime_t t, double sec);
-function double  timediff (gtime_t t1, gtime_t t2);
-function gtime_t gpst2utc (gtime_t t);
-function gtime_t utc2gpst (gtime_t t);
-function gtime_t gpst2bdt (gtime_t t);
-function gtime_t bdt2gpst (gtime_t t);
-function gtime_t timeget  (void);
-function void    timeset  (gtime_t t);
-function double  time2doy (gtime_t t);
-function double  utc2gmst (gtime_t t, double ut1_utc);
-function int read_leaps(const char *file);
+/* time to gps time ------------------------------------------------------------
+* convert gtime_t struct to week and tow in gps time
+* args   : gtime_t t        I   gtime_t struct
+*          int    *week     IO  week number in gps time (NULL: no output)
+* return : time of week in gps time (s)
+*-----------------------------------------------------------------------------*/
+function  time2gpst(t : Date, week : number) : number {}
 
-function int adjgpsweek(int week);
-function unsigned int tickget(void);
-function void sleepms(int ms);
+/* galileo system time to time -------------------------------------------------
+* convert week and tow in galileo system time (gst) to gtime_t struct
+* args   : int    week      I   week number in gst
+*          double sec       I   time of week in gst (s)
+* return : gtime_t struct
+*-----------------------------------------------------------------------------*/
+function gst2time(week : number,  sec : number) : Date{}
 
-function int reppath(const char *path, char *rpath, gtime_t time, const char *rov,
-                   const char *base);
-function int reppaths(const char *path, char *rpaths[], int nmax, gtime_t ts,
-                    gtime_t te, const char *rov, const char *base);
+/* time to galileo system time -------------------------------------------------
+* convert gtime_t struct to week and tow in galileo system time (gst)
+* args   : gtime_t t        I   gtime_t struct
+*          int    *week     IO  week number in gst (NULL: no output)
+* return : time of week in gst (s)
+*-----------------------------------------------------------------------------*/
+function time2gst(t : Date, week : number) : number{}
+
+/* beidou time (bdt) to time ---------------------------------------------------
+* convert week and tow in beidou time (bdt) to gtime_t struct
+* args   : int    week      I   week number in bdt
+*          double sec       I   time of week in bdt (s)
+* return : gtime_t struct
+*-----------------------------------------------------------------------------*/
+function bdt2time(week : number, sec : number) : Date{}
+
+/* time to beidouo time (bdt) --------------------------------------------------
+* convert gtime_t struct to week and tow in beidou time (bdt)
+* args   : gtime_t t        I   gtime_t struct
+*          int    *week     IO  week number in bdt (NULL: no output)
+* return : time of week in bdt (s)
+*-----------------------------------------------------------------------------*/
+function time2bdt(t : Date, week : number) : number{}
+
+/* get time string -------------------------------------------------------------
+* get time string
+* args   : gtime_t t        I   gtime_t struct
+*          int    n         I   number of decimals
+* return : time string
+* notes  : not reentrant, do not use multiple in a function
+*-----------------------------------------------------------------------------*/
+function time_str(t : Date, n : number) : string{}
+
+/* add time --------------------------------------------------------------------
+* add time to gtime_t struct
+* args   : gtime_t t        I   gtime_t struct
+*          double sec       I   time to add (s)
+* return : gtime_t struct (t+sec)
+*-----------------------------------------------------------------------------*/
+function timeadd  (t : Date, sec : number) : Date{}
+
+/* time difference -------------------------------------------------------------
+* difference between gtime_t structs
+* args   : gtime_t t1,t2    I   gtime_t structs
+* return : time difference (t1-t2) (s)
+*-----------------------------------------------------------------------------*/
+function timediff (t1 : Date, t2 : Date) : number{}
+
+/* gpstime to utc --------------------------------------------------------------
+* convert gpstime to utc considering leap seconds
+* args   : gtime_t t        I   time expressed in gpstime
+* return : time expressed in utc
+* notes  : ignore slight time offset under 100 ns
+*-----------------------------------------------------------------------------*/
+function gpst2utc (t : Date) : Date{}
+
+
+/* utc to gpstime --------------------------------------------------------------
+* convert utc to gpstime considering leap seconds
+* args   : gtime_t t        I   time expressed in utc
+* return : time expressed in gpstime
+* notes  : ignore slight time offset under 100 ns
+*-----------------------------------------------------------------------------*/
+function utc2gpst (t : Date) : Date{}
+
+/* gpstime to bdt --------------------------------------------------------------
+* convert gpstime to bdt (beidou navigation satellite system time)
+* args   : gtime_t t        I   time expressed in gpstime
+* return : time expressed in bdt
+* notes  : ref [8] 3.3, 2006/1/1 00:00 BDT = 2006/1/1 00:00 UTC
+*          no leap seconds in BDT
+*          ignore slight time offset under 100 ns
+*-----------------------------------------------------------------------------*/
+function gpst2bdt (t : Date) : Date{}
+
+
+/* bdt to gpstime --------------------------------------------------------------
+* convert bdt (beidou navigation satellite system time) to gpstime
+* args   : gtime_t t        I   time expressed in bdt
+* return : time expressed in gpstime
+* notes  : see gpst2bdt()
+*-----------------------------------------------------------------------------*/
+function bdt2gpst (t : Date) : Date{}
+
+/* get current time in utc -----------------------------------------------------
+* get current time in utc
+* args   : none
+* return : current time in utc
+*-----------------------------------------------------------------------------*/
+function timeget  () : Date{}
+
+/* set current time in utc -----------------------------------------------------
+* set current time in utc
+* args   : gtime_t          I   current time in utc
+* return : none
+* notes  : just set time offset between cpu time and current time
+*          the time offset is reflected to only timeget()
+*          not reentrant
+*-----------------------------------------------------------------------------*/
+function timeset  (t : Date) : void{}
+
+/* time to day of year ---------------------------------------------------------
+* convert time to day of year
+* args   : gtime_t t        I   gtime_t struct
+* return : day of year (days)
+*-----------------------------------------------------------------------------*/
+function time2doy (t : Date) : number{}
+
+/* utc to gmst -----------------------------------------------------------------
+* convert utc to gmst (Greenwich mean sidereal time)
+* args   : gtime_t t        I   time expressed in utc
+*          double ut1_utc   I   UT1-UTC (s)
+* return : gmst (rad)
+*-----------------------------------------------------------------------------*/
+function utc2gmst (t : Date, ut1_utc : number) : number{}
+
+/* read leap seconds table -----------------------------------------------------
+* read leap seconds table
+* args   : char    *file    I   leap seconds table file
+* return : status (1:ok,0:error)
+* notes  : (1) The records in the table file cosist of the following fields:
+*              year month day hour min sec UTC-GPST(s)
+*          (2) The date and time indicate the start UTC time for the UTC-GPST
+*          (3) The date and time should be descending order.
+*-----------------------------------------------------------------------------*/
+function read_leaps(file : string) : number{}
+
+/* adjust gps week number ------------------------------------------------------
+* adjust gps week number using cpu time
+* args   : int   week       I   not-adjusted gps week number
+* return : adjusted gps week number
+*-----------------------------------------------------------------------------*/
+function adjgpsweek(week : number) : number{}
+
+/* get tick time ---------------------------------------------------------------
+* get current tick in ms
+* args   : none
+* return : current tick in ms
+*-----------------------------------------------------------------------------*/
+function tickget() : number{}
+
+/* sleep ms --------------------------------------------------------------------
+* sleep ms
+* args   : int   ms         I   miliseconds to sleep (<0:no sleep)
+* return : none
+*-----------------------------------------------------------------------------*/
+function sleepms(ms : number) : void;
+
+/* replace keywords in file path -----------------------------------------------
+* replace keywords in file path with date, time, rover and base station id
+* args   : char   *path     I   file path (see below)
+*          char   *rpath    O   file path in which keywords replaced (see below)
+*          gtime_t time     I   time (gpst)  (time.time==0: not replaced)
+*          char   *rov      I   rover id string        ("": not replaced)
+*          char   *base     I   base station id string ("": not replaced)
+* return : status (1:keywords replaced, 0:no valid keyword in the path,
+*                  -1:no valid time)
+* notes  : the following keywords in path are replaced by date, time and name
+*              %Y -> yyyy : year (4 digits) (1900-2099)
+*              %y -> yy   : year (2 digits) (00-99)
+*              %m -> mm   : month           (01-12)
+*              %d -> dd   : day of month    (01-31)
+*              %h -> hh   : hours           (00-23)
+*              %M -> mm   : minutes         (00-59)
+*              %S -> ss   : seconds         (00-59)
+*              %n -> ddd  : day of year     (001-366)
+*              %W -> wwww : gps week        (0001-9999)
+*              %D -> d    : day of gps week (0-6)
+*              %H -> h    : hour code       (a=0,b=1,c=2,...,x=23)
+*              %ha-> hh   : 3 hours         (00,03,06,...,21)
+*              %hb-> hh   : 6 hours         (00,06,12,18)
+*              %hc-> hh   : 12 hours        (00,12)
+*              %t -> mm   : 15 minutes      (00,15,30,45)
+*              %r -> rrrr : rover id
+*              %b -> bbbb : base station id
+*-----------------------------------------------------------------------------*/
+function reppath(path : string, rpath : string, time : Date, rov : string,
+                   base : string) : number{}
+
+
+/* replace keywords in file path and generate multiple paths -------------------
+* replace keywords in file path with date, time, rover and base station id
+* generate multiple keywords-replaced paths
+* args   : char   *path     I   file path (see below)
+*          char   *rpath[]  O   file paths in which keywords replaced
+*          int    nmax      I   max number of output file paths
+*          gtime_t ts       I   time start (gpst)
+*          gtime_t te       I   time end   (gpst)
+*          char   *rov      I   rover id string        ("": not replaced)
+*          char   *base     I   base station id string ("": not replaced)
+* return : number of replaced file paths
+* notes  : see reppath() for replacements of keywords.
+*          minimum interval of time replaced is 900s.
+*-----------------------------------------------------------------------------*/
+function reppaths(path : string, rpaths : string[],  nmax : number, ts : Date,
+                    te : Date, rov : string, base : string) : number{}
+
+
 
 /* coordinates transformation ------------------------------------------------*/
+
+/* transform ecef to geodetic postion ------------------------------------------
+* transform ecef position to geodetic position
+* args   : double *r        I   ecef position {x,y,z} (m)
+*          double *pos      O   geodetic position {lat,lon,h} (rad,m)
+* return : none
+* notes  : WGS84, ellipsoidal height
+*-----------------------------------------------------------------------------*/
 export function ecef2pos(r  :number[], pos : number[]):void{}
+
+
+/* transform geodetic to ecef position -----------------------------------------
+* transform geodetic position to ecef position
+* args   : double *pos      I   geodetic position {lat,lon,h} (rad,m)
+*          double *r        O   ecef position {x,y,z} (m)
+* return : none
+* notes  : WGS84, ellipsoidal height
+*-----------------------------------------------------------------------------*/
 export function pos2ecef(pos:number[], r : number[]):void{}
+
+/* transform ecef vector to local tangental coordinate -------------------------
+* transform ecef vector to local tangental coordinate
+* args   : double *pos      I   geodetic position {lat,lon} (rad)
+*          double *r        I   vector in ecef coordinate {x,y,z}
+*          double *e        O   vector in local tangental coordinate {e,n,u}
+* return : none
+*-----------------------------------------------------------------------------*/
 export function ecef2enu(pos:number[], r:number[], e: number[]):void{}
+
+/* transform local vector to ecef coordinate -----------------------------------
+* transform local tangental coordinate vector to ecef
+* args   : double *pos      I   geodetic position {lat,lon} (rad)
+*          double *e        I   vector in local tangental coordinate {e,n,u}
+*          double *r        O   vector in ecef coordinate {x,y,z}
+* return : none
+*-----------------------------------------------------------------------------*/
 export function enu2ecef(pos:number[], e:number[], r: number[]):void{}
+
+
+/* transform covariance to local tangental coordinate --------------------------
+* transform ecef covariance to local tangental coordinate
+* args   : double *pos      I   geodetic position {lat,lon} (rad)
+*          double *P        I   covariance in ecef coordinate
+*          double *Q        O   covariance in local tangental coordinate
+* return : none
+*-----------------------------------------------------------------------------*/
 export function covenu  (pos:number[], P:number[], Q: number[]):void{}
+
+/* transform local enu coordinate covariance to xyz-ecef -----------------------
+* transform local enu covariance to xyz-ecef coordinate
+* args   : double *pos      I   geodetic position {lat,lon} (rad)
+*          double *Q        I   covariance in local enu coordinate
+*          double *P        O   covariance in xyz-ecef coordinate
+* return : none
+*-----------------------------------------------------------------------------*/
 export function covecef (pos:number[], Q:number[], P: number[]):void{}
+
+
+/* ecef to local coordinate transfromation matrix ------------------------------
+* compute ecef to local coordinate transfromation matrix
+* args   : double *pos      I   geodetic position {lat,lon} (rad)
+*          double *E        O   ecef to local coord transformation matrix (3x3)
+* return : none
+* notes  : matirix stored by column-major order (fortran convention)
+*-----------------------------------------------------------------------------*/
 export function xyz2enu (pos:number[], E : number[]):void{}
+
+/* eci to ecef transformation matrix -------------------------------------------
+* compute eci to ecef transformation matrix
+* args   : gtime_t tutc     I   time in utc
+*          double *erpv     I   erp values {xp,yp,ut1_utc,lod} (rad,rad,s,s/d)
+*          double *U        O   eci to ecef transformation matrix (3 x 3)
+*          double *gmst     IO  greenwich mean sidereal time (rad)
+*                               (NULL: no output)
+* return : none
+* note   : see ref [3] chap 5
+*          not thread-safe
+*-----------------------------------------------------------------------------*/
 export function eci2ecef( tutc : Date, erpv : number[], U : number[], gmst : number[]):void{}
+
+/* convert degree to deg-min-sec -----------------------------------------------
+* convert degree to degree-minute-second
+* args   : double deg       I   degree
+*          double *dms      O   degree-minute-second {deg,min,sec}
+* return : none
+*-----------------------------------------------------------------------------*/
 export function deg2dms ( deg : number, dms : number[],  ndec : number):void{}
+
+/* convert deg-min-sec to degree -----------------------------------------------
+* convert degree-minute-second to degree
+* args   : double *dms      I   degree-minute-second {deg,min,sec}
+* return : degree
+*-----------------------------------------------------------------------------*/
 export function  dms2deg(dms : number[]) : number{}
 
+
+
 /* input and output functions ------------------------------------------------*/
-function  readpos(file : string, const char *rcv, double *pos) : void{}
-function int  sortobs(obs_t *obs);
-function void uniqnav(nav_t *nav);
-function int  screent(gtime_t time, gtime_t ts, gtime_t te, double tint);
-function int  readnav(const char *file, nav_t *nav);
-function int  savenav(const char *file, const nav_t *nav);
-function void freeobs(obs_t *obs);
-function void freenav(nav_t *nav, int opt);
-function int  readblq(const char *file, const char *sta, double *odisp);
-function int  readerp(const char *file, erp_t *erp);
-function int  geterp (const erp_t *erp, gtime_t time, double *val);
+
+/* read station positions ------------------------------------------------------
+* read positions from station position file
+* args   : char  *file      I   station position file containing
+*                               lat(deg) lon(deg) height(m) name in a line
+*          char  *rcvs      I   station name
+*          double *pos      O   station position {lat,lon,h} (rad/m)
+*                               (all 0 if search error)
+* return : none
+*-----------------------------------------------------------------------------*/
+function  readpos(file : string, rcv : string, pos : number[]) : void{}
+
+
+/* sort and unique observation data --------------------------------------------
+* sort and unique observation data by time, rcv, sat
+* args   : obs_t *obs    IO     observation data
+* return : number of epochs
+*-----------------------------------------------------------------------------*/
+function sortobs(obs : obs_t) : number{}
+
+
+/* unique ephemerides ----------------------------------------------------------
+* unique ephemerides in navigation data and update carrier wave length
+* args   : nav_t *nav    IO     navigation data
+* return : number of epochs
+*-----------------------------------------------------------------------------*/
+function uniqnav(nav : nav_t) : void{}
+
+
+/* screen by time --------------------------------------------------------------
+* screening by time start, time end, and time interval
+* args   : gtime_t time  I      time
+*          gtime_t ts    I      time start (ts.time==0:no screening by ts)
+*          gtime_t te    I      time end   (te.time==0:no screening by te)
+*          double  tint  I      time interval (s) (0.0:no screen by tint)
+* return : 1:on condition, 0:not on condition
+*-----------------------------------------------------------------------------*/
+function screent(time : Date, ts : Date, te : Date, tint : number) : number{}
+
+
+/* read/save navigation data ---------------------------------------------------
+* save or load navigation data
+* args   : char    file  I      file path
+*          nav_t   nav   O/I    navigation data
+* return : status (1:ok,0:no file)
+*-----------------------------------------------------------------------------*/
+function readnav(file : string, nav : nav_t) : number{}
+
+
+ /* save navigation data savenav(NAVIFILE,&svr.nav) */
+function  savenav(file : string, nav : nav_t ) : number{}
+
+
+/* free observation data -------------------------------------------------------
+* free memory for observation data
+* args   : obs_t *obs    IO     observation data
+* return : none
+*-----------------------------------------------------------------------------*/
+function freeobs(obs : obs_t) : void{}
+
+
+/* free navigation data ---------------------------------------------------------
+* free memory for navigation data
+* args   : nav_t *nav    IO     navigation data
+*          int   opt     I      option (or of followings)
+*                               (0x01: gps/qzs ephmeris, 0x02: glonass ephemeris,
+*                                0x04: sbas ephemeris,   0x08: precise ephemeris,
+*                                0x10: precise clock     0x20: almanac,
+*                                0x40: tec data)
+* return : none
+*-----------------------------------------------------------------------------*/
+function freenav(nav : nav_t, opt : number) : void{}
+
+
+/* read blq ocean tide loading parameters --------------------------------------
+* read blq ocean tide loading parameters
+* args   : char   *file       I   BLQ ocean tide loading parameter file
+*          char   *sta        I   station name
+*          double *odisp      O   ocean tide loading parameters
+* return : status (1:ok,0:file open error)
+*-----------------------------------------------------------------------------*/
+function readblq(file : string, sta : string, odisp : number) : number{}
+
+/* read earth rotation parameters ----------------------------------------------
+* read earth rotation parameters
+* args   : char   *file       I   IGS ERP file (IGS ERP ver.2)
+*          erp_t  *erp        O   earth rotation parameters
+* return : status (1:ok,0:file open error)
+*-----------------------------------------------------------------------------*/
+function readerp(file : string, erp : erp_t) : number{}
+
+
+/* get earth rotation parameter values -----------------------------------------
+* get earth rotation parameter values
+* args   : erp_t  *erp        I   earth rotation parameters
+*          gtime_t time       I   time (gpst)
+*          double *erpv       O   erp values {xp,yp,ut1_utc,lod} (rad,rad,s,s/d)
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function geterp (erp : erp_t, time : Date, val : number[]) : number{}
+
+
 
 /* debug trace functions -----------------------------------------------------*/
 function  traceopen(file : string) : void{}
 function  traceclose() : void{}
 function  tracelevel( level:number) : void{}
-function  trace     ( level:number, const char *format, ...) : void{}
-function  tracet    ( level:number, const char *format, ...) : void{}
-function  tracemat  ( level:number, const double *A, int n, int m, int p, int q) : void{}
-function  traceobs  ( level:number, const obsd_t *obs, int n) : void{}
-function  tracenav  ( level:number, const nav_t *nav): void{}
-function  tracegnav ( level:number, const nav_t *nav): void{}
-function  tracehnav ( level:number, const nav_t *nav): void{}
-function  tracepeph ( level:number, const nav_t *nav): void{}
-function  tracepclk ( level:number, const nav_t *nav): void{}
-function  traceb    ( level:number, const unsigned char *p, int n) : void{}
+function  trace     ( level:number, format : string, ...args:any[]) : void{}
+function  tracet    ( level:number, format : string, ...args:any[]) : void{}
+function  tracemat  ( level:number, A : number[], n : number, m : number, p : number, q : number) : void{}
+function  traceobs  ( level:number,  obs : obsd_t ,  n : number) : void{}
+function  tracenav  ( level:number, nav :  nav_t): void{}
+function  tracegnav ( level:number,  nav : nav_t): void{}
+function  tracehnav ( level:number,  nav : nav_t): void{}
+function  tracepeph ( level:number,  nav : nav_t): void{}
+function  tracepclk ( level:number,  nav : nav_t): void{}
+function  traceb    ( level:number,  p : Buffer, n : number) : void{}
+
+
 
 /* platform dependent functions ----------------------------------------------*/
-function int execcmd(const char *cmd);
-function int expath (const char *path, char *paths[], int nmax);
-function void createdir(const char *path);
+
+/* execute command -------------------------------------------------------------
+* execute command line by operating system shell
+* args   : char   *cmd      I   command line
+* return : execution status (0:ok,0>:error)
+*-----------------------------------------------------------------------------*/
+function execcmd(cmd : string) : number{}
+
+/* expand file path ------------------------------------------------------------
+* expand file path with wild-card (*) in file
+* args   : char   *path     I   file path to expand (captal insensitive)
+*          char   *paths    O   expanded file paths
+*          int    nmax      I   max number of expanded file paths
+* return : number of expanded file paths
+* notes  : the order of expanded files is alphabetical order
+*-----------------------------------------------------------------------------*/
+function expath (path : string, paths : string[], nmax : number) : number{}
+
+/* create directory ------------------------------------------------------------
+* create directory if not exist
+* args   : char   *path     I   file path to be saved
+* return : none
+* notes  : not recursive. only one level
+*-----------------------------------------------------------------------------*/
+function createdir(path : string) : void{}
+
+
 
 /* positioning models --------------------------------------------------------*/
-function double satwavelen(int sat, int frq, const nav_t *nav);
-function double satazel(const double *pos, const double *e, double *azel);
-function double geodist(const double *rs, const double *rr, double *e);
-function void dops(int ns, const double *azel, double elmin, double *dop);
-function void csmooth(obs_t *obs, int ns);
+
+
+/* satellite carrier wave length -----------------------------------------------
+* get satellite carrier wave lengths
+* args   : int    sat       I   satellite number
+*          int    frq       I   frequency index (0:L1,1:L2,2:L5/3,...)
+*          nav_t  *nav      I   navigation messages
+* return : carrier wave length (m) (0.0: error)
+*-----------------------------------------------------------------------------*/
+function satwavelen(sat : number, frq : number, nav :  nav_t) : number{}
+
+/* satellite azimuth/elevation angle -------------------------------------------
+* compute satellite azimuth/elevation angle
+* args   : double *pos      I   geodetic position {lat,lon,h} (rad,m)
+*          double *e        I   receiver-to-satellilte unit vevtor (ecef)
+*          double *azel     IO  azimuth/elevation {az,el} (rad) (NULL: no output)
+*                               (0.0<=azel[0]<2*pi,-pi/2<=azel[1]<=pi/2)
+* return : elevation angle (rad)
+*-----------------------------------------------------------------------------*/
+function satazel(pos : number[], e : number[], azel : number[]) : number{}
+
+/* geometric distance ----------------------------------------------------------
+* compute geometric distance and receiver-to-satellite unit vector
+* args   : double *rs       I   satellilte position (ecef at transmission) (m)
+*          double *rr       I   receiver position (ecef at reception) (m)
+*          double *e        O   line-of-sight vector (ecef)
+* return : geometric distance (m) (0>:error/no satellite position)
+* notes  : distance includes sagnac effect correction
+*-----------------------------------------------------------------------------*/
+function geodist(rs : number[], rr : number[], e : number[]) : number{}
+
+/* compute dops ----------------------------------------------------------------
+* compute DOP (dilution of precision)
+* args   : int    ns        I   number of satellites
+*          double *azel     I   satellite azimuth/elevation angle (rad)
+*          double elmin     I   elevation cutoff angle (rad)
+*          double *dop      O   DOPs {GDOP,PDOP,HDOP,VDOP}
+* return : none
+* notes  : dop[0]-[3] return 0 in case of dop computation error
+*-----------------------------------------------------------------------------*/
+function dops(ns : number, azel : number[], elmin : number, dop : number) : void{}
+
+/* carrier smoothing -----------------------------------------------------------
+* carrier smoothing by Hatch filter
+* args   : obs_t  *obs      IO  raw observation data/smoothed observation data
+*          int    ns        I   smoothing window size (epochs)
+* return : none
+*-----------------------------------------------------------------------------*/
+function csmooth(obs : obs_t,  ns : number) : void{}
 
 /* atmosphere models ---------------------------------------------------------*/
+
+/* ionosphere model ------------------------------------------------------------
+* compute ionospheric delay by broadcast ionosphere model (klobuchar model)
+* args   : gtime_t t        I   time (gpst)
+*          double *ion      I   iono model parameters {a0,a1,a2,a3,b0,b1,b2,b3}
+*          double *pos      I   receiver position {lat,lon,h} (rad,m)
+*          double *azel     I   azimuth/elevation angle {az,el} (rad)
+* return : ionospheric delay (L1) (m)
+*-----------------------------------------------------------------------------*/
 export function ionmodel( t : Date, ion : number[], pos : number[],
-                       azel : number[]):double{
+                       azel : number[]):double{}
+
+/* ionosphere mapping function -------------------------------------------------
+* compute ionospheric delay mapping function by single layer model
+* args   : double *pos      I   receiver position {lat,lon,h} (rad,m)
+*          double *azel     I   azimuth/elevation angle {az,el} (rad)
+* return : ionospheric mapping function
+*-----------------------------------------------------------------------------*/                 
+function ionmapf(pos : number[], azel : number[]) : number{}
 
 
-                       }
-function double ionmapf(const double *pos, const double *azel);
-function double ionppp(const double *pos, const double *azel, double re,
-                     double hion, double *pppos);
+/* ionospheric pierce point position -------------------------------------------
+* compute ionospheric pierce point (ipp) position and slant factor
+* args   : double *pos      I   receiver position {lat,lon,h} (rad,m)
+*          double *azel     I   azimuth/elevation angle {az,el} (rad)
+*          double re        I   earth radius (km)
+*          double hion      I   altitude of ionosphere (km)
+*          double *posp     O   pierce point position {lat,lon,h} (rad,m)
+* return : slant factor
+* notes  : see ref [2], only valid on the earth surface
+*          fixing bug on ref [2] A.4.4.10.1 A-22,23
+*-----------------------------------------------------------------------------*/
+function ionppp(pos : number[], azel : number[], re : number,
+                     hion : number, pppos : number[]) : number{}
+
+/* troposphere model -----------------------------------------------------------
+* compute tropospheric delay by standard atmosphere and saastamoinen model
+* args   : gtime_t time     I   time
+*          double *pos      I   receiver position {lat,lon,h} (rad,m)
+*          double *azel     I   azimuth/elevation angle {az,el} (rad)
+*          double humi      I   relative humidity
+* return : tropospheric delay (m)
+*-----------------------------------------------------------------------------*/
 export function tropmodel( time : Date, pos : number[], azel : number[],
-                         humi : number) : number{
+                         humi : number) : number{}
 
-                        }
 
-export function tropmapf( time : Date, pos : number[], azel : number[],
-                       mapfw : number[]): number{}
-function int iontec(gtime_t time, const nav_t *nav, const double *pos,
-                  const double *azel, int opt, double *delay, double *var);
+
+
+/* troposphere mapping function ------------------------------------------------
+* compute tropospheric mapping function by NMF
+* args   : gtime_t t        I   time
+*          double *pos      I   receiver position {lat,lon,h} (rad,m)
+*          double *azel     I   azimuth/elevation angle {az,el} (rad)
+*          double *mapfw    IO  wet mapping function (NULL: not output)
+* return : dry mapping function
+* note   : see ref [5] (NMF) and [9] (GMF)
+*          original JGR paper of [5] has bugs in eq.(4) and (5). the corrected
+*          paper is obtained from:
+*          ftp://web.haystack.edu/pub/aen/nmf/NMF_JGR.pdf
+*-----------------------------------------------------------------------------*/
+
+interface IPosition{
+    lat:number;
+    lon:number;
+    h:number;
+}
+
+interface IAzimuthElevation{
+    az : number;
+    el : number;
+}
+
+interface ITropmapfReturn{
+    mapfw : number;
+    mapfd : number;
+}
+
+export function tropmapf( time : Date, pos : IPosition | number[], azel : IAzimuthElevation | number[],
+                       mapfw : number): ITropmapfReturn{}
+
+
+/* ionosphere model by tec grid data -------------------------------------------
+* compute ionospheric delay by tec grid data
+* args   : gtime_t time     I   time (gpst)
+*          nav_t  *nav      I   navigation data
+*          double *pos      I   receiver position {lat,lon,h} (rad,m)
+*          double *azel     I   azimuth/elevation angle {az,el} (rad)
+*          int    opt       I   model option
+*                                bit0: 0:earth-fixed,1:sun-fixed
+*                                bit1: 0:single-layer,1:modified single-layer
+*          double *delay    O   ionospheric delay (L1) (m)
+*          double *var      O   ionospheric dealy (L1) variance (m^2)
+* return : status (1:ok,0:error)
+* notes  : before calling the function, read tec grid data by calling readtec()
+*          return ok with delay=0 and var=VAR_NOTEC if el<MIN_EL or h<MIN_HGT
+*-----------------------------------------------------------------------------*/
+function iontec(gtime_t time, const nav_t *nav, const double *pos,
+                  const double *azel, int opt, double *delay, double *var) : number{}
+
+
 function void readtec(const char *file, nav_t *nav, int opt);
+
+
 function int ionocorr(gtime_t time, const nav_t *nav, int sat, const double *pos,
                     const double *azel, int ionoopt, double *ion, double *var);
+
+                    
 function int tropcorr(gtime_t time, const nav_t *nav, const double *pos,
                     const double *azel, int tropopt, double *trp, double *var);
 
 /* antenna models ------------------------------------------------------------*/
-function int  readpcv(const char *file, pcvs_t *pcvs);
-function pcv_t *searchpcv(int sat, const char *type, gtime_t time,
-                        const pcvs_t *pcvs);
-function void antmodel(const pcv_t *pcv, const double *del, const double *azel,
+function readpcv(file:string, pcvs:pcvs_t ) : number{}
+function searchpcv(sat:number, type:string,  time:Date,
+                        pcvs: pcvs_t):pcv_t {}
+function void antmodel(pcv : pcv_t , del:number[], azel : number[],
                      int opt, double *dant);
 function void antmodel_s(const pcv_t *pcv, double nadir, double *dant);
 
