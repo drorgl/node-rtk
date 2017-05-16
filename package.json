@@ -4,6 +4,7 @@
   "description": "RTKLib bindings",
   "main": "index.js",
   "scripts": {
+    "tsc" : "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

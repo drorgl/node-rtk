@@ -1280,7 +1280,7 @@ export interface gis_t {        /* gis type */
      bound : number[/*4*/];    /* boundary {lat0,lat1,lon0,lon1} */
 } ;
 
-
+type FILE = number;
 
 
 /* satellites, systems, codes functions --------------------------------------*/
@@ -1292,7 +1292,7 @@ export interface gis_t {        /* gis type */
 * return : satellite number (0:error)
 *-----------------------------------------------------------------------------*/
   function satno   ( sys : number,  prn : number) : number{
-
+    throw new Error("not implemented");
   }
 
 
@@ -1303,7 +1303,7 @@ export interface gis_t {        /* gis type */
 * return : satellite system (SYS_GPS,SYS_GLO,...)
 *-----------------------------------------------------------------------------*/  
 function   satsys  ( sat : number, prn : number[]) : number{
-
+throw new Error("not implemented");
 }
 
 
@@ -1314,7 +1314,7 @@ function   satsys  ( sat : number, prn : number[]) : number{
 * notes  : 120-138 and 193-195 are also recognized as sbas and qzss
 *-----------------------------------------------------------------------------*/
 function   satid2no(id : string) : number{
-
+throw new Error("not implemented");
 }
 
 /* satellite number to satellite id --------------------------------------------
@@ -1324,7 +1324,7 @@ function   satid2no(id : string) : number{
 * return : none
 *-----------------------------------------------------------------------------*/
 function  satno2id( sat : number, id : string): void{
-
+throw new Error("not implemented");
 }
 
 /* obs type string to obs code -------------------------------------------------
@@ -1336,7 +1336,7 @@ function  satno2id( sat : number, id : string): void{
 * notes  : obs codes are based on reference [6] and qzss extension
 *-----------------------------------------------------------------------------*/
 function  obs2code(obs : string, freq : number) : number{
-
+throw new Error("not implemented");
 }
 
 
@@ -1350,7 +1350,7 @@ function  obs2code(obs : string, freq : number) : number{
 *-----------------------------------------------------------------------------*/
 
 function code2obs(code : number, freq : number) : string{
-
+throw new Error("not implemented");
 }
 
 
@@ -1362,7 +1362,7 @@ function code2obs(code : number, freq : number) : string{
 * return : status (1:excluded,0:not excluded)
 *-----------------------------------------------------------------------------*/
 function  satexclude( sat : number,  svh : number, opt : prcopt_t ) : number{
-
+throw new Error("not implemented");
 }
 
 
@@ -1378,7 +1378,7 @@ function  satexclude( sat : number,  svh : number, opt : prcopt_t ) : number{
 *-----------------------------------------------------------------------------*/
 function   testsnr( base : number,  freq : number,  el : number,  snr : number,
                     mask : snrmask_t) : number{
-
+throw new Error("not implemented");
                     }
 
 
@@ -1391,7 +1391,7 @@ function   testsnr( base : number,  freq : number,  el : number,  snr : number,
 * return : none
 *-----------------------------------------------------------------------------*/                
 function setcodepri( sys : number,  freq : number, pri : string) : void{
-
+throw new Error("not implemented");
 }
 
 /* get code priority -----------------------------------------------------------
@@ -1402,7 +1402,7 @@ function setcodepri( sys : number,  freq : number, pri : string) : void{
 * return : priority (15:highest-1:lowest,0:error)
 *-----------------------------------------------------------------------------*/
 function  getcodepri( sys : number,  code : number, opt : string) : number{
-
+throw new Error("not implemented");
 }
 
 /* matrix and vector functions -----------------------------------------------*/
@@ -1412,28 +1412,36 @@ function  getcodepri( sys : number,  code : number, opt : string) : number{
 * args   : int    n,m       I   number of rows and columns of matrix
 * return : matrix pointer (if n<=0 or m<=0, return NULL)
 *-----------------------------------------------------------------------------*/
-function mat  ( n:number,  m : number):number{}
+function mat  ( n:number,  m : number):number{
+    throw new Error("not implemented");
+}
 
 /* new integer matrix ----------------------------------------------------------
 * allocate memory of integer matrix 
 * args   : int    n,m       I   number of rows and columns of matrix
 * return : matrix pointer (if n<=0 or m<=0, return NULL)
 *-----------------------------------------------------------------------------*/
-function imat ( n : number,  m : number):number[]{}
+function imat ( n : number,  m : number):number[]{
+    throw new Error("not implemented");
+}
 
 /* zero matrix -----------------------------------------------------------------
 * generate new zero matrix
 * args   : int    n,m       I   number of rows and columns of matrix
 * return : matrix pointer (if n<=0 or m<=0, return NULL)
 *-----------------------------------------------------------------------------*/
-function zeros( n : number,  m : number):number[]{}
+function zeros( n : number,  m : number):number[]{
+throw new Error("not implemented");
+}
 
 /* identity matrix -------------------------------------------------------------
 * generate new identity matrix
 * args   : int    n         I   number of rows and columns of matrix
 * return : matrix pointer (if n<=0, return NULL)
 *-----------------------------------------------------------------------------*/
-function eye  ( n : number) : number[]{}
+function eye  ( n : number) : number[]{
+   throw new Error("not implemented"); 
+}
 
 /* inner product ---------------------------------------------------------------
 * inner product of vectors
@@ -1441,7 +1449,9 @@ function eye  ( n : number) : number[]{}
 *          int    n         I   size of vector a,b
 * return : a'*b
 *-----------------------------------------------------------------------------*/
-function  dot (a : number[], b : number[],  n : number):number{}
+function  dot (a : number[], b : number[],  n : number):number{
+    throw new Error("not implemented");
+}
 
 /* euclid norm -----------------------------------------------------------------
 * euclid norm of vector
@@ -1449,7 +1459,7 @@ function  dot (a : number[], b : number[],  n : number):number{}
 *          int    n         I   size of vector a
 * return : || a ||
 *-----------------------------------------------------------------------------*/
-function norm(a : number[],  n : number) : number{}
+function norm(a : number[],  n : number) : number{throw new Error("not implemented");}
 
 /* outer product of 3d vectors -------------------------------------------------
 * outer product of 3d vectors 
@@ -1457,7 +1467,7 @@ function norm(a : number[],  n : number) : number{}
 *          double *c        O   outer product (a x b) (3 x 1)
 * return : none
 *-----------------------------------------------------------------------------*/
-function  cross3(a : number[], b : number[], c : number[]) : void{}
+function  cross3(a : number[], b : number[], c : number[]) : void{throw new Error("not implemented");}
 
 /* normalize 3d vector ---------------------------------------------------------
 * normalize 3d vector
@@ -1465,7 +1475,7 @@ function  cross3(a : number[], b : number[], c : number[]) : void{}
 *          double *b        O   normlized vector (3 x 1) || b || = 1
 * return : status (1:ok,0:error)
 *-----------------------------------------------------------------------------*/
-function   normv3(a : number[], b : number) : number{}
+function   normv3(a : number[], b : number) : number{throw new Error("not implemented");}
 
 /* copy matrix -----------------------------------------------------------------
 * copy matrix
@@ -1474,7 +1484,7 @@ function   normv3(a : number[], b : number) : number{}
 *          int    n,m       I   number of rows and columns of matrix
 * return : none
 *-----------------------------------------------------------------------------*/
-function matcpy(A : number[], B : number[],  n : number,  m : number) : void{}
+function matcpy(A : number[], B : number[],  n : number,  m : number) : void{throw new Error("not implemented");}
 
 /* multiply matrix (wrapper of blas dgemm) -------------------------------------
 * multiply matrix by matrix (C=alpha*A*B+beta*C)
@@ -1486,8 +1496,8 @@ function matcpy(A : number[], B : number[],  n : number,  m : number) : void{}
 *          double *C        IO matrix C (n x k)
 * return : none
 *-----------------------------------------------------------------------------*/
-function matmul(tr : string,  n : number,  k : numbe,  m : number,  alpha : number,
-                   A : number[], B : number[],  beta : number, C : number[]) : void{}
+function matmul(tr : string,  n : number,  k : number,  m : number,  alpha : number,
+                   A : number[], B : number[],  beta : number, C : number[]) : void{throw new Error("not implemented");}
 
 /* inverse of matrix -----------------------------------------------------------
 * inverse of matrix (A=A^-1)
@@ -1495,7 +1505,7 @@ function matmul(tr : string,  n : number,  k : numbe,  m : number,  alpha : numb
 *          int    n         I   size of matrix A
 * return : status (0:ok,0>:error)
 *-----------------------------------------------------------------------------*/
-function  matinv(A : number[],  n : number) : number{}
+function  matinv(A : number[],  n : number) : number{throw new Error("not implemented");}
 
 /* solve linear equation -------------------------------------------------------
 * solve linear equation (X=A\Y or X=A'\Y)
@@ -1509,7 +1519,7 @@ function  matinv(A : number[],  n : number) : number{}
 *          X can be same as Y
 *-----------------------------------------------------------------------------*/
 function   solve (tr : string, A : number[], Y : number[],  n : number,
-                    m : number, X : number[]) : number{}
+                    m : number, X : number[]) : number{throw new Error("not implemented");}
 
 /* least square estimation -----------------------------------------------------
 * least square estimation by solving normal equation (x=(A*A')^-1*A*y)
@@ -1523,7 +1533,7 @@ function   solve (tr : string, A : number[], Y : number[],  n : number,
 *          matirix stored by column-major order (fortran convention)
 *-----------------------------------------------------------------------------*/
 function  lsq   (A : number[], y : number[],  n : number,  m : number, x : number[],
-                   Q : number[]): number {}
+                   Q : number[]): number {throw new Error("not implemented");}
 
 
 /* kalman filter ---------------------------------------------------------------
@@ -1544,7 +1554,7 @@ function  lsq   (A : number[], y : number[],  n : number,  m : number, x : numbe
 *          if state x[i]==0.0, not updates state x[i]/P[i+i*n]
 *-----------------------------------------------------------------------------*/
 function   filter( x : number[], P : number[], H : number[], v : number,
-                   R : number[],  n : number, m : number) : number{}
+                   R : number[],  n : number, m : number) : number{throw new Error("not implemented");}
 
 
 
@@ -1566,7 +1576,7 @@ function   filter( x : number[], P : number[], H : number[], v : number,
 *-----------------------------------------------------------------------------*/
 
 function   smoother(xf : number[], Qf : number[], xb : number[],
-                     Qb : number[], n : number, xs : number[], Qs : number[]) : number{}
+                     Qb : number[], n : number, xs : number[], Qs : number[]) : number{throw new Error("not implemented");}
 
 
 /* print matrix ----------------------------------------------------------------
@@ -1578,12 +1588,17 @@ function   smoother(xf : number[], Qf : number[], xb : number[],
 * return : none
 * notes  : matirix stored by column-major order (fortran convention)
 *-----------------------------------------------------------------------------*/
-function matprint (A:number[],  n : number,  m:number,  p : number,  q : number) : void{}
-function matfprint(A:number[],  n : number,  m:number,  p : number,  q : number, fp : FILE) : void{}
+function matprint (A:number[],  n : number,  m:number,  p : number,  q : number) : void{throw new Error("not implemented");}
+function matfprint(A:number[],  n : number,  m:number,  p : number,  q : number, fp : FILE) : void{throw new Error("not implemented");}
 
 
-
-//function void add_fatal(fatalfunc_t *func);
+/* add fatal callback function -------------------------------------------------
+* add fatal callback function for mat(),zeros(),imat()
+* args   : fatalfunc_t *func I  callback function
+* return : none
+* notes  : if malloc() failed in return : none
+*-----------------------------------------------------------------------------*/
+function add_fatal(func : Function/*fatalfunc_t*/) : void{throw new Error("not implemented");}
 
 /* time and string functions -------------------------------------------------*/
 
@@ -1594,7 +1609,7 @@ function matfprint(A:number[],  n : number,  m:number,  p : number,  q : number,
 *          int    i,n       I   substring position and width
 * return : converted number (0.0:error)
 *-----------------------------------------------------------------------------*/
-function   str2num( s : string,  i : number,  n : number):number{}
+function   str2num( s : string,  i : number,  n : number):number{throw new Error("not implemented");}
 
 
 /* string to time --------------------------------------------------------------
@@ -1604,7 +1619,7 @@ function   str2num( s : string,  i : number,  n : number):number{}
 *          gtime_t *t       O   gtime_t struct
 * return : status (0:ok,0>:error)
 *-----------------------------------------------------------------------------*/
-function      str2time(s : string,  i : number,  n : number, t : Date):number{}
+function      str2time(s : string,  i : number,  n : number, t : Date):number{throw new Error("not implemented");}
 
 
 /* time to string --------------------------------------------------------------
@@ -1614,7 +1629,7 @@ function      str2time(s : string,  i : number,  n : number, t : Date):number{}
 *          int    n         I   number of decimals
 * return : none
 *-----------------------------------------------------------------------------*/
-export function  time2str(t : Date, str : string,  n : number) : string{}
+export function  time2str(t : Date, str : string,  n : number) : string{throw new Error("not implemented");}
 
 
 /* convert calendar day/time to time -------------------------------------------
@@ -1623,7 +1638,7 @@ export function  time2str(t : Date, str : string,  n : number) : string{}
 * return : gtime_t struct
 * notes  : proper in 1970-2037 or 1970-2099 (64bit time_t)
 *-----------------------------------------------------------------------------*/
-export function  epoch2time(ep : number[]) : Date{}
+export function  epoch2time(ep : number[]) : Date{throw new Error("not implemented");}
 
 /* time to calendar day/time ---------------------------------------------------
 * convert gtime_t struct to calendar day/time
@@ -1632,7 +1647,7 @@ export function  epoch2time(ep : number[]) : Date{}
 * return : none
 * notes  : proper in 1970-2037 or 1970-2099 (64bit time_t)
 *-----------------------------------------------------------------------------*/
-function     time2epoch( t : Date, ep : number[]) : void{}
+function     time2epoch( t : Date, ep : number[]) : void{throw new Error("not implemented");}
 
 /* gps time to time ------------------------------------------------------------
 * convert week and tow in gps time to gtime_t struct
@@ -1640,7 +1655,7 @@ function     time2epoch( t : Date, ep : number[]) : void{}
 *          double sec       I   time of week in gps time (s)
 * return : gtime_t struct
 *-----------------------------------------------------------------------------*/
-function  gpst2time( week : number,  sec : number) : Date{}
+function  gpst2time( week : number,  sec : number) : Date{throw new Error("not implemented");}
 
 /* time to gps time ------------------------------------------------------------
 * convert gtime_t struct to week and tow in gps time
@@ -1648,7 +1663,7 @@ function  gpst2time( week : number,  sec : number) : Date{}
 *          int    *week     IO  week number in gps time (NULL: no output)
 * return : time of week in gps time (s)
 *-----------------------------------------------------------------------------*/
-function  time2gpst(t : Date, week : number) : number {}
+function  time2gpst(t : Date, week : number) : number {throw new Error("not implemented");}
 
 /* galileo system time to time -------------------------------------------------
 * convert week and tow in galileo system time (gst) to gtime_t struct
@@ -1656,7 +1671,7 @@ function  time2gpst(t : Date, week : number) : number {}
 *          double sec       I   time of week in gst (s)
 * return : gtime_t struct
 *-----------------------------------------------------------------------------*/
-function gst2time(week : number,  sec : number) : Date{}
+function gst2time(week : number,  sec : number) : Date{throw new Error("not implemented");}
 
 /* time to galileo system time -------------------------------------------------
 * convert gtime_t struct to week and tow in galileo system time (gst)
@@ -1664,7 +1679,7 @@ function gst2time(week : number,  sec : number) : Date{}
 *          int    *week     IO  week number in gst (NULL: no output)
 * return : time of week in gst (s)
 *-----------------------------------------------------------------------------*/
-function time2gst(t : Date, week : number) : number{}
+function time2gst(t : Date, week : number) : number{throw new Error("not implemented");}
 
 /* beidou time (bdt) to time ---------------------------------------------------
 * convert week and tow in beidou time (bdt) to gtime_t struct
@@ -1672,7 +1687,7 @@ function time2gst(t : Date, week : number) : number{}
 *          double sec       I   time of week in bdt (s)
 * return : gtime_t struct
 *-----------------------------------------------------------------------------*/
-function bdt2time(week : number, sec : number) : Date{}
+function bdt2time(week : number, sec : number) : Date{throw new Error("not implemented");}
 
 /* time to beidouo time (bdt) --------------------------------------------------
 * convert gtime_t struct to week and tow in beidou time (bdt)
@@ -1680,7 +1695,7 @@ function bdt2time(week : number, sec : number) : Date{}
 *          int    *week     IO  week number in bdt (NULL: no output)
 * return : time of week in bdt (s)
 *-----------------------------------------------------------------------------*/
-function time2bdt(t : Date, week : number) : number{}
+function time2bdt(t : Date, week : number) : number{throw new Error("not implemented");}
 
 /* get time string -------------------------------------------------------------
 * get time string
@@ -1689,7 +1704,7 @@ function time2bdt(t : Date, week : number) : number{}
 * return : time string
 * notes  : not reentrant, do not use multiple in a function
 *-----------------------------------------------------------------------------*/
-function time_str(t : Date, n : number) : string{}
+function time_str(t : Date, n : number) : string{throw new Error("not implemented");}
 
 /* add time --------------------------------------------------------------------
 * add time to gtime_t struct
@@ -1697,14 +1712,14 @@ function time_str(t : Date, n : number) : string{}
 *          double sec       I   time to add (s)
 * return : gtime_t struct (t+sec)
 *-----------------------------------------------------------------------------*/
-function timeadd  (t : Date, sec : number) : Date{}
+function timeadd  (t : Date, sec : number) : Date{throw new Error("not implemented");}
 
 /* time difference -------------------------------------------------------------
 * difference between gtime_t structs
 * args   : gtime_t t1,t2    I   gtime_t structs
 * return : time difference (t1-t2) (s)
 *-----------------------------------------------------------------------------*/
-function timediff (t1 : Date, t2 : Date) : number{}
+function timediff (t1 : Date, t2 : Date) : number{throw new Error("not implemented");}
 
 /* gpstime to utc --------------------------------------------------------------
 * convert gpstime to utc considering leap seconds
@@ -1712,7 +1727,7 @@ function timediff (t1 : Date, t2 : Date) : number{}
 * return : time expressed in utc
 * notes  : ignore slight time offset under 100 ns
 *-----------------------------------------------------------------------------*/
-function gpst2utc (t : Date) : Date{}
+function gpst2utc (t : Date) : Date{throw new Error("not implemented");}
 
 
 /* utc to gpstime --------------------------------------------------------------
@@ -1721,7 +1736,7 @@ function gpst2utc (t : Date) : Date{}
 * return : time expressed in gpstime
 * notes  : ignore slight time offset under 100 ns
 *-----------------------------------------------------------------------------*/
-function utc2gpst (t : Date) : Date{}
+function utc2gpst (t : Date) : Date{throw new Error("not implemented");}
 
 /* gpstime to bdt --------------------------------------------------------------
 * convert gpstime to bdt (beidou navigation satellite system time)
@@ -1731,7 +1746,7 @@ function utc2gpst (t : Date) : Date{}
 *          no leap seconds in BDT
 *          ignore slight time offset under 100 ns
 *-----------------------------------------------------------------------------*/
-function gpst2bdt (t : Date) : Date{}
+function gpst2bdt (t : Date) : Date{throw new Error("not implemented");}
 
 
 /* bdt to gpstime --------------------------------------------------------------
@@ -1740,14 +1755,14 @@ function gpst2bdt (t : Date) : Date{}
 * return : time expressed in gpstime
 * notes  : see gpst2bdt()
 *-----------------------------------------------------------------------------*/
-function bdt2gpst (t : Date) : Date{}
+function bdt2gpst (t : Date) : Date{throw new Error("not implemented");}
 
 /* get current time in utc -----------------------------------------------------
 * get current time in utc
 * args   : none
 * return : current time in utc
 *-----------------------------------------------------------------------------*/
-function timeget  () : Date{}
+function timeget  () : Date{throw new Error("not implemented");}
 
 /* set current time in utc -----------------------------------------------------
 * set current time in utc
@@ -1757,14 +1772,14 @@ function timeget  () : Date{}
 *          the time offset is reflected to only timeget()
 *          not reentrant
 *-----------------------------------------------------------------------------*/
-function timeset  (t : Date) : void{}
+function timeset  (t : Date) : void{throw new Error("not implemented");}
 
 /* time to day of year ---------------------------------------------------------
 * convert time to day of year
 * args   : gtime_t t        I   gtime_t struct
 * return : day of year (days)
 *-----------------------------------------------------------------------------*/
-function time2doy (t : Date) : number{}
+function time2doy (t : Date) : number{throw new Error("not implemented");}
 
 /* utc to gmst -----------------------------------------------------------------
 * convert utc to gmst (Greenwich mean sidereal time)
@@ -1772,7 +1787,7 @@ function time2doy (t : Date) : number{}
 *          double ut1_utc   I   UT1-UTC (s)
 * return : gmst (rad)
 *-----------------------------------------------------------------------------*/
-function utc2gmst (t : Date, ut1_utc : number) : number{}
+function utc2gmst (t : Date, ut1_utc : number) : number{throw new Error("not implemented");}
 
 /* read leap seconds table -----------------------------------------------------
 * read leap seconds table
@@ -1783,28 +1798,30 @@ function utc2gmst (t : Date, ut1_utc : number) : number{}
 *          (2) The date and time indicate the start UTC time for the UTC-GPST
 *          (3) The date and time should be descending order.
 *-----------------------------------------------------------------------------*/
-function read_leaps(file : string) : number{}
+function read_leaps(file : string) : number{throw new Error("not implemented");}
 
 /* adjust gps week number ------------------------------------------------------
 * adjust gps week number using cpu time
 * args   : int   week       I   not-adjusted gps week number
 * return : adjusted gps week number
 *-----------------------------------------------------------------------------*/
-function adjgpsweek(week : number) : number{}
+function adjgpsweek(week : number) : number{throw new Error("not implemented");}
 
 /* get tick time ---------------------------------------------------------------
 * get current tick in ms
 * args   : none
 * return : current tick in ms
 *-----------------------------------------------------------------------------*/
-function tickget() : number{}
+function tickget() : number{throw new Error("not implemented");}
 
 /* sleep ms --------------------------------------------------------------------
 * sleep ms
 * args   : int   ms         I   miliseconds to sleep (<0:no sleep)
 * return : none
 *-----------------------------------------------------------------------------*/
-function sleepms(ms : number) : void;
+function sleepms(ms : number) : void{
+    throw new Error("not implemented");
+}
 
 /* replace keywords in file path -----------------------------------------------
 * replace keywords in file path with date, time, rover and base station id
@@ -1835,7 +1852,7 @@ function sleepms(ms : number) : void;
 *              %b -> bbbb : base station id
 *-----------------------------------------------------------------------------*/
 function reppath(path : string, rpath : string, time : Date, rov : string,
-                   base : string) : number{}
+                   base : string) : number{throw new Error("not implemented");}
 
 
 /* replace keywords in file path and generate multiple paths -------------------
@@ -1853,7 +1870,7 @@ function reppath(path : string, rpath : string, time : Date, rov : string,
 *          minimum interval of time replaced is 900s.
 *-----------------------------------------------------------------------------*/
 function reppaths(path : string, rpaths : string[],  nmax : number, ts : Date,
-                    te : Date, rov : string, base : string) : number{}
+                    te : Date, rov : string, base : string) : number{throw new Error("not implemented");}
 
 
 
@@ -1866,7 +1883,7 @@ function reppaths(path : string, rpaths : string[],  nmax : number, ts : Date,
 * return : none
 * notes  : WGS84, ellipsoidal height
 *-----------------------------------------------------------------------------*/
-export function ecef2pos(r  :number[], pos : number[]):void{}
+export function ecef2pos(r  :number[], pos : number[]):void{throw new Error("not implemented");}
 
 
 /* transform geodetic to ecef position -----------------------------------------
@@ -1876,7 +1893,7 @@ export function ecef2pos(r  :number[], pos : number[]):void{}
 * return : none
 * notes  : WGS84, ellipsoidal height
 *-----------------------------------------------------------------------------*/
-export function pos2ecef(pos:number[], r : number[]):void{}
+export function pos2ecef(pos:number[], r : number[]):void{throw new Error("not implemented");}
 
 /* transform ecef vector to local tangental coordinate -------------------------
 * transform ecef vector to local tangental coordinate
@@ -1885,7 +1902,7 @@ export function pos2ecef(pos:number[], r : number[]):void{}
 *          double *e        O   vector in local tangental coordinate {e,n,u}
 * return : none
 *-----------------------------------------------------------------------------*/
-export function ecef2enu(pos:number[], r:number[], e: number[]):void{}
+export function ecef2enu(pos:number[], r:number[], e: number[]):void{throw new Error("not implemented");}
 
 /* transform local vector to ecef coordinate -----------------------------------
 * transform local tangental coordinate vector to ecef
@@ -1894,7 +1911,7 @@ export function ecef2enu(pos:number[], r:number[], e: number[]):void{}
 *          double *r        O   vector in ecef coordinate {x,y,z}
 * return : none
 *-----------------------------------------------------------------------------*/
-export function enu2ecef(pos:number[], e:number[], r: number[]):void{}
+export function enu2ecef(pos:number[], e:number[], r: number[]):void{throw new Error("not implemented");}
 
 
 /* transform covariance to local tangental coordinate --------------------------
@@ -1904,7 +1921,7 @@ export function enu2ecef(pos:number[], e:number[], r: number[]):void{}
 *          double *Q        O   covariance in local tangental coordinate
 * return : none
 *-----------------------------------------------------------------------------*/
-export function covenu  (pos:number[], P:number[], Q: number[]):void{}
+export function covenu  (pos:number[], P:number[], Q: number[]):void{throw new Error("not implemented");}
 
 /* transform local enu coordinate covariance to xyz-ecef -----------------------
 * transform local enu covariance to xyz-ecef coordinate
@@ -1913,7 +1930,7 @@ export function covenu  (pos:number[], P:number[], Q: number[]):void{}
 *          double *P        O   covariance in xyz-ecef coordinate
 * return : none
 *-----------------------------------------------------------------------------*/
-export function covecef (pos:number[], Q:number[], P: number[]):void{}
+export function covecef (pos:number[], Q:number[], P: number[]):void{throw new Error("not implemented");}
 
 
 /* ecef to local coordinate transfromation matrix ------------------------------
@@ -1923,7 +1940,7 @@ export function covecef (pos:number[], Q:number[], P: number[]):void{}
 * return : none
 * notes  : matirix stored by column-major order (fortran convention)
 *-----------------------------------------------------------------------------*/
-export function xyz2enu (pos:number[], E : number[]):void{}
+export function xyz2enu (pos:number[], E : number[]):void{throw new Error("not implemented");}
 
 /* eci to ecef transformation matrix -------------------------------------------
 * compute eci to ecef transformation matrix
@@ -1936,7 +1953,7 @@ export function xyz2enu (pos:number[], E : number[]):void{}
 * note   : see ref [3] chap 5
 *          not thread-safe
 *-----------------------------------------------------------------------------*/
-export function eci2ecef( tutc : Date, erpv : number[], U : number[], gmst : number[]):void{}
+export function eci2ecef( tutc : Date, erpv : number[], U : number[], gmst : number[]):void{throw new Error("not implemented");}
 
 /* convert degree to deg-min-sec -----------------------------------------------
 * convert degree to degree-minute-second
@@ -1944,14 +1961,14 @@ export function eci2ecef( tutc : Date, erpv : number[], U : number[], gmst : num
 *          double *dms      O   degree-minute-second {deg,min,sec}
 * return : none
 *-----------------------------------------------------------------------------*/
-export function deg2dms ( deg : number, dms : number[],  ndec : number):void{}
+export function deg2dms ( deg : number, dms : number[],  ndec : number):void{throw new Error("not implemented");}
 
 /* convert deg-min-sec to degree -----------------------------------------------
 * convert degree-minute-second to degree
 * args   : double *dms      I   degree-minute-second {deg,min,sec}
 * return : degree
 *-----------------------------------------------------------------------------*/
-export function  dms2deg(dms : number[]) : number{}
+export function  dms2deg(dms : number[]) : number{throw new Error("not implemented");}
 
 
 
@@ -1966,7 +1983,7 @@ export function  dms2deg(dms : number[]) : number{}
 *                               (all 0 if search error)
 * return : none
 *-----------------------------------------------------------------------------*/
-function  readpos(file : string, rcv : string, pos : number[]) : void{}
+function  readpos(file : string, rcv : string, pos : number[]) : void{throw new Error("not implemented");}
 
 
 /* sort and unique observation data --------------------------------------------
@@ -1974,7 +1991,7 @@ function  readpos(file : string, rcv : string, pos : number[]) : void{}
 * args   : obs_t *obs    IO     observation data
 * return : number of epochs
 *-----------------------------------------------------------------------------*/
-function sortobs(obs : obs_t) : number{}
+function sortobs(obs : obs_t) : number{throw new Error("not implemented");}
 
 
 /* unique ephemerides ----------------------------------------------------------
@@ -1982,7 +1999,7 @@ function sortobs(obs : obs_t) : number{}
 * args   : nav_t *nav    IO     navigation data
 * return : number of epochs
 *-----------------------------------------------------------------------------*/
-function uniqnav(nav : nav_t) : void{}
+function uniqnav(nav : nav_t) : void{throw new Error("not implemented");}
 
 
 /* screen by time --------------------------------------------------------------
@@ -1993,7 +2010,7 @@ function uniqnav(nav : nav_t) : void{}
 *          double  tint  I      time interval (s) (0.0:no screen by tint)
 * return : 1:on condition, 0:not on condition
 *-----------------------------------------------------------------------------*/
-function screent(time : Date, ts : Date, te : Date, tint : number) : number{}
+function screent(time : Date, ts : Date, te : Date, tint : number) : number{throw new Error("not implemented");}
 
 
 /* read/save navigation data ---------------------------------------------------
@@ -2002,11 +2019,11 @@ function screent(time : Date, ts : Date, te : Date, tint : number) : number{}
 *          nav_t   nav   O/I    navigation data
 * return : status (1:ok,0:no file)
 *-----------------------------------------------------------------------------*/
-function readnav(file : string, nav : nav_t) : number{}
+function readnav(file : string, nav : nav_t) : number{throw new Error("not implemented");}
 
 
  /* save navigation data savenav(NAVIFILE,&svr.nav) */
-function  savenav(file : string, nav : nav_t ) : number{}
+function  savenav(file : string, nav : nav_t ) : number{throw new Error("not implemented");}
 
 
 /* free observation data -------------------------------------------------------
@@ -2014,7 +2031,7 @@ function  savenav(file : string, nav : nav_t ) : number{}
 * args   : obs_t *obs    IO     observation data
 * return : none
 *-----------------------------------------------------------------------------*/
-function freeobs(obs : obs_t) : void{}
+function freeobs(obs : obs_t) : void{throw new Error("not implemented");}
 
 
 /* free navigation data ---------------------------------------------------------
@@ -2027,7 +2044,7 @@ function freeobs(obs : obs_t) : void{}
 *                                0x40: tec data)
 * return : none
 *-----------------------------------------------------------------------------*/
-function freenav(nav : nav_t, opt : number) : void{}
+function freenav(nav : nav_t, opt : number) : void{throw new Error("not implemented");}
 
 
 /* read blq ocean tide loading parameters --------------------------------------
@@ -2037,7 +2054,7 @@ function freenav(nav : nav_t, opt : number) : void{}
 *          double *odisp      O   ocean tide loading parameters
 * return : status (1:ok,0:file open error)
 *-----------------------------------------------------------------------------*/
-function readblq(file : string, sta : string, odisp : number) : number{}
+function readblq(file : string, sta : string, odisp : number) : number{throw new Error("not implemented");}
 
 /* read earth rotation parameters ----------------------------------------------
 * read earth rotation parameters
@@ -2045,7 +2062,7 @@ function readblq(file : string, sta : string, odisp : number) : number{}
 *          erp_t  *erp        O   earth rotation parameters
 * return : status (1:ok,0:file open error)
 *-----------------------------------------------------------------------------*/
-function readerp(file : string, erp : erp_t) : number{}
+function readerp(file : string, erp : erp_t) : number{throw new Error("not implemented");}
 
 
 /* get earth rotation parameter values -----------------------------------------
@@ -2055,24 +2072,24 @@ function readerp(file : string, erp : erp_t) : number{}
 *          double *erpv       O   erp values {xp,yp,ut1_utc,lod} (rad,rad,s,s/d)
 * return : status (1:ok,0:error)
 *-----------------------------------------------------------------------------*/
-function geterp (erp : erp_t, time : Date, val : number[]) : number{}
+function geterp (erp : erp_t, time : Date, val : number[]) : number{throw new Error("not implemented");}
 
 
 
 /* debug trace functions -----------------------------------------------------*/
-function  traceopen(file : string) : void{}
-function  traceclose() : void{}
-function  tracelevel( level:number) : void{}
-function  trace     ( level:number, format : string, ...args:any[]) : void{}
-function  tracet    ( level:number, format : string, ...args:any[]) : void{}
-function  tracemat  ( level:number, A : number[], n : number, m : number, p : number, q : number) : void{}
-function  traceobs  ( level:number,  obs : obsd_t ,  n : number) : void{}
-function  tracenav  ( level:number, nav :  nav_t): void{}
-function  tracegnav ( level:number,  nav : nav_t): void{}
-function  tracehnav ( level:number,  nav : nav_t): void{}
-function  tracepeph ( level:number,  nav : nav_t): void{}
-function  tracepclk ( level:number,  nav : nav_t): void{}
-function  traceb    ( level:number,  p : Buffer, n : number) : void{}
+function  traceopen(file : string) : void{throw new Error("not implemented");}
+function  traceclose() : void{throw new Error("not implemented");}
+function  tracelevel( level:number) : void{throw new Error("not implemented");}
+function  trace     ( level:number, format : string, ...args:any[]) : void{throw new Error("not implemented");}
+function  tracet    ( level:number, format : string, ...args:any[]) : void{throw new Error("not implemented");}
+function  tracemat  ( level:number, A : number[], n : number, m : number, p : number, q : number) : void{throw new Error("not implemented");}
+function  traceobs  ( level:number,  obs : obsd_t ,  n : number) : void{throw new Error("not implemented");}
+function  tracenav  ( level:number, nav :  nav_t): void{throw new Error("not implemented");}
+function  tracegnav ( level:number,  nav : nav_t): void{throw new Error("not implemented");}
+function  tracehnav ( level:number,  nav : nav_t): void{throw new Error("not implemented");}
+function  tracepeph ( level:number,  nav : nav_t): void{throw new Error("not implemented");}
+function  tracepclk ( level:number,  nav : nav_t): void{throw new Error("not implemented");}
+function  traceb    ( level:number,  p : Buffer, n : number) : void{throw new Error("not implemented");}
 
 
 
@@ -2083,7 +2100,7 @@ function  traceb    ( level:number,  p : Buffer, n : number) : void{}
 * args   : char   *cmd      I   command line
 * return : execution status (0:ok,0>:error)
 *-----------------------------------------------------------------------------*/
-function execcmd(cmd : string) : number{}
+function execcmd(cmd : string) : number{throw new Error("not implemented");}
 
 /* expand file path ------------------------------------------------------------
 * expand file path with wild-card (*) in file
@@ -2093,7 +2110,7 @@ function execcmd(cmd : string) : number{}
 * return : number of expanded file paths
 * notes  : the order of expanded files is alphabetical order
 *-----------------------------------------------------------------------------*/
-function expath (path : string, paths : string[], nmax : number) : number{}
+function expath (path : string, paths : string[], nmax : number) : number{throw new Error("not implemented");}
 
 /* create directory ------------------------------------------------------------
 * create directory if not exist
@@ -2101,7 +2118,7 @@ function expath (path : string, paths : string[], nmax : number) : number{}
 * return : none
 * notes  : not recursive. only one level
 *-----------------------------------------------------------------------------*/
-function createdir(path : string) : void{}
+function createdir(path : string) : void{throw new Error("not implemented");}
 
 
 
@@ -2115,7 +2132,7 @@ function createdir(path : string) : void{}
 *          nav_t  *nav      I   navigation messages
 * return : carrier wave length (m) (0.0: error)
 *-----------------------------------------------------------------------------*/
-function satwavelen(sat : number, frq : number, nav :  nav_t) : number{}
+function satwavelen(sat : number, frq : number, nav :  nav_t) : number{throw new Error("not implemented");}
 
 /* satellite azimuth/elevation angle -------------------------------------------
 * compute satellite azimuth/elevation angle
@@ -2125,7 +2142,7 @@ function satwavelen(sat : number, frq : number, nav :  nav_t) : number{}
 *                               (0.0<=azel[0]<2*pi,-pi/2<=azel[1]<=pi/2)
 * return : elevation angle (rad)
 *-----------------------------------------------------------------------------*/
-function satazel(pos : number[], e : number[], azel : number[]) : number{}
+function satazel(pos : number[], e : number[], azel : number[]) : number{throw new Error("not implemented");}
 
 /* geometric distance ----------------------------------------------------------
 * compute geometric distance and receiver-to-satellite unit vector
@@ -2135,7 +2152,7 @@ function satazel(pos : number[], e : number[], azel : number[]) : number{}
 * return : geometric distance (m) (0>:error/no satellite position)
 * notes  : distance includes sagnac effect correction
 *-----------------------------------------------------------------------------*/
-function geodist(rs : number[], rr : number[], e : number[]) : number{}
+function geodist(rs : number[], rr : number[], e : number[]) : number{throw new Error("not implemented");}
 
 /* compute dops ----------------------------------------------------------------
 * compute DOP (dilution of precision)
@@ -2146,7 +2163,7 @@ function geodist(rs : number[], rr : number[], e : number[]) : number{}
 * return : none
 * notes  : dop[0]-[3] return 0 in case of dop computation error
 *-----------------------------------------------------------------------------*/
-function dops(ns : number, azel : number[], elmin : number, dop : number) : void{}
+function dops(ns : number, azel : number[], elmin : number, dop : number) : void{throw new Error("not implemented");}
 
 /* carrier smoothing -----------------------------------------------------------
 * carrier smoothing by Hatch filter
@@ -2154,7 +2171,7 @@ function dops(ns : number, azel : number[], elmin : number, dop : number) : void
 *          int    ns        I   smoothing window size (epochs)
 * return : none
 *-----------------------------------------------------------------------------*/
-function csmooth(obs : obs_t,  ns : number) : void{}
+function csmooth(obs : obs_t,  ns : number) : void{throw new Error("not implemented");}
 
 /* atmosphere models ---------------------------------------------------------*/
 
@@ -2167,7 +2184,7 @@ function csmooth(obs : obs_t,  ns : number) : void{}
 * return : ionospheric delay (L1) (m)
 *-----------------------------------------------------------------------------*/
 export function ionmodel( t : Date, ion : number[], pos : number[],
-                       azel : number[]):double{}
+                       azel : number[]):number{throw new Error("not implemented");}
 
 /* ionosphere mapping function -------------------------------------------------
 * compute ionospheric delay mapping function by single layer model
@@ -2175,7 +2192,7 @@ export function ionmodel( t : Date, ion : number[], pos : number[],
 *          double *azel     I   azimuth/elevation angle {az,el} (rad)
 * return : ionospheric mapping function
 *-----------------------------------------------------------------------------*/                 
-function ionmapf(pos : number[], azel : number[]) : number{}
+function ionmapf(pos : number[], azel : number[]) : number{throw new Error("not implemented");}
 
 
 /* ionospheric pierce point position -------------------------------------------
@@ -2190,7 +2207,7 @@ function ionmapf(pos : number[], azel : number[]) : number{}
 *          fixing bug on ref [2] A.4.4.10.1 A-22,23
 *-----------------------------------------------------------------------------*/
 function ionppp(pos : number[], azel : number[], re : number,
-                     hion : number, pppos : number[]) : number{}
+                     hion : number, pppos : number[]) : number{throw new Error("not implemented");}
 
 /* troposphere model -----------------------------------------------------------
 * compute tropospheric delay by standard atmosphere and saastamoinen model
@@ -2201,7 +2218,7 @@ function ionppp(pos : number[], azel : number[], re : number,
 * return : tropospheric delay (m)
 *-----------------------------------------------------------------------------*/
 export function tropmodel( time : Date, pos : number[], azel : number[],
-                         humi : number) : number{}
+                         humi : number) : number{throw new Error("not implemented");}
 
 
 
@@ -2236,7 +2253,7 @@ interface ITropmapfReturn{
 }
 
 export function tropmapf( time : Date, pos : IPosition | number[], azel : IAzimuthElevation | number[],
-                       mapfw : number): ITropmapfReturn{}
+                       mapfw : number): ITropmapfReturn{throw new Error("not implemented");}
 
 
 /* ionosphere model by tec grid data -------------------------------------------
@@ -2254,369 +2271,3128 @@ export function tropmapf( time : Date, pos : IPosition | number[], azel : IAzimu
 * notes  : before calling the function, read tec grid data by calling readtec()
 *          return ok with delay=0 and var=VAR_NOTEC if el<MIN_EL or h<MIN_HGT
 *-----------------------------------------------------------------------------*/
-function iontec(gtime_t time, const nav_t *nav, const double *pos,
-                  const double *azel, int opt, double *delay, double *var) : number{}
+function iontec(time : Date, nav :  nav_t, pos : number[],
+                  azel : number[],  opt : number, delay : number, variance : number) : number{throw new Error("not implemented");}
 
 
-function void readtec(const char *file, nav_t *nav, int opt);
+/* read ionex tec grid file ----------------------------------------------------
+* read ionex ionospheric tec grid file
+* args   : char   *file       I   ionex tec grid file
+*                                 (wind-card * is expanded)
+*          nav_t  *nav        IO  navigation data
+*                                 nav->nt, nav->ntmax and nav->tec are modified
+*          int    opt         I   read option (1: no clear of tec data,0:clear)
+* return : none
+* notes  : see ref [1]
+*-----------------------------------------------------------------------------*/
+function readtec(file : string, nav : nav_t,  opt : number) : void{throw new Error("not implemented");}
 
 
-function int ionocorr(gtime_t time, const nav_t *nav, int sat, const double *pos,
-                    const double *azel, int ionoopt, double *ion, double *var);
+/* ionospheric correction ------------------------------------------------------
+* compute ionospheric correction
+* args   : gtime_t time     I   time
+*          nav_t  *nav      I   navigation data
+*          int    sat       I   satellite number
+*          double *pos      I   receiver position {lat,lon,h} (rad|m)
+*          double *azel     I   azimuth/elevation angle {az,el} (rad)
+*          int    ionoopt   I   ionospheric correction option (IONOOPT_???)
+*          double *ion      O   ionospheric delay (L1) (m)
+*          double *var      O   ionospheric delay (L1) variance (m^2)
+* return : status(1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function ionocorr(time : Date, nav : nav_t,  sat : number, pos : number[],
+                    azel : number[], ionoopt : number, ion : number, variance : number) : number{throw new Error("not implemented");}
 
-                    
-function int tropcorr(gtime_t time, const nav_t *nav, const double *pos,
-                    const double *azel, int tropopt, double *trp, double *var);
+
+/* tropospheric correction -----------------------------------------------------
+* compute tropospheric correction
+* args   : gtime_t time     I   time
+*          nav_t  *nav      I   navigation data
+*          double *pos      I   receiver position {lat,lon,h} (rad|m)
+*          double *azel     I   azimuth/elevation angle {az,el} (rad)
+*          int    tropopt   I   tropospheric correction option (TROPOPT_???)
+*          double *trp      O   tropospheric delay (m)
+*          double *var      O   tropospheric delay variance (m^2)
+* return : status(1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function tropcorr(time : Date, nav :  nav_t, pos : number[],
+                    azel : number[],  tropopt : number, trp : number, variance : number) : number{throw new Error("not implemented");}
+
+
 
 /* antenna models ------------------------------------------------------------*/
-function readpcv(file:string, pcvs:pcvs_t ) : number{}
+
+/* read antenna parameters ------------------------------------------------------
+* read antenna parameters
+* args   : char   *file       I   antenna parameter file (antex)
+*          pcvs_t *pcvs       IO  antenna parameters
+* return : status (1:ok,0:file open error)
+* notes  : file with the externsion .atx or .ATX is recognized as antex
+*          file except for antex is recognized ngs antenna parameters
+*          see reference [3]
+*          only support non-azimuth-depedent parameters
+*-----------------------------------------------------------------------------*/
+function readpcv(file:string, pcvs:pcvs_t ) : number{throw new Error("not implemented");}
+
+
+/* search antenna parameter ----------------------------------------------------
+* read satellite antenna phase center position
+* args   : int    sat         I   satellite number (0: receiver antenna)
+*          char   *type       I   antenna type for receiver antenna
+*          gtime_t time       I   time to search parameters
+*          pcvs_t *pcvs       IO  antenna parameters
+* return : antenna parameter (NULL: no antenna)
+*-----------------------------------------------------------------------------*/
 function searchpcv(sat:number, type:string,  time:Date,
-                        pcvs: pcvs_t):pcv_t {}
-function void antmodel(pcv : pcv_t , del:number[], azel : number[],
-                     int opt, double *dant);
-function void antmodel_s(const pcv_t *pcv, double nadir, double *dant);
+                        pcvs: pcvs_t):pcv_t {throw new Error("not implemented");}
+
+
+/* receiver antenna model ------------------------------------------------------
+* compute antenna offset by antenna phase center parameters
+* args   : pcv_t *pcv       I   antenna phase center parameters
+*          double *azel     I   azimuth/elevation for receiver {az,el} (rad)
+*          int     opt      I   option (0:only offset,1:offset+pcv)
+*          double *dant     O   range offsets for each frequency (m)
+* return : none
+* notes  : current version does not support azimuth dependent terms
+*-----------------------------------------------------------------------------*/
+function antmodel(pcv : pcv_t , del:number[], azel : number[],
+                     opt : number, dant : number[]) : void{throw new Error("not implemented");}
+
+
+/* satellite antenna model ------------------------------------------------------
+* compute satellite antenna phase center parameters
+* args   : pcv_t *pcv       I   antenna phase center parameters
+*          double nadir     I   nadir angle for satellite (rad)
+*          double *dant     O   range offsets for each frequency (m)
+* return : none
+*-----------------------------------------------------------------------------*/
+function antmodel_s(pcv : pcv_t, nadir : number, dant : number[]) : void{throw new Error("not implemented");}
+
+
 
 /* earth tide models ---------------------------------------------------------*/
-function void sunmoonpos(gtime_t tutc, const double *erpv, double *rsun,
-                       double *rmoon, double *gmst);
-function void tidedisp(gtime_t tutc, const double *rr, int opt, const erp_t *erp,
-                     const double *odisp, double *dr);
+
+/* sun and moon position -------------------------------------------------------
+* get sun and moon position in ecef
+* args   : gtime_t tut      I   time in ut1
+*          double *erpv     I   erp value {xp,yp,ut1_utc,lod} (rad,rad,s,s/d)
+*          double *rsun     IO  sun position in ecef  (m) (NULL: not output)
+*          double *rmoon    IO  moon position in ecef (m) (NULL: not output)
+*          double *gmst     O   gmst (rad)
+* return : none
+*-----------------------------------------------------------------------------*/
+function sunmoonpos(tutc : Date, erpv : number[], rsun : number,
+                       rmoon : number, gmst : number) : void{throw new Error("not implemented");}
+
+/* tidal displacement ----------------------------------------------------------
+* displacements by earth tides
+* args   : gtime_t tutc     I   time in utc
+*          double *rr       I   site position (ecef) (m)
+*          int    opt       I   options (or of the followings)
+*                                 1: solid earth tide
+*                                 2: ocean tide loading
+*                                 4: pole tide
+*                                 8: elimate permanent deformation
+*          double *erp      I   earth rotation parameters (NULL: not used)
+*          double *odisp    I   ocean loading parameters  (NULL: not used)
+*                                 odisp[0+i*6]: consituent i amplitude radial(m)
+*                                 odisp[1+i*6]: consituent i amplitude west  (m)
+*                                 odisp[2+i*6]: consituent i amplitude south (m)
+*                                 odisp[3+i*6]: consituent i phase radial  (deg)
+*                                 odisp[4+i*6]: consituent i phase west    (deg)
+*                                 odisp[5+i*6]: consituent i phase south   (deg)
+*                                (i=0:M2,1:S2,2:N2,3:K2,4:K1,5:O1,6:P1,7:Q1,
+*                                   8:Mf,9:Mm,10:Ssa)
+*          double *dr       O   displacement by earth tides (ecef) (m)
+* return : none
+* notes  : see ref [1], [2] chap 7
+*          see ref [4] 5.2.1, 5.2.2, 5.2.3
+*          ver.2.4.0 does not use ocean loading and pole tide corrections
+*-----------------------------------------------------------------------------*/
+function tidedisp(tutc : Date, rr : number, opt : number, erp : erp_t,
+                     odisp:number[], dr : number) : void{throw new Error("not implemented");}
 
 /* geiod models --------------------------------------------------------------*/
-export function opengeoid( model : number, file : string) : number{}
-export function  closegeoid() : void{}
-export function  geoidh(pos : number[]) : number{}
+
+/* open geoid model file -------------------------------------------------------
+* open geoid model file
+* args   : int    model     I   geoid model type
+*                               GEOID_EMBEDDED   : embedded model(1x1deg)
+*                               GEOID_EGM96_M150 : EGM96 15x15"
+*                               GEOID_EGM2008_M25: EGM2008 2.5x2.5"
+*                               GEOID_EGM2008_M10: EGM2008 1.0x1.0"
+*                               GEOID_GSI2000_M15: GSI geoid 2000 1.0x1.5"
+*          char   *file     I   geoid model file path
+* return : status (1:ok,0:error)
+* notes  : the following geoid models can be used
+*          WW15MGH.DAC   : EGM96 15x15" binary grid height
+*          Und_min2.5x2.5_egm2008_isw=82_WGS84_TideFree_SE: EGM2008 2.5x2.5"
+*          Und_min1x1_egm2008_isw=82_WGS84_TideFree_SE    : EGM2008 1.0x1.0"
+*          gsigeome_ver4 : GSI geoid 2000 1.0x1.5" (japanese area)
+*          (byte-order of binary files must be compatible to cpu)
+*-----------------------------------------------------------------------------*/
+export function opengeoid( model : number, file : string) : number{throw new Error("not implemented");}
+
+/* close geoid model file ------------------------------------------------------
+* close geoid model file
+* args   : none
+* return : none
+*-----------------------------------------------------------------------------*/
+export function  closegeoid() : void{throw new Error("not implemented");}
+
+/* geoid height ----------------------------------------------------------------
+* get geoid height from geoid model
+* args   : double *pos      I   geodetic position {lat,lon} (rad)
+* return : geoid height (m) (0.0:error)
+* notes  : to use external geoid model, call function opengeoid() to open
+*          geoid model before calling the function. If the external geoid model
+*          is not open, the function uses embedded geoid model.
+*-----------------------------------------------------------------------------*/
+export function  geoidh(pos : number[]) : number{throw new Error("not implemented");}
 
 /* datum transformation ------------------------------------------------------*/
-function int loaddatump(const char *file);
-function int tokyo2jgd(double *pos);
-function int jgd2tokyo(double *pos);
+
+/* load datum transformation parameter -----------------------------------------
+* load datum transformation parameter
+* args   : char  *file      I   datum trans parameter file path
+* return : status (0:ok,0>:error)
+* notes  : parameters file shall comply with GSI TKY2JGD.par
+*-----------------------------------------------------------------------------*/
+function loaddatump(file : string) : number{throw new Error("not implemented");}
+
+/* tokyo datum to JGD2000 datum ------------------------------------------------
+* transform position in Tokyo datum to JGD2000 datum
+* args   : double *pos      I   position in Tokyo datum   {lat,lon,h} (rad,m)
+*                           O   position in JGD2000 datum {lat,lon,h} (rad,m)
+* return : status (0:ok,0>:error,out of range)
+* notes  : before calling, call loaddatump() to set parameter table
+*-----------------------------------------------------------------------------*/
+function tokyo2jgd(pos : number[]) : number{throw new Error("not implemented");}
+
+/* JGD2000 datum to Tokyo datum ------------------------------------------------
+* transform position in JGD2000 datum to Tokyo datum
+* args   : double *pos      I   position in JGD2000 datum {lat,lon,h} (rad,m)
+*                           O   position in Tokyo datum   {lat,lon,h} (rad,m)
+* return : status (0:ok,0>:error,out of range)
+* notes  : before calling, call loaddatump() to set parameter table
+*-----------------------------------------------------------------------------*/
+function jgd2tokyo(pos : number[]) : number{throw new Error("not implemented");}
+
+
 
 /* rinex functions -----------------------------------------------------------*/
 export function  readrnx (file : string,  rcv : number, opt : string, obs : obs_t,
-                    nav : nav_t, sta : sta_t) : number{
+                    nav : nav_t, sta : sta_t) : number{throw new Error("not implemented");}
 
-                    }
-function int readrnxt(const char *file, int rcv, gtime_t ts, gtime_t te,
-                    double tint, const char *opt, obs_t *obs, nav_t *nav,
-                    sta_t *sta);
-function int readrnxc(const char *file, nav_t *nav);
-function int outrnxobsh(FILE *fp, const rnxopt_t *opt, const nav_t *nav);
-function int outrnxobsb(FILE *fp, const rnxopt_t *opt, const obsd_t *obs, int n,
-                      int epflag);
-function int outrnxnavh (FILE *fp, const rnxopt_t *opt, const nav_t *nav);
-function int outrnxgnavh(FILE *fp, const rnxopt_t *opt, const nav_t *nav);
-function int outrnxhnavh(FILE *fp, const rnxopt_t *opt, const nav_t *nav);
-function int outrnxlnavh(FILE *fp, const rnxopt_t *opt, const nav_t *nav);
-function int outrnxqnavh(FILE *fp, const rnxopt_t *opt, const nav_t *nav);
-function int outrnxcnavh(FILE *fp, const rnxopt_t *opt, const nav_t *nav);
-function int outrnxnavb (FILE *fp, const rnxopt_t *opt, const eph_t *eph);
-function int outrnxgnavb(FILE *fp, const rnxopt_t *opt, const geph_t *geph);
-function int outrnxhnavb(FILE *fp, const rnxopt_t *opt, const seph_t *seph);
-function int rtk_uncompress(const char *file, char *uncfile);
-function int convrnx(int format, rnxopt_t *opt, const char *file, char **ofile);
-function int  init_rnxctr (rnxctr_t *rnx);
-function void free_rnxctr (rnxctr_t *rnx);
-function int  open_rnxctr (rnxctr_t *rnx, FILE *fp);
-function int  input_rnxctr(rnxctr_t *rnx, FILE *fp);
+
+/* read rinex obs and nav files ------------------------------------------------
+* read rinex obs and nav files
+* args   : char *file    I      file (wild-card * expanded) ("": stdin)
+*          int   rcv     I      receiver number for obs data
+*         (gtime_t ts)   I      observation time start (ts.time==0: no limit)
+*         (gtime_t te)   I      observation time end   (te.time==0: no limit)
+*         (double tint)  I      observation time interval (s) (0:all)
+*          char  *opt    I      rinex options (see below,"": no option)
+*          obs_t *obs    IO     observation data   (NULL: no input)
+*          nav_t *nav    IO     navigation data    (NULL: no input)
+*          sta_t *sta    IO     station parameters (NULL: no input)
+* return : status (1:ok,0:no data,-1:error)
+* notes  : read data are appended to obs and nav struct
+*          before calling the function, obs and nav should be initialized.
+*          observation data and navigation data are not sorted.
+*          navigation data may be duplicated.
+*          call sortobs() or uniqnav() to sort data or delete duplicated eph.
+*
+*          read rinex options (separated by spaces) :
+*
+*            -GLss[=shift]: select GPS signal ss (ss: RINEX 3 code, "1C","2W"...)
+*            -RLss[=shift]: select GLO signal ss
+*            -ELss[=shift]: select GAL signal ss
+*            -JLss[=shift]: select QZS signal ss
+*            -CLss[=shift]: select BDS signal ss
+*            -SLss[=shift]: select SBS signal ss
+*
+*                 shift: carrier phase shift to be added (cycle)
+*            
+*            -SYS=sys[,sys...]: select navi systems
+*                               (sys=G:GPS,R:GLO,E:GAL,J:QZS,C:BDS,S:SBS)
+*
+*-----------------------------------------------------------------------------*/
+function readrnxt(file : string, rcv : number, ts : Date, te : Date,
+                    tint : number, opt : string, obs : obs_t, nav : nav_t,
+                    sta : sta_t) : number{throw new Error("not implemented");}
+
+
+/* read rinex clock files ------------------------------------------------------
+* read rinex clock files
+* args   : char *file    I      file (wild-card * expanded)
+*          nav_t *nav    IO     navigation data    (NULL: no input)
+* return : number of precise clock
+*-----------------------------------------------------------------------------*/
+function readrnxc(file : string, nav : nav_t) : number{throw new Error("not implemented");}
+
+
+/* output rinex obs header -----------------------------------------------------
+* output rinex obd file header
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          nav_t  *nav      I   navigation data
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxobsh(fp : FILE, opt : rnxopt_t, nav :  nav_t) : number{throw new Error("not implemented");}
+
+
+/* output rinex obs body -------------------------------------------------------
+* output rinex obs body
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          obsd_t *obs      I   observation data
+*          int    n         I   number of observation data
+*          int    flag      I   epoch flag (0:ok,1:power failure,>1:event flag)
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxobsb(fp : FILE, opt :  rnxopt_t, obs :  obsd_t,  n : number,
+                       epflag : number) : number{throw new Error("not implemented");}
+
+/* output rinex nav header -----------------------------------------------------
+* output rinex nav file header
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          nav_t  nav       I   navigation data (NULL: no input)
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxnavh (fp : FILE, opt :  rnxopt_t, nav :  nav_t) : number{throw new Error("not implemented");}
+
+/* output rinex gnav header ----------------------------------------------------
+* output rinex gnav (glonass navigation) file header
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          nav_t  nav       I   navigation data (NULL: no input)
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxgnavh(fp : FILE, opt :  rnxopt_t, nav :  nav_t) : number{throw new Error("not implemented");}
+
+/* output rinex geo nav header -------------------------------------------------
+* output rinex geo nav file header
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          nav_t  nav       I   navigation data (NULL: no input)
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxhnavh(fp : FILE, opt :  rnxopt_t, nav :  nav_t) : number{throw new Error("not implemented");}
+
+/* output rinex galileo nav header ---------------------------------------------
+* output rinex galileo nav file header (2.12)
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          nav_t  nav       I   navigation data (NULL: no input)
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxlnavh(fp : FILE, opt :  rnxopt_t, nav :  nav_t) : number{throw new Error("not implemented");}
+
+/* output rinex qzss nav header ------------------------------------------------
+* output rinex qzss nav file header (2.12 extention and 3.02)
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          nav_t  nav       I   navigation data (NULL: no input)
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxqnavh(fp : FILE, opt :  rnxopt_t, nav : nav_t) : number{throw new Error("not implemented");}
+
+/* output rinex beidou nav header ----------------------------------------------
+* output rinex beidou nav file header (2.12 extention and 3.02)
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          nav_t  nav       I   navigation data (NULL: no input)
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxcnavh(fp : FILE, opt :  rnxopt_t , nav :  nav_t) : number{throw new Error("not implemented");}
+
+/* output rinex nav body -------------------------------------------------------
+* output rinex nav file body record
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          eph_t  *eph      I   ephemeris
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxnavb (fp : FILE, opt :  rnxopt_t, eph :  eph_t) : number{throw new Error("not implemented");}
+
+/* output rinex gnav body ------------------------------------------------------
+* output rinex gnav (glonass navigation) file body record
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          geph_t  *geph    I   glonass ephemeris
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxgnavb(fp : FILE, opt :  rnxopt_t, geph :  geph_t) : number{throw new Error("not implemented");}
+
+/* output rinex geo nav body ---------------------------------------------------
+* output rinex geo nav file body record
+* args   : FILE   *fp       I   output file pointer
+*          rnxopt_t *opt    I   rinex options
+*          seph_t  *seph    I   sbas ephemeris
+* return : status (1:ok, 0:output error)
+*-----------------------------------------------------------------------------*/
+function outrnxhnavb(fp : FILE, opt :  rnxopt_t, seph :  seph_t) : number{throw new Error("not implemented");}
+
+
+/* uncompress file -------------------------------------------------------------
+* uncompress (uncompress/unzip/uncompact hatanaka-compression/tar) file
+* args   : char   *file     I   input file
+*          char   *uncfile  O   uncompressed file
+* return : status (-1:error,0:not compressed file,1:uncompress completed)
+* note   : creates uncompressed file in tempolary directory
+*          gzip and crx2rnx commands have to be installed in commands path
+*-----------------------------------------------------------------------------*/
+function rtk_uncompress(file : string, uncfile : string) : number{throw new Error("not implemented");}
+
+/* rinex converter -------------------------------------------------------------
+* convert receiver log file to rinex obs/nav, sbas log files
+* args   : int    format I      receiver raw format (STRFMT_???)
+*          rnxopt_t *opt IO     rinex options (see below)
+*          char   *file  I      rtcm, receiver raw or rinex file
+*                               (wild-cards (*) are expanded)
+*          char   **ofile IO    output files
+*                               ofile[0] rinex obs file   ("": no output)
+*                               ofile[1] rinex nav file   ("": no output)
+*                               ofile[2] rinex gnav file  ("": no output)
+*                               ofile[3] rinex hnav file  ("": no output)
+*                               ofile[4] rinex qnav file  ("": no output)
+*                               ofile[5] rinex lnav file  ("": no output)
+*                               ofile[6] sbas/lex log file("": no output)
+* return : status (1:ok,0:error,-1:abort)
+* notes  : the following members of opt are replaced by information in last
+*          converted rinex: opt->tstart, opt->tend, opt->obstype, opt->nobs
+*          keywords in ofile[] are replaced by first obs date/time and station
+*          id (%r)
+*          the order of wild-card expanded files must be in-order by time
+*-----------------------------------------------------------------------------*/
+function convrnx(format : number, opt : rnxopt_t, file : string, ofile : string[]) : number{throw new Error("not implemented");}
+
+/* initialize rinex control ----------------------------------------------------
+* initialize rinex control struct and reallocate memory for observation and
+* ephemeris buffer in rinex control struct
+* args   : rnxctr_t *rnx IO     rinex control struct
+* return : status (1:ok,0:memory allocation error)
+*-----------------------------------------------------------------------------*/
+function init_rnxctr (rnx : rnxctr_t) : number{throw new Error("not implemented");}
+
+/* free rinex control ----------------------------------------------------------
+* free observation and ephemris buffer in rinex control struct
+* args   : rnxctr_t *rnx IO  rinex control struct
+* return : none
+*-----------------------------------------------------------------------------*/
+function free_rnxctr (rnx : rnxctr_t) : void{throw new Error("not implemented");}
+
+/* open rinex data -------------------------------------------------------------
+* fetch next rinex message and input a messsage from file
+* args   : rnxctr_t *rnx IO  rinex control struct
+*          FILE  *fp    I    file pointer
+* return : status (-2: end of file, 0: no message, 1: input observation data,
+*                   2: input navigation data)
+*-----------------------------------------------------------------------------*/
+function open_rnxctr (rnx : rnxctr_t, fp : FILE) : number{throw new Error("not implemented");}
+
+/* input rinex control ---------------------------------------------------------
+* fetch next rinex message and input a messsage from file
+* args   : rnxctr_t *rnx IO  rinex control struct
+*          FILE  *fp    I    file pointer
+* return : status (-2: end of file, 0: no message, 1: input observation data,
+*                   2: input navigation data)
+*-----------------------------------------------------------------------------*/
+function input_rnxctr(rnx : rnxctr_t, fp : FILE) : number{throw new Error("not implemented");}
+
 
 /* ephemeris and clock functions ---------------------------------------------*/
-function double eph2clk (gtime_t time, const eph_t  *eph);
-function double geph2clk(gtime_t time, const geph_t *geph);
-function double seph2clk(gtime_t time, const seph_t *seph);
-function void eph2pos (gtime_t time, const eph_t  *eph,  double *rs, double *dts,
-                     double *var);
-function void geph2pos(gtime_t time, const geph_t *geph, double *rs, double *dts,
-                     double *var);
-function void seph2pos(gtime_t time, const seph_t *seph, double *rs, double *dts,
-                     double *var);
-function int  peph2pos(gtime_t time, int sat, const nav_t *nav, int opt,
-                     double *rs, double *dts, double *var);
-function void satantoff(gtime_t time, const double *rs, int sat, const nav_t *nav,
-                      double *dant);
-function int  satpos(gtime_t time, gtime_t teph, int sat, int ephopt,
-                   const nav_t *nav, double *rs, double *dts, double *var,
-                   int *svh);
-function void satposs(gtime_t time, const obsd_t *obs, int n, const nav_t *nav,
-                    int sateph, double *rs, double *dts, double *var, int *svh);
-function void readsp3(const char *file, nav_t *nav, int opt);
-function int  readsap(const char *file, gtime_t time, nav_t *nav);
-function int  readdcb(const char *file, nav_t *nav, const sta_t *sta);
-function int  readfcb(const char *file, nav_t *nav);
-function void alm2pos(gtime_t time, const alm_t *alm, double *rs, double *dts);
 
-function int tle_read(const char *file, tle_t *tle);
-function int tle_name_read(const char *file, tle_t *tle);
-function int tle_pos(gtime_t time, const char *name, const char *satno,
-                   const char *desig, const tle_t *tle, const erp_t *erp,
-                   double *rs);
+/* broadcast ephemeris to satellite clock bias ---------------------------------
+* compute satellite clock bias with broadcast ephemeris (gps, galileo, qzss)
+* args   : gtime_t time     I   time by satellite clock (gpst)
+*          eph_t *eph       I   broadcast ephemeris
+* return : satellite clock bias (s) without relativeity correction
+* notes  : see ref [1],[7],[8]
+*          satellite clock does not include relativity correction and tdg
+*-----------------------------------------------------------------------------*/
+function eph2clk (time : Date, eph :  eph_t) : number{throw new Error("not implemented");}
+
+/* glonass ephemeris to satellite clock bias -----------------------------------
+* compute satellite clock bias with glonass ephemeris
+* args   : gtime_t time     I   time by satellite clock (gpst)
+*          geph_t *geph     I   glonass ephemeris
+* return : satellite clock bias (s)
+* notes  : see ref [2]
+*-----------------------------------------------------------------------------*/
+function geph2clk(time : Date, geph :  geph_t) : number{throw new Error("not implemented");}
+
+/* sbas ephemeris to satellite clock bias --------------------------------------
+* compute satellite clock bias with sbas ephemeris
+* args   : gtime_t time     I   time by satellite clock (gpst)
+*          seph_t *seph     I   sbas ephemeris
+* return : satellite clock bias (s)
+* notes  : see ref [3]
+*-----------------------------------------------------------------------------*/
+function seph2clk(time : Date, seph :  seph_t) : number{throw new Error("not implemented");}
+
+/* broadcast ephemeris to satellite position and clock bias --------------------
+* compute satellite position and clock bias with broadcast ephemeris (gps,
+* galileo, qzss)
+* args   : gtime_t time     I   time (gpst)
+*          eph_t *eph       I   broadcast ephemeris
+*          double *rs       O   satellite position (ecef) {x,y,z} (m)
+*          double *dts      O   satellite clock bias (s)
+*          double *var      O   satellite position and clock variance (m^2)
+* return : none
+* notes  : see ref [1],[7],[8]
+*          satellite clock includes relativity correction without code bias
+*          (tgd or bgd)
+*-----------------------------------------------------------------------------*/
+function eph2pos ( time : Date, eph :  eph_t , rs : number[], dts : number,
+                     variance : number) : void{throw new Error("not implemented");}
+
+/* glonass ephemeris to satellite position and clock bias ----------------------
+* compute satellite position and clock bias with glonass ephemeris
+* args   : gtime_t time     I   time (gpst)
+*          geph_t *geph     I   glonass ephemeris
+*          double *rs       O   satellite position {x,y,z} (ecef) (m)
+*          double *dts      O   satellite clock bias (s)
+*          double *var      O   satellite position and clock variance (m^2)
+* return : none
+* notes  : see ref [2]
+*-----------------------------------------------------------------------------*/
+function geph2pos(time : Date, geph :  geph_t, rs : number[], dts : number,
+                     variance : number):void{throw new Error("not implemented");}
+
+/* sbas ephemeris to satellite position and clock bias -------------------------
+* compute satellite position and clock bias with sbas ephemeris
+* args   : gtime_t time     I   time (gpst)
+*          seph_t  *seph    I   sbas ephemeris
+*          double  *rs      O   satellite position {x,y,z} (ecef) (m)
+*          double  *dts     O   satellite clock bias (s)
+*          double  *var     O   satellite position and clock variance (m^2)
+* return : none
+* notes  : see ref [3]
+*-----------------------------------------------------------------------------*/
+function seph2pos(time : Date, seph :  seph_t, rs : number[], dts : number,
+                     variance : number) : void{throw new Error("not implemented");}
+
+
+/* satellite position/clock by precise ephemeris/clock -------------------------
+* compute satellite position/clock with precise ephemeris/clock
+* args   : gtime_t time       I   time (gpst)
+*          int    sat         I   satellite number
+*          nav_t  *nav        I   navigation data
+*          int    opt         I   sat postion option
+*                                 (0: center of mass, 1: antenna phase center)
+*          double *rs         O   sat position and velocity (ecef)
+*                                 {x,y,z,vx,vy,vz} (m|m/s)
+*          double *dts        O   sat clock {bias,drift} (s|s/s)
+*          double *var        IO  sat position and clock error variance (m)
+*                                 (NULL: no output)
+* return : status (1:ok,0:error or data outage)
+* notes  : clock includes relativistic correction but does not contain code bias
+*          before calling the function, nav->peph, nav->ne, nav->pclk and
+*          nav->nc must be set by calling readsp3(), readrnx() or readrnxt()
+*          if precise clocks are not set, clocks in sp3 are used instead
+*-----------------------------------------------------------------------------*/
+function peph2pos(time : Date,  sat : number, nav :  nav_t,  opt : number,
+                     rs : number[], dts : number, variance:number) : number{throw new Error("not implemented");}
+
+/* satellite antenna phase center offset ---------------------------------------
+* compute satellite antenna phase center offset in ecef
+* args   : gtime_t time       I   time (gpst)
+*          double *rs         I   satellite position and velocity (ecef)
+*                                 {x,y,z,vx,vy,vz} (m|m/s)
+*          int    sat         I   satellite number
+*          nav_t  *nav        I   navigation data
+*          double *dant       I   satellite antenna phase center offset (ecef)
+*                                 {dx,dy,dz} (m) (iono-free LC value)
+* return : none
+*-----------------------------------------------------------------------------*/
+function satantoff(time : Date, rs : number[],  sat : number, nav :  nav_t,
+                      dant : number[]) : void{throw new Error("not implemented");}
+
+
+/* satellite position and clock ------------------------------------------------
+* compute satellite position, velocity and clock
+* args   : gtime_t time     I   time (gpst)
+*          gtime_t teph     I   time to select ephemeris (gpst)
+*          int    sat       I   satellite number
+*          nav_t  *nav      I   navigation data
+*          int    ephopt    I   ephemeris option (EPHOPT_???)
+*          double *rs       O   sat position and velocity (ecef)
+*                               {x,y,z,vx,vy,vz} (m|m/s)
+*          double *dts      O   sat clock {bias,drift} (s|s/s)
+*          double *var      O   sat position and clock error variance (m^2)
+*          int    *svh      O   sat health flag (-1:correction not available)
+* return : status (1:ok,0:error)
+* notes  : satellite position is referenced to antenna phase center
+*          satellite clock does not include code bias correction (tgd or bgd)
+*-----------------------------------------------------------------------------*/
+function satpos(time : Date, teph : Date,  sat : number,  ephopt : number,
+                   nav :  nav_t, rs : number[], dts : number[], variance:number,
+                   svh : number) : number{throw new Error("not implemented");}
+
+
+/* satellite positions and clocks ----------------------------------------------
+* compute satellite positions, velocities and clocks
+* args   : gtime_t teph     I   time to select ephemeris (gpst)
+*          obsd_t *obs      I   observation data
+*          int    n         I   number of observation data
+*          nav_t  *nav      I   navigation data
+*          int    ephopt    I   ephemeris option (EPHOPT_???)
+*          double *rs       O   satellite positions and velocities (ecef)
+*          double *dts      O   satellite clocks
+*          double *var      O   sat position and clock error variances (m^2)
+*          int    *svh      O   sat health flag (-1:correction not available)
+* return : none
+* notes  : rs [(0:2)+i*6]= obs[i] sat position {x,y,z} (m)
+*          rs [(3:5)+i*6]= obs[i] sat velocity {vx,vy,vz} (m/s)
+*          dts[(0:1)+i*2]= obs[i] sat clock {bias,drift} (s|s/s)
+*          var[i]        = obs[i] sat position and clock error variance (m^2)
+*          svh[i]        = obs[i] sat health flag
+*          if no navigation data, set 0 to rs[], dts[], var[] and svh[]
+*          satellite position and clock are values at signal transmission time
+*          satellite position is referenced to antenna phase center
+*          satellite clock does not include code bias correction (tgd or bgd)
+*          any pseudorange and broadcast ephemeris are always needed to get
+*          signal transmission time
+*-----------------------------------------------------------------------------*/
+function satposs(time : Date, obs : obsd_t, n : number, nav :  nav_t,
+                     sateph : number, rs : number[], dts : number[], variance : number, svh : number) : void{throw new Error("not implemented");}
+
+
+/* read sp3 precise ephemeris file ---------------------------------------------
+* read sp3 precise ephemeris/clock files and set them to navigation data
+* args   : char   *file       I   sp3-c precise ephemeris file
+*                                 (wind-card * is expanded)
+*          nav_t  *nav        IO  navigation data
+*          int    opt         I   options (1: only observed + 2: only predicted +
+*                                 4: not combined)
+* return : none
+* notes  : see ref [1]
+*          precise ephemeris is appended and combined
+*          nav->peph and nav->ne must by properly initialized before calling the
+*          function
+*          only files with extensions of .sp3, .SP3, .eph* and .EPH* are read
+*-----------------------------------------------------------------------------*/
+function readsp3(file : string, nav : nav_t,  opt : number) : void{throw new Error("not implemented");}
+
+/* read satellite antenna parameters -------------------------------------------
+* read satellite antenna parameters
+* args   : char   *file       I   antenna parameter file
+*          gtime_t time       I   time
+*          nav_t  *nav        IO  navigation data
+* return : status (1:ok,0:error)
+* notes  : only support antex format for the antenna parameter file
+*-----------------------------------------------------------------------------*/
+function readsap(file : string, time : Date, nav : nav_t) : number{throw new Error("not implemented");}
+
+/* read dcb parameters ---------------------------------------------------------
+* read differential code bias (dcb) parameters
+* args   : char   *file       I   dcb parameters file (wild-card * expanded)
+*          nav_t  *nav        IO  navigation data
+* return : status (1:ok,0:error)
+* notes  : currently only p1-c1 bias of code *.dcb file
+*-----------------------------------------------------------------------------*/
+function readdcb(file : string, nav : nav_t, sta :  sta_t) : number{throw new Error("not implemented");}
+
+/* read satellite fcb data -----------------------------------------------------
+* read satellite fractional cycle bias (dcb) parameters
+* args   : char   *file       I   fcb parameters file (wild-card * expanded)
+*          nav_t  *nav        IO  navigation data
+* return : status (1:ok,0:error)
+* notes  : fcb data appended to navigation data
+*-----------------------------------------------------------------------------*/
+function readfcb(file : string, nav : nav_t) : number{throw new Error("not implemented");}
+
+/* almanac to satellite position and clock bias --------------------------------
+* compute satellite position and clock bias with almanac (gps, galileo, qzss)
+* args   : gtime_t time     I   time (gpst)
+*          alm_t *alm       I   almanac
+*          double *rs       O   satellite position (ecef) {x,y,z} (m)
+*          double *dts      O   satellite clock bias (s)
+* return : none
+* notes  : see ref [1],[7],[8]
+*-----------------------------------------------------------------------------*/
+function alm2pos(time : Date, alm :  alm_t, rs : number[], dts : number) : void{throw new Error("not implemented");}
+
+
+/* read TLE file ---------------------------------------------------------------
+* read NORAD TLE (two line element) data file (ref [2],[3])
+* args   : char   *file     I   NORAD TLE data file
+*          tle_t  *tle      O   TLE data
+* return : status (1:ok,0:error)
+* notes  : before calling the function, the TLE data should be initialized.
+*          the file should be in a two line (only TLE) or three line (satellite
+*          name + TLE) format.
+*          the characters after # in a line are treated as comments.
+*-----------------------------------------------------------------------------*/
+function tle_read(file : string, tle : tle_t) : number{throw new Error("not implemented");}
+
+/* read TLE satellite name file ------------------------------------------------
+* read TLE satellite name file
+* args   : char   *file     I   TLE satellite name file
+*          tle_t  *tle      IO  TLE data
+* return : status (1:ok,0:error)
+* notes  : before calling the function, call tle_read() to read tle table
+*          the TLE satellite name file contains the following record as a text
+*          line. strings after # are treated as comments.
+*
+*          name satno [desig [# comment]]
+*
+*            name : satellite name
+*            satno: satellite catalog number
+*            desig: international designator (optional)
+*-----------------------------------------------------------------------------*/
+function tle_name_read(file : string, tle : tle_t) : number{throw new Error("not implemented");}
+
+/* satellite position and velocity with TLE data -------------------------------
+* compute satellite position and velocity in ECEF with TLE data
+* args   : gtime_t time     I   time (GPST)
+*          char   *name     I   satellite name           ("": not specified)
+*          char   *satno    I   satellite catalog number ("": not specified)
+*          char   *desig    I   international designaor  ("": not specified)
+*          tle_t  *tle      I   TLE data
+*          erp_t  *erp      I   EOP data (NULL: not used)
+*          double *rs       O   sat position/velocity {x,y,z,vx,vy,vz} (m,m/s)
+* return : status (1:ok,0:error)
+* notes  : the coordinates of the position and velocity are ECEF (ITRF)
+*          if erp == NULL, polar motion and ut1-utc are neglected
+*-----------------------------------------------------------------------------*/
+function tle_pos(time : Date, name : string, satno : string,
+                   desig : string, tle :  tle_t, erp : erp_t,
+                   rs : number[]) : number{throw new Error("not implemented");}
+
 
 /* receiver raw data functions -----------------------------------------------*/
-function unsigned int getbitu(const unsigned char *buff, int pos, int len);
-function int          getbits(const unsigned char *buff, int pos, int len);
-function void setbitu(unsigned char *buff, int pos, int len, unsigned int data);
-function void setbits(unsigned char *buff, int pos, int len, int data);
-function unsigned int rtk_crc32  (const unsigned char *buff, int len);
-function unsigned int rtk_crc24q (const unsigned char *buff, int len);
-function unsigned short rtk_crc16(const unsigned char *buff, int len);
-function int decode_word (unsigned int word, unsigned char *data);
-function int decode_frame(const unsigned char *buff, eph_t *eph, alm_t *alm,
-                        double *ion, double *utc, int *leaps);
-function int test_glostr(const unsigned char *buff);
-function int decode_glostr(const unsigned char *buff, geph_t *geph);
-function int decode_bds_d1(const unsigned char *buff, eph_t *eph);
-function int decode_bds_d2(const unsigned char *buff, eph_t *eph);
-function int decode_gal_inav(const unsigned char *buff, eph_t *eph);
 
-function int init_raw   (raw_t *raw, int format);
-function void free_raw  (raw_t *raw);
-function int input_raw  (raw_t *raw, int format, unsigned char data);
-function int input_rawf (raw_t *raw, int format, FILE *fp);
+/* extract unsigned/signed bits ------------------------------------------------
+* extract unsigned/signed bits from byte data
+* args   : unsigned char *buff I byte data
+*          int    pos    I      bit position from start of data (bits)
+*          int    len    I      bit length (bits) (len<=32)
+* return : extracted unsigned/signed bits
+*-----------------------------------------------------------------------------*/
+function getbitu(buff : Buffer,  pos : number, len : number) : number{throw new Error("not implemented");}
 
-function int init_rt17  (raw_t *raw);
-function int init_cmr   (raw_t *raw);
-function void free_rt17 (raw_t *raw);
-function void free_cmr  (raw_t *raw);
-function int update_cmr (raw_t *raw, rtksvr_t *svr, obs_t *obs);
+/* extract unsigned/signed bits ------------------------------------------------
+* extract unsigned/signed bits from byte data
+* args   : unsigned char *buff I byte data
+*          int    pos    I      bit position from start of data (bits)
+*          int    len    I      bit length (bits) (len<=32)
+* return : extracted unsigned/signed bits
+*-----------------------------------------------------------------------------*/
+function getbits(buff : Buffer, pos : number, len : number) : number{throw new Error("not implemented");}
 
-function input_oem4  (raw:raw_t,  data:number):number{}
-function input_oem3  (raw:raw_t,  data:number):number{}
-function input_ubx   (raw:raw_t,  data:number):number{}
-function input_ss2   (raw:raw_t,  data:number):number{}
-function input_cres  (raw:raw_t,  data:number):number{}
-function input_stq   (raw:raw_t,  data:number):number{}
-function input_gw10  (raw:raw_t,  data:number):number{}
-function input_javad (raw:raw_t,  data:number):number{}
-function input_nvs   (raw:raw_t,  data:number):number{}
-function input_bnx   (raw:raw_t,  data:number):number{}
-function input_rt17  (raw:raw_t,  data:number):number{}
-function input_sbf   (raw:raw_t,  data:number):number{}
-function input_cmr   (raw:raw_t,  data:number):number{}
-function input_lexr  (raw:raw_t,  data:number):number{}
-function input_oem4f (raw:raw_t, fp: FILE):number{}
-function input_oem3f (raw:raw_t, fp: FILE):number{}
-function input_ubxf  (raw:raw_t, fp: FILE):number{}
-function input_ss2f  (raw:raw_t, fp: FILE):number{}
-function input_cresf (raw:raw_t, fp: FILE):number{}
-function input_stqf  (raw:raw_t, fp: FILE):number{}
-function input_gw10f (raw:raw_t, fp: FILE):number{}
-function input_javadf(raw:raw_t, fp: FILE):number{}
-function input_nvsf  (raw:raw_t, fp: FILE):number{}
-function input_bnxf  (raw:raw_t, fp: FILE):number{}
-function input_rt17f (raw:raw_t, fp: FILE):number{}
-function input_sbff  (raw:raw_t, fp: FILE):number{}
-function input_cmrf  (raw:raw_t, fp: FILE):number{}
-function input_lexrf (raw:raw_t, fp: FILE):number{}
+/* set unsigned/signed bits ----------------------------------------------------
+* set unsigned/signed bits to byte data
+* args   : unsigned char *buff IO byte data
+*          int    pos    I      bit position from start of data (bits)
+*          int    len    I      bit length (bits) (len<=32)
+*         (unsigned) int I      unsigned/signed data
+* return : none
+*-----------------------------------------------------------------------------*/
+function setbitu(buff : Buffer, pos : number, len : number, data : number) : void{throw new Error("not implemented");}
 
-function  gen_ubx (msg:string, buff : Buffer):number{}
-function  gen_stq (msg:string, buff : Buffer):number{}
-function  gen_nvs (msg:string, buff : Buffer):number{}
-function  gen_lexr(msg:string, buff : Buffer):number{}
+/* set unsigned/signed bits ----------------------------------------------------
+* set unsigned/signed bits to byte data
+* args   : unsigned char *buff IO byte data
+*          int    pos    I      bit position from start of data (bits)
+*          int    len    I      bit length (bits) (len<=32)
+*         (unsigned) int I      unsigned/signed data
+* return : none
+*-----------------------------------------------------------------------------*/
+function setbits(buff : Buffer, pos : number, len : number, data : number) : void{throw new Error("not implemented");}
+
+/* crc-32 parity ---------------------------------------------------------------
+* compute crc-32 parity for novatel raw
+* args   : unsigned char *buff I data
+*          int    len    I      data length (bytes)
+* return : crc-32 parity
+* notes  : see NovAtel OEMV firmware manual 1.7 32-bit CRC
+*-----------------------------------------------------------------------------*/
+function rtk_crc32  (buff : Buffer, len : number) : number{throw new Error("not implemented");}
+
+/* crc-24q parity --------------------------------------------------------------
+* compute crc-24q parity for sbas, rtcm3
+* args   : unsigned char *buff I data
+*          int    len    I      data length (bytes)
+* return : crc-24Q parity
+* notes  : see reference [2] A.4.3.3 Parity
+*-----------------------------------------------------------------------------*/
+function rtk_crc24q (buff : Buffer, len : number) : number{throw new Error("not implemented");}
+
+/* crc-16 parity ---------------------------------------------------------------
+* compute crc-16 parity for binex, nvs
+* args   : unsigned char *buff I data
+*          int    len    I      data length (bytes)
+* return : crc-16 parity
+* notes  : see reference [10] A.3.
+*-----------------------------------------------------------------------------*/
+function rtk_crc16(buff : Buffer, len : number) : number{throw new Error("not implemented");}
+
+
+/* decode navigation data word -------------------------------------------------
+* check party and decode navigation data word
+* args   : unsigned int word I navigation data word (2+30bit)
+*                              (previous word D29*-30* + current word D1-30)
+*          unsigned char *data O decoded navigation data without parity
+*                              (8bitx3)
+* return : status (1:ok,0:parity error)
+* notes  : see reference [1] 20.3.5.2 user parity algorithm
+*-----------------------------------------------------------------------------*/
+function decode_word (word : number, data : Buffer) : number{throw new Error("not implemented");}
+
+
+/* decode gps/qzss navigation data frame ---------------------------------------
+* decode navigation data frame and extract ephemeris and ion/utc parameters
+* args   : unsigned char *buff I gps navigation data frame (without parity)
+*                                  buff[0-29]: 24 bits x 10 words
+*          eph_t *eph    IO     ephemeris message      (NULL: no input)
+*          alm_t *alm    IO     almanac                (NULL: no input)
+*          double *ion   IO     ionospheric parameters (NULL: no input)
+*          double *utc   IO     delta-utc parameters   (NULL: no input)
+*          int   *leaps  IO     leap seconds (s)       (NULL: no input)
+* return : status (0:no valid, 1-5:subframe id)
+* notes  : use cpu time to resolve modulo 1024 ambiguity of the week number
+*          see ref [1]
+*          utc[3] reference week for utc parameter is truncated in 8 bits
+*          ion and utc parameters by qzss indicate local iono and qzst-utc
+*          parameters.
+*-----------------------------------------------------------------------------*/
+function decode_frame(buff : Buffer, eph : eph_t, alm : alm_t,
+                        ion : number, utc : number, leaps : number) : number{throw new Error("not implemented");}
+
+
+
+/* test hamming code of glonass ephemeris string -------------------------------
+* test hamming code of glonass ephemeris string (ref [2] 4.7)
+* args   : unsigned char *buff I glonass navigation data string bits in frame
+*                                with hamming
+*                                  buff[ 0]: string bit 85-78
+*                                  buff[ 1]: string bit 77-70
+*                                  ...
+*                                  buff[10]: string bit  5- 1 (0 padded)
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function test_glostr(buff : Buffer) : number{throw new Error("not implemented");}
+
+
+/* decode glonass ephemeris strings --------------------------------------------
+* decode glonass ephemeris string (ref [2])
+* args   : unsigned char *buff I glonass navigation data string bits in frames
+*                                (without hamming and time mark)
+*                                  buff[ 0- 9]: string #1 (77 bits)
+*                                  buff[10-19]: string #2
+*                                  buff[20-29]: string #3
+*                                  buff[30-39]: string #4
+*          geph_t *geph  IO     glonass ephemeris message
+* return : status (1:ok,0:error)
+* notes  : geph->tof should be set to frame time witin 1/2 day before calling
+*          geph->frq is set to 0
+*-----------------------------------------------------------------------------*/
+function decode_glostr(buff : Buffer, geph : geph_t) : number{throw new Error("not implemented");}
+
+/* decode BeiDou D1 ephemeris --------------------------------------------------
+* decode BeiDou D1 ephemeris (IGSO/MEO satellites) (ref [3] 5.2)
+* args   : unsigned char *buff I beidou D1 subframe bits
+*                                  buff[ 0- 37]: subframe 1 (300 bits)
+*                                  buff[38- 75]: subframe 2
+*                                  buff[76-113]: subframe 3
+*          eph_t    *eph    IO  ephemeris structure
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function decode_bds_d1(buff : Buffer, eph : eph_t) : number{throw new Error("not implemented");}
+
+/* decode BeiDou D2 ephemeris --------------------------------------------------
+* decode BeiDou D2 ephemeris (GEO satellites) (ref [3] 5.3)
+* args   : unsigned char *buff I beidou D2 subframe 1 page bits
+*                                  buff[  0- 37]: page 1 (300 bits)
+*                                  buff[ 38- 75]: page 2
+*                                  ...
+*                                  buff[342-379]: page 10
+*          eph_t    *eph    IO  ephemeris structure
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function decode_bds_d2(buff : Buffer, eph : eph_t) : number{throw new Error("not implemented");}
+
+
+/* decode Galileo I/NAV ephemeris ----------------------------------------------
+* decode Galileo I/NAV (ref [5] 4.3)
+* args   : unsigned char *buff I Galileo I/NAV subframe bits
+*                                  buff[ 0-15]: I/NAV word type 0 (128 bit)
+*                                  buff[16-31]: I/NAV word type 1
+*                                  buff[32-47]: I/NAV word type 2
+*                                  buff[48-63]: I/NAV word type 3
+*                                  buff[64-79]: I/NAV word type 4
+*                                  buff[80-95]: I/NAV word type 5
+*          eph_t    *eph    IO  ephemeris structure
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function decode_gal_inav(buff : Buffer, eph : eph_t) : number{throw new Error("not implemented");}
+
+/* initialize receiver raw data control ----------------------------------------
+* initialize receiver raw data control struct and reallocate obsevation and
+* epheris buffer
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          int    format I      stream format (STRFMT_???)
+* return : status (1:ok,0:memory allocation error)
+*-----------------------------------------------------------------------------*/
+function init_raw   (raw : raw_t,  format : number) : number{throw new Error("not implemented");}
+
+/* free receiver raw data control ----------------------------------------------
+* free observation and ephemeris buffer in receiver raw data control struct
+* args   : raw_t  *raw   IO     receiver raw data control struct
+* return : none
+*-----------------------------------------------------------------------------*/
+function free_raw  (raw : raw_t) : void{throw new Error("not implemented");}
+
+
+/* input receiver raw data from stream -----------------------------------------
+* fetch next receiver raw data and input a message from stream
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          int    format I      receiver raw data format (STRFMT_???)
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter, 31: input lex message)
+*-----------------------------------------------------------------------------*/
+function input_raw  (raw : raw_t,  format : number, data : Buffer) : number{throw new Error("not implemented");}
+
+
+/* input receiver raw data from file -------------------------------------------
+* fetch next receiver raw data and input a message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          int    format I      receiver raw data format (STRFMT_???)
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file/format error, -1...31: same as above)
+*-----------------------------------------------------------------------------*/
+function input_rawf (raw : raw_t,  format : number, fp : FILE) : number{throw new Error("not implemented");}
+
+/* init_rt17 = Initialize RT17 dependent private storage */
+function init_rt17  (raw : raw_t) : number{throw new Error("not implemented");}
+
+/* init_cmr = Initialize CMR dependent private storage */
+function init_cmr   (raw : raw_t) : number{throw new Error("not implemented");}
+
+/* free_rt17 - Free up RT17 dependent private storage */
+function free_rt17 (raw : raw_t) : void{throw new Error("not implemented");}
+
+/* free_cmr - Free up CMR dependent private storage */
+function free_cmr  (raw : raw_t) : void{throw new Error("not implemented");}
+
+/*
+| update_cmr - Update the CMR rover observations table
+|
+| Returns:
+|
+| -1: error
+|  0: no error
+|
+| Call this function in the RTK SERVER immediately
+| after any rover observations have been received.
+*/
+function update_cmr (raw : raw_t, svr : rtksvr_t, obs : obs_t) : number{throw new Error("not implemented");}
+
+
+/* input oem4/oem3 raw data from stream ----------------------------------------
+* fetch next novatel oem4/oem3 raw data and input a mesasge from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+*
+* notes  : to specify input options for oem4, set raw->opt to the following
+*          option strings separated by spaces.
+*
+*          -EPHALL : input all ephemerides
+*          -GL1P   : select 1P for GPS L1 (default 1C)
+*          -GL2X   : select 2X for GPS L2 (default 2W)
+*          -RL2C   : select 2C for GLO L2 (default 2P)
+*          -EL2C   : select 2C for GAL L2 (default 2C)
+*          -GALINAV: use I/NAV for GAL ephemeris
+*          -GALFNAV: use F/NAV for GAL ephemeris
+*
+*-----------------------------------------------------------------------------*/
+function input_oem4  (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input oem4/oem3 raw data from stream ----------------------------------------
+* fetch next novatel oem4/oem3 raw data and input a mesasge from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+*
+* notes  : to specify input options for oem4, set raw->opt to the following
+*          option strings separated by spaces.
+*
+*          -EPHALL : input all ephemerides
+*          -GL1P   : select 1P for GPS L1 (default 1C)
+*          -GL2X   : select 2X for GPS L2 (default 2W)
+*          -RL2C   : select 2C for GLO L2 (default 2P)
+*          -EL2C   : select 2C for GAL L2 (default 2C)
+*          -GALINAV: use I/NAV for GAL ephemeris
+*          -GALFNAV: use F/NAV for GAL ephemeris
+*
+*-----------------------------------------------------------------------------*/
+function input_oem3  (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input ublox raw message from stream -----------------------------------------
+* fetch next ublox raw data and input a mesasge from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+*
+* notes  : to specify input options, set raw->opt to the following option
+*          strings separated by spaces.
+*
+*          -EPHALL    : input all ephemerides
+*          -INVCP     : invert polarity of carrier-phase
+*          -TADJ=tint : adjust time tags to multiples of tint (sec)
+*          -STD_SLIP=std: slip by std-dev of carrier phase under std
+*
+*          The supported messages are as follows.
+*
+*          UBX-RXM-RAW  : raw measurement data
+*          UBX-RXM-RAWX : multi-gnss measurement data
+*          UBX-RXM-SFRB : subframe buffer
+*          UBX-RXM-SFRBX: subframe buffer extension
+*
+*          UBX-TRK-MEAS and UBX-TRK-SFRBX are based on NEO-M8N (F/W 2.01).
+*          UBX-TRK-D5 is based on NEO-7N (F/W 1.00). They are not formally
+*          documented and not supported by u-blox.
+*          Users can use these messages by their own risk.
+*-----------------------------------------------------------------------------*/
+function input_ubx   (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input superstar 2 raw message from stream -----------------------------------
+* input next superstar 2 raw message from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+* notes  : needs #20 or #21 message to get proper week number of #23 raw
+*          observation data
+*-----------------------------------------------------------------------------*/
+function input_ss2   (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input cresent raw message ---------------------------------------------------
+* input next crescent raw message from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+*
+* notes  : to specify input options, set raw->opt to the following option
+*          strings separated by spaces.
+*
+*          -EPHALL      : input all ephemerides
+*          -TTCORR      : time-tag offset correction
+*          -ENAGLO      : enable glonass messages
+*
+*-----------------------------------------------------------------------------*/
+function input_cres  (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input skytraq raw message from stream ---------------------------------------
+* fetch next skytraq raw data and input a mesasge from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+*
+* notes  : to specify input options, set raw->opt to the following option
+*          strings separated by spaces.
+*
+*          -INVCP     : inverse polarity of carrier-phase
+*
+*-----------------------------------------------------------------------------*/
+function input_stq   (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input gw10 raw message ------------------------------------------------------
+* input next gw10 raw message from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+*
+* notes  : to specify input options, set raw->opt to the following option
+*          strings separated by spaces.
+*
+*          -EPHALL    : input all ephemerides
+*
+*-----------------------------------------------------------------------------*/
+function input_gw10  (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input javad raw message from stream -----------------------------------------
+* fetch next javad raw data and input a mesasge from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+*
+* notes  : to specify input options, set raw->opt to the following option
+*          strings separated by spaces.
+*
+*          -EPHALL : input all ephemerides
+*          -GL1W   : select 1W for GPS L1 (default 1C)
+*          -GL1X   : select 1X for GPS L1 (default 1C)
+*          -GL2X   : select 2X for GPS L2 (default 2W)
+*          -RL1C   : select 1C for GLO L1 (default 1P)
+*          -RL2C   : select 2C for GLO L2 (default 2P)
+*          -JL1Z   : select 1Z for QZS L1 (default 1C)
+*          -JL1X   : select 1X for QZS L1 (default 1C)
+*          -NOET   : discard epoch time message ET (::)
+*
+*-----------------------------------------------------------------------------*/
+function input_javad (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input NVS raw message from stream -------------------------------------------
+* fetch next NVS raw data and input a message from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+*
+* notes  : to specify input options, set raw->opt to the following option
+*          strings separated by spaces.
+*
+*          -EPHALL    : input all ephemerides
+*          -TADJ=tint : adjust time tags to multiples of tint (sec)
+*
+*-----------------------------------------------------------------------------*/
+function input_nvs   (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input binex message from stream ---------------------------------------------
+* fetch next binex data and input a message from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris)
+* notes  : support only the following message (ref [1])
+*
+*          - big-endian, regular CRC, forward record (sync=0xE2)
+*          - record-subrecord:
+*            0x01-01: decoded gps ephemeris
+*            0x01-02: decoded glonass ephemeris
+*            0x01-03: decoded sbas ephemeris
+*            0x01-04: decoded galileo ephemeris
+*            0x01-05: decoded beidou-2/compass ephemeris
+*            0x01-06: decoded qzss ephemeris
+*            0x7f-05: gnss data prototyping - trimble netr8
+*
+*          to specify input options, set rtcm->opt to the following option
+*          strings separated by spaces.
+*
+*          -EPHALL  : input all ephemerides
+*          -GLss    : select signal ss for GPS (ss=1C,1P,...)
+*          -RLss    : select signal ss for GLO (ss=1C,1P,...)
+*          -ELss    : select signal ss for GAL (ss=1C,1B,...)
+*          -JLss    : select signal ss for QZS (ss=1C,2C,...)
+*          -CLss    : select signal ss for BDS (ss=2I,2X,...)
+*
+*-----------------------------------------------------------------------------*/
+function input_bnx   (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/*
+| input_rt17 - Read an RT-17 mesasge from a raw data stream 
+|
+| Returns:
+|
+| -1: error message
+|  0: no message (tells caller to please read more data from the stream)
+|  1: input observation data
+|  2: input ephemeris
+|  9: input ion/utc parameter
+|
+| Each message begins with a 4-byte header, followed by the bytes of data in the packet,
+| and the packet ends with a 2-byte trailer. Byte 3 is set to 0 (00h) when the packet
+| contains no data.
+*/
+function input_rt17  (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input sbf raw data from stream ----------------------------------------------
+* get to the next sbf raw block from stream
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 3: input sbas message,
+*                  9: input ion/utc parameter)
+*-----------------------------------------------------------------------------*/
+function input_sbf   (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/*
+| input_cmr - Read a CMR data stream 
+|
+| Returns:
+|
+| -1: error message
+|  0: no message (tells caller to please read more data from the stream)
+|  1: input observation data
+|  5: input station pos/ant parameters
+|
+| Supported CMR messages: 0, 1, 2, 3, 4; CMR+ messages 1, 2, 3.
+*/
+function input_cmr   (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input lex receiver raw message from stream ----------------------------------
+* fetch next lex receiver raw data and input a mesasge from stream
+* args   : raw_t *raw   IO     receiver raw data control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  31: input lex message)
+*-----------------------------------------------------------------------------*/
+function input_lexr  (raw:raw_t,  data:number):number{throw new Error("not implemented");}
+
+
+/* input oem4/oem3 raw data from file ------------------------------------------
+* fetch next novatel oem4/oem3 raw data and input a message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          int    format I      receiver raw data format (STRFMT_???)
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_oem4f (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input oem4/oem3 raw data from file ------------------------------------------
+* fetch next novatel oem4/oem3 raw data and input a message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          int    format I      receiver raw data format (STRFMT_???)
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_oem3f (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input ublox raw message from file -------------------------------------------
+* fetch next ublox raw data and input a message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_ubxf  (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input superstar 2 raw message from file -------------------------------------
+* input next superstar 2 raw message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_ss2f  (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input crescent raw message from file ----------------------------------------
+* input next crescent raw message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_cresf (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input skytraq raw message from file -----------------------------------------
+* fetch next skytraq raw data and input a message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_stqf  (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input gw10 raw message from file --------------------------------------------
+* input next gw10 raw message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_gw10f (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input javad raw message from file -------------------------------------------
+* fetch next javad raw data and input a message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_javadf(raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input NVS raw message from file ---------------------------------------------
+* fetch next NVS raw data and input a message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_nvsf  (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input binex message from file -----------------------------------------------
+* fetch next binex data and input a message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_bnxf  (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/*
+| input_rt17f - Read an RT-17 mesasge from a file 
+|
+| Returns:
+|
+| -2: End of file (EOF)
+| -1: error message
+|  0: no message
+|  1: input observation data
+|  2: input ephemeris
+|  9: input ion/utc parameter
+*/
+function input_rt17f (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* sbf raw block finder --------------------------------------------------------
+* get to the next sbf raw block from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_sbff  (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/*
+| input_cmrf - Read a CMR mesasge from a file 
+|
+| Returns:
+|
+| -1: error message
+|  0: no message (tells caller to please read more data from the stream)
+|  1: input observation data
+|  5: input station pos/ant parameters
+|
+| Supported CMR messages: 0, 1, 2, 3, 4; CMR+ messages 1, 2, 3.
+*/
+function input_cmrf  (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* input lex receiver raw message from file ------------------------------------
+* fetch next lex receiver raw data and input a message from file
+* args   : raw_t  *raw   IO     receiver raw data control struct
+*          FILE   *fp    I      file pointer
+* return : status(-2: end of file, -1...9: same as above)
+*-----------------------------------------------------------------------------*/
+function input_lexrf (raw:raw_t, fp: FILE):number{throw new Error("not implemented");}
+
+
+/* generate ublox binary message -----------------------------------------------
+* generate ublox binary message from message string
+* args   : char  *msg   IO     message string 
+*            "CFG-PRT   portid res0 res1 mode baudrate inmask outmask flags"
+*            "CFG-USB   vendid prodid res1 res2 power flags vstr pstr serino"
+*            "CFG-MSG   msgid rate0 rate1 rate2 rate3 rate4 rate5 rate6"
+*            "CFG-NMEA  filter version numsv flags"
+*            "CFG-RATE  meas nav time"
+*            "CFG-CFG   clear_mask save_mask load_mask [dev_mask]"
+*            "CFG-TP    interval length status time_ref res adelay rdelay udelay"
+*            "CFG-NAV2  ..."
+*            "CFG-DAT   maja flat dx dy dz rotx roty rotz scale"
+*            "CFG-INF   protocolid res0 res1 res2 mask0 mask1 mask2 ... mask5"
+*            "CFG-RST   navbbr reset res"
+*            "CFG-RXM   gpsmode lpmode"
+*            "CFG-ANT   flags pins"
+*            "CFG-FXN   flags treacq tacq treacqoff tacqoff ton toff res basetow"
+*            "CFG-SBAS  mode usage maxsbas res scanmode"
+*            "CFG-LIC   key0 key1 key2 key3 key4 key5"
+*            "CFG-TM    intid rate flags"
+*            "CFG-TM2   ch res0 res1 rate flags"
+*            "CFG-TMODE tmode posx posy posz posvar svinmindur svinvarlimit"
+*            "CFG-EKF   ..."
+*            "CFG-GNSS  ..."
+*            "CFG-ITFM  conf conf2"
+*            "CFG-LOGFILTER ver flag min_int time_thr speed_thr pos_thr"
+*            "CFG-NAV5  ..."
+*            "CFG-NAVX5 ..."
+*            "CFG-ODO   ..."
+*            "CFG-PM2   ..."
+*            "CFG-PWR   ver rsv1 rsv2 rsv3 state"
+*            "CFG-RINV  flag data ..."
+*            "CFG-SMGR  ..."
+*            "CFG-TMODE2 ..."
+*            "CFG-TMODE3 ..."
+*            "CFG-TPS   ..."
+*            "CFG-TXSLOT ..."
+*          unsigned char *buff O binary message
+* return : length of binary message (0: error)
+* note   : see reference [1][3] for details.
+*          the following messages are not supported:
+*             CFG-DOSC,CFG-ESRC
+*-----------------------------------------------------------------------------*/
+function  gen_ubx (msg:string, buff : Buffer):number{throw new Error("not implemented");}
+
+
+/* generate skytraq binary message ---------------------------------------------
+* generate skytraq binary message from message string
+* args   : char  *msg   I      message string 
+*            "RESTART  [arg...]" system restart
+*            "CFG-SERI [arg...]" configure serial port propperty
+*            "CFG-FMT  [arg...]" configure output message format
+*            "CFG-RATE [arg...]" configure binary measurement output rates
+*            "CFG-BIN  [arg...]" configure general binary
+*            "GET-GLOEPH [slot]" get glonass ephemeris for freq channel number
+*          unsigned char *buff O binary message
+* return : length of binary message (0: error)
+* note   : see reference [1][2][3][4] for details.
+*-----------------------------------------------------------------------------*/
+function  gen_stq (msg:string, buff : Buffer):number{throw new Error("not implemented");}
+
+
+/* generate NVS binary message -------------------------------------------------
+* generate NVS binary message from message string
+* args   : char  *msg   I      message string
+*            "RESTART  [arg...]" system reset
+*            "CFG-SERI [arg...]" configure serial port property
+*            "CFG-FMT  [arg...]" configure output message format
+*            "CFG-RATE [arg...]" configure binary measurement output rates
+*          unsigned char *buff O binary message
+* return : length of binary message (0: error)
+* note   : see reference [1][2] for details.
+*-----------------------------------------------------------------------------*/
+function  gen_nvs (msg:string, buff : Buffer):number{throw new Error("not implemented");}
+
+
+/* generate lex receiver raw message -------------------------------------------
+* generate lex receiver raw message from message string
+* args   : char  *msg   IO     message string 
+*            "CMD-RST [clear]"       : restart command
+*            "CMD-REQ [msgid]"       : request message
+*            "CMD-REQC"              : request of reference clock status
+*            "CMD-CH sat1 sat2 sat3" : sv-channel assignment
+*            "CMD-TIME [date time]"  : time input (default current time)
+*                                      (date=YYYY/dd/mm, time=HH:MM:SS.SS)
+*            "CMD-POS lat lon hgt"   : antenna position input
+*            "CMD-BIT {on|off}"      : output-control of predecoding bit stream
+*          unsigned char *buff O binary message
+* return : length of binary message (0: error)
+* note   : see ref [1] for details.
+*-----------------------------------------------------------------------------*/
+function  gen_lexr(msg:string, buff : Buffer):number{throw new Error("not implemented");}
+
 
 /* rtcm functions ------------------------------------------------------------*/
-function   init_rtcm   (rtcm : rtcm_t) : number{}
-function  free_rtcm  (rtcm : rtcm_t) : void{}
-function   input_rtcm2 (rtcm:rtcm_t ,  data:number):number{}
-function   input_rtcm3 (rtcm:rtcm_t ,  data:number):number{}
-function   input_rtcm2f(rtcm:rtcm_t , fp:FILE):number{}
-function   input_rtcm3f(rtcm:rtcm_t , fp:FILE):number{}
-function   gen_rtcm2   (rtcm:rtcm_t ,  type:number,  sync: number):number{}
-function   gen_rtcm3   (rtcm:rtcm_t ,  type:number,  sync: number):number{}
+
+/* initialize rtcm control -----------------------------------------------------
+* initialize rtcm control struct and reallocate memory for observation and
+* ephemeris buffer in rtcm control struct
+* args   : rtcm_t *raw   IO     rtcm control struct
+* return : status (1:ok,0:memory allocation error)
+*-----------------------------------------------------------------------------*/
+function   init_rtcm   (rtcm : rtcm_t) : number{throw new Error("not implemented");}
+
+/* free rtcm control ----------------------------------------------------------
+* free observation and ephemris buffer in rtcm control struct
+* args   : rtcm_t *raw   IO     rtcm control struct
+* return : none
+*-----------------------------------------------------------------------------*/
+function  free_rtcm  (rtcm : rtcm_t) : void{throw new Error("not implemented");}
+
+/* input rtcm 2 message from stream --------------------------------------------
+* fetch next rtcm 2 message and input a message from byte stream
+* args   : rtcm_t *rtcm IO   rtcm control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 5: input station pos/ant parameters,
+*                  6: input time parameter, 7: input dgps corrections,
+*                  9: input special message)
+* notes  : before firstly calling the function, time in rtcm control struct has
+*          to be set to the approximate time within 1/2 hour in order to resolve
+*          ambiguity of time in rtcm messages.
+*          supported msgs RTCM ver.2: 1,3,9,14,16,17,18,19,22
+*          refer [1] for RTCM ver.2
+*-----------------------------------------------------------------------------*/
+function   input_rtcm2 (rtcm:rtcm_t ,  data:number):number{throw new Error("not implemented");}
+
+/* input rtcm 3 message from stream --------------------------------------------
+* fetch next rtcm 3 message and input a message from byte stream
+* args   : rtcm_t *rtcm IO   rtcm control struct
+*          unsigned char data I stream data (1 byte)
+* return : status (-1: error message, 0: no message, 1: input observation data,
+*                  2: input ephemeris, 5: input station pos/ant parameters,
+*                  10: input ssr messages)
+* notes  : before firstly calling the function, time in rtcm control struct has
+*          to be set to the approximate time within 1/2 week in order to resolve
+*          ambiguity of time in rtcm messages.
+*          
+*          to specify input options, set rtcm->opt to the following option
+*          strings separated by spaces.
+*
+*          -EPHALL  : input all ephemerides
+*          -STA=nnn : input only message with STAID=nnn
+*          -GLss    : select signal ss for GPS MSM (ss=1C,1P,...)
+*          -RLss    : select signal ss for GLO MSM (ss=1C,1P,...)
+*          -ELss    : select signal ss for GAL MSM (ss=1C,1B,...)
+*          -JLss    : select signal ss for QZS MSM (ss=1C,2C,...)
+*          -CLss    : select signal ss for BDS MSM (ss=2I,7I,...)
+*
+*          supported RTCM 3 messages
+*                  (ref [2][3][4][5][6][7][8][9][10][11][12][13][14][15])
+*
+*            TYPE       GPS     GLOASS    GALILEO    QZSS     BEIDOU     SBAS
+*         ----------------------------------------------------------------------
+*          OBS C-L1  : 1001~     1009~       -         -         -         -
+*              F-L1  : 1002      1010        -         -         -         -
+*              C-L12 : 1003~     1011~       -         -         -         -
+*              F-L12 : 1004      1012        -         -         -         -
+*
+*          NAV       : 1019      1020      1045*     1044*     1047*       -
+*                        -         -       1046*       -         -         -
+*
+*          MSM 1     : 1071~     1081~     1091~     1111*~    1121*~    1101*~
+*              2     : 1072~     1082~     1092~     1112*~    1122*~    1102*~
+*              3     : 1073~     1083~     1093~     1113*~    1123*~    1103*~
+*              4     : 1074      1084      1094      1114*     1124*     1104*
+*              5     : 1075      1085      1095      1115*     1125*     1105*
+*              6     : 1076      1086      1096      1116*     1126*     1106*
+*              7     : 1077      1087      1097      1117*     1127*     1107*
+*
+*          SSR OBT   : 1057      1063      1240*     1246*     1258*       -
+*              CLK   : 1058      1064      1241*     1247*     1259*       -
+*              BIAS  : 1059      1065      1242*     1248*     1260*       -
+*              OBTCLK: 1060      1066      1243*     1249*     1261*       -
+*              URA   : 1061      1067      1244*     1250*     1262*       -
+*              HRCLK : 1062      1068      1245*     1251*     1263*       -
+*
+*          ANT INFO  : 1005 1006 1007 1008 1033
+*         ----------------------------------------------------------------------
+*                                                    (* draft, ~ only encode)
+*
+*          for MSM observation data with multiple signals for a frequency,
+*          a signal is selected according to internal priority. to select
+*          a specified signal, use the input options.
+*
+*          rtcm3 message format:
+*            +----------+--------+-----------+--------------------+----------+
+*            | preamble | 000000 |  length   |    data message    |  parity  |
+*            +----------+--------+-----------+--------------------+----------+
+*            |<-- 8 --->|<- 6 -->|<-- 10 --->|<--- length x 8 --->|<-- 24 -->|
+*            
+*-----------------------------------------------------------------------------*/
+function   input_rtcm3 (rtcm:rtcm_t ,  data:number):number{throw new Error("not implemented");}
+
+/* input rtcm 2 message from file ----------------------------------------------
+* fetch next rtcm 2 message and input a messsage from file
+* args   : rtcm_t *rtcm IO   rtcm control struct
+*          FILE  *fp    I    file pointer
+* return : status (-2: end of file, -1...10: same as above)
+* notes  : same as above
+*-----------------------------------------------------------------------------*/
+function   input_rtcm2f(rtcm:rtcm_t , fp:FILE):number{throw new Error("not implemented");}
+
+
+/* input rtcm 3 message from file ----------------------------------------------
+* fetch next rtcm 3 message and input a messsage from file
+* args   : rtcm_t *rtcm IO   rtcm control struct
+*          FILE  *fp    I    file pointer
+* return : status (-2: end of file, -1...10: same as above)
+* notes  : same as above
+*-----------------------------------------------------------------------------*/
+function   input_rtcm3f(rtcm:rtcm_t , fp:FILE):number{throw new Error("not implemented");}
+
+/* generate rtcm 2 message -----------------------------------------------------
+* generate rtcm 2 message
+* args   : rtcm_t *rtcm   IO rtcm control struct
+*          int    type    I  message type
+*          int    sync    I  sync flag (1:another message follows)
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function   gen_rtcm2   (rtcm:rtcm_t ,  type:number,  sync: number):number{throw new Error("not implemented");}
+
+/* generate rtcm 3 message -----------------------------------------------------
+* generate rtcm 3 message
+* args   : rtcm_t *rtcm   IO rtcm control struct
+*          int    type    I  message type
+*          int    sync    I  sync flag (1:another message follows)
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function   gen_rtcm3   (rtcm:rtcm_t ,  type:number,  sync: number):number{throw new Error("not implemented");}
+
+
 
 /* solution functions --------------------------------------------------------*/
-function void initsolbuf(solbuf_t *solbuf, int cyclic, int nmax);
-function void freesolbuf(solbuf_t *solbuf);
-function void freesolstatbuf(solstatbuf_t *solstatbuf);
-function sol_t *getsol(solbuf_t *solbuf, int index);
-function int addsol(solbuf_t *solbuf, const sol_t *sol);
-function int readsol (char *files[], int nfile, solbuf_t *sol);
-function int readsolt(char *files[], int nfile, gtime_t ts, gtime_t te,
-                    double tint, int qflag, solbuf_t *sol);
-function int readsolstat(char *files[], int nfile, solstatbuf_t *statbuf);
-function int readsolstatt(char *files[], int nfile, gtime_t ts, gtime_t te,
-                        double tint, solstatbuf_t *statbuf);
-function int inputsol(unsigned char data, gtime_t ts, gtime_t te, double tint,
-                    int qflag, const solopt_t *opt, solbuf_t *solbuf);
 
-function int outprcopts(unsigned char *buff, const prcopt_t *opt);
-function int outsolheads(unsigned char *buff, const solopt_t *opt);
-function int outsols  (unsigned char *buff, const sol_t *sol, const double *rb,
-                     const solopt_t *opt);
-function int outsolexs(unsigned char *buff, const sol_t *sol, const ssat_t *ssat,
-                     const solopt_t *opt);
-function void outprcopt(FILE *fp, const prcopt_t *opt);
-function void outsolhead(FILE *fp, const solopt_t *opt);
-function void outsol  (FILE *fp, const sol_t *sol, const double *rb,
-                     const solopt_t *opt);
-function void outsolex(FILE *fp, const sol_t *sol, const ssat_t *ssat,
-                     const solopt_t *opt);
-function int outnmea_rmc(unsigned char *buff, const sol_t *sol);
-function int outnmea_gga(unsigned char *buff, const sol_t *sol);
-function int outnmea_gsa(unsigned char *buff, const sol_t *sol,
-                       const ssat_t *ssat);
-function int outnmea_gsv(unsigned char *buff, const sol_t *sol,
-                       const ssat_t *ssat);
+/* initialize solution buffer --------------------------------------------------
+* initialize position solutions
+* args   : solbuf_t *solbuf I  solution buffer
+*          int    cyclic    I  solution data buffer type (0:linear,1:cyclic)
+*          int    nmax      I  initial number of solution data
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function initsolbuf(solbuf : solbuf_t,  cyclic : number,  nmax : number) : void{throw new Error("not implemented");}
+
+/* free solution ---------------------------------------------------------------
+* free memory for solution buffer
+* args   : solbuf_t *solbuf I  solution buffer
+* return : none
+*-----------------------------------------------------------------------------*/
+function freesolbuf(solbuf : solbuf_t) : void{throw new Error("not implemented");}
+
+
+function freesolstatbuf(solstatbuf : solstatbuf_t) : void{throw new Error("not implemented");}
+
+
+/* get solution data from solution buffer --------------------------------------
+* get solution data by index from solution buffer
+* args   : solbuf_t *solbuf I  solution buffer
+*          int    index     I  index of solution (0...)
+* return : solution data pointer (NULL: no solution, out of range)
+*-----------------------------------------------------------------------------*/
+function getsol(solbuf : solbuf_t,  index : number) : sol_t {throw new Error("not implemented");}
+
+/* add solution data to solution buffer ----------------------------------------
+* add solution data to solution buffer
+* args   : solbuf_t *solbuf IO solution buffer
+*          sol_t  *sol      I  solution data
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function addsol(solbuf : solbuf_t, sol : sol_t) : number{throw new Error("not implemented");}
+
+
+/* read solutions data from solution files -------------------------------------
+* read solution data from soluiton files
+* args   : char   *files[]  I  solution files
+*          int    nfile     I  number of files
+*         (gtime_t ts)      I  start time (ts.time==0: from start)
+*         (gtime_t te)      I  end time   (te.time==0: to end)
+*         (double tint)     I  time interval (0: all)
+*         (int    qflag)    I  quality flag  (0: all)
+*          solbuf_t *solbuf O  solution buffer
+* return : status (1:ok,0:no data or error)
+*-----------------------------------------------------------------------------*/
+function readsol (files : string[],  nfile : number, sol : solbuf_t) : number{throw new Error("not implemented");}
+
+/* read solutions data from solution files -------------------------------------
+* read solution data from soluiton files
+* args   : char   *files[]  I  solution files
+*          int    nfile     I  number of files
+*         (gtime_t ts)      I  start time (ts.time==0: from start)
+*         (gtime_t te)      I  end time   (te.time==0: to end)
+*         (double tint)     I  time interval (0: all)
+*         (int    qflag)    I  quality flag  (0: all)
+*          solbuf_t *solbuf O  solution buffer
+* return : status (1:ok,0:no data or error)
+*-----------------------------------------------------------------------------*/
+function readsolt(files : string[],  nfile : number,  ts : Date,  te : Date,
+                     tint : number,  qflag : number, sol : solbuf_t) : number{throw new Error("not implemented");}
+
+
+/* read solution status --------------------------------------------------------
+* read solution status from solution status files
+* args   : char   *files[]  I  solution status files
+*          int    nfile     I  number of files
+*         (gtime_t ts)      I  start time (ts.time==0: from start)
+*         (gtime_t te)      I  end time   (te.time==0: to end)
+*         (double tint)     I  time interval (0: all)
+*          solstatbuf_t *statbuf O  solution status buffer
+* return : status (1:ok,0:no data or error)
+*-----------------------------------------------------------------------------*/
+function readsolstat(files : string[],  nfile : number, statbuf : solstatbuf_t) : number{throw new Error("not implemented");}
+
+
+/* read solution status --------------------------------------------------------
+* read solution status from solution status files
+* args   : char   *files[]  I  solution status files
+*          int    nfile     I  number of files
+*         (gtime_t ts)      I  start time (ts.time==0: from start)
+*         (gtime_t te)      I  end time   (te.time==0: to end)
+*         (double tint)     I  time interval (0: all)
+*          solstatbuf_t *statbuf O  solution status buffer
+* return : status (1:ok,0:no data or error)
+*-----------------------------------------------------------------------------*/
+function readsolstatt(files : string[],  nfile : number,  ts : Date,  te : Date,
+                         tint : number, statbuf : solstatbuf_t) : number{throw new Error("not implemented");};
+
+
+/* input solution data from stream ---------------------------------------------
+* input solution data from stream
+* args   : unsigned char data I stream data
+*          gtime_t ts       I  start time (ts.time==0: from start)
+*          gtime_t te       I  end time   (te.time==0: to end)
+*          double tint      I  time interval (0: all)
+*          int    qflag     I  quality flag  (0: all)
+*          solbuf_t *solbuf IO solution buffer
+* return : status (1:solution received,0:no solution,-1:disconnect received)
+*-----------------------------------------------------------------------------*/
+function inputsol(data : Buffer,  ts : Date,  te : Date,  tint : number,
+                     qflag : number, opt :  solopt_t, solbuf : solbuf_t) : number{throw new Error("not implemented");}
+
+
+/* output processing options ---------------------------------------------------
+* output processing options to buffer
+* args   : unsigned char *buff IO output buffer
+*          prcopt_t *opt    I   processign options
+* return : number of output bytes
+*-----------------------------------------------------------------------------*/
+function outprcopts(buff : Buffer, opt :  prcopt_t) : number{throw new Error("not implemented");}
+
+/* output solution header ------------------------------------------------------
+* output solution header to buffer
+* args   : unsigned char *buff IO output buffer
+*          solopt_t *opt    I   solution options
+* return : number of output bytes
+*-----------------------------------------------------------------------------*/
+function outsolheads(buff : Buffer, opt : solopt_t) : number{throw new Error("not implemented");}
+
+
+/* output solution body --------------------------------------------------------
+* output solution body to buffer
+* args   : unsigned char *buff IO output buffer
+*          sol_t  *sol      I   solution
+*          double *rb       I   base station position {x,y,z} (ecef) (m)
+*          solopt_t *opt    I   solution options
+* return : number of output bytes
+*-----------------------------------------------------------------------------*/
+function outsols  (buff : Buffer, sol :  sol_t, rb : number,
+                     opt : solopt_t) : number{throw new Error("not implemented");}
+
+
+/* output solution extended ----------------------------------------------------
+* output solution exteneded infomation
+* args   : unsigned char *buff IO output buffer
+*          sol_t  *sol      I   solution
+*          ssat_t *ssat     I   satellite status
+*          solopt_t *opt    I   solution options
+* return : number of output bytes
+* notes  : only support nmea
+*-----------------------------------------------------------------------------*/
+function outsolexs(buff : Buffer, sol : sol_t, ssat :  ssat_t,
+                     opt :  solopt_t) : number{throw new Error("not implemented");}
+
+/* output processing option ----------------------------------------------------
+* output processing option to file
+* args   : FILE   *fp       I   output file pointer
+*          prcopt_t *opt    I   processing options
+* return : none
+*-----------------------------------------------------------------------------*/
+function  outprcopt(fp : FILE, opt :  prcopt_t) : void{throw new Error("not implemented");}
+
+
+/* output solution header ------------------------------------------------------
+* output solution heade to file
+* args   : FILE   *fp       I   output file pointer
+*          solopt_t *opt    I   solution options
+* return : none
+*-----------------------------------------------------------------------------*/
+function outsolhead(fp : FILE, opt :  solopt_t) : void{throw new Error("not implemented");}
+
+
+/* output solution body --------------------------------------------------------
+* output solution body to file
+* args   : FILE   *fp       I   output file pointer
+*          sol_t  *sol      I   solution
+*          double *rb       I   base station position {x,y,z} (ecef) (m)
+*          solopt_t *opt    I   solution options
+* return : none
+*-----------------------------------------------------------------------------*/
+function outsol  (fp : FILE, sol :  sol_t, rb : number[],
+                     opt :  solopt_t) : void{throw new Error("not implemented");}
+
+/* output solution extended ----------------------------------------------------
+* output solution exteneded infomation to file
+* args   : FILE   *fp       I   output file pointer
+*          sol_t  *sol      I   solution
+*          ssat_t *ssat     I   satellite status
+*          solopt_t *opt    I   solution options
+* return : output size (bytes)
+* notes  : only support nmea
+*-----------------------------------------------------------------------------*/
+function outsolex(fp : FILE, sol :  sol_t, ssat :  ssat_t,
+                     opt :  solopt_t): void{throw new Error("not implemented");}
+
+/* output solution in the form of nmea RMC sentence --------------------------*/
+function outnmea_rmc(buff : Buffer, sol : sol_t) : number{throw new Error("not implemented");}
+
+/* output solution in the form of nmea GGA sentence --------------------------*/
+function outnmea_gga(buff : Buffer, sol : sol_t) : number{throw new Error("not implemented");}
+
+/* output solution in the form of nmea GSA sentences -------------------------*/
+function outnmea_gsa(buff : Buffer, sol :  sol_t,
+                       ssat :  ssat_t) : number{throw new Error("not implemented");}
+
+/* output solution in the form of nmea GSV sentence --------------------------*/
+function outnmea_gsv(buff : Buffer, sol :  sol_t,
+                       ssat :  ssat_t) : number{throw new Error("not implemented");}
 
 /* google earth kml converter ------------------------------------------------*/
-function int convkml(const char *infile, const char *outfile, gtime_t ts,
-                   gtime_t te, double tint, int qflg, double *offset,
-                   int tcolor, int pcolor, int outalt, int outtime);
+
+/* convert to google earth kml file --------------------------------------------
+* convert solutions to google earth kml file
+* args   : char   *infile   I   input solutions file
+*          char   *outfile  I   output google earth kml file ("":<infile>.kml)
+*          gtime_t ts,te    I   start/end time (gpst)
+*          int    tint      I   time interval (s) (0.0:all)
+*          int    qflg      I   quality flag (0:all)
+*          double *offset   I   add offset {east,north,up} (m)
+*          int    tcolor    I   track color
+*                               (0:none,1:white,2:green,3:orange,4:red,5:yellow)
+*          int    pcolor    I   point color
+*                               (0:none,1:white,2:green,3:orange,4:red,5:by qflag)
+*          int    outalt    I   output altitude (0:off,1:elipsoidal,2:geodetic)
+*          int    outtime   I   output time (0:off,1:gpst,2:utc,3:jst)
+* return : status (0:ok,-1:file read,-2:file format,-3:no data,-4:file write)
+* notes  : see ref [1] for google earth kml file format
+*-----------------------------------------------------------------------------*/
+function convkml(infile : string, outfile : string, ts : Date,
+                   te : Date, tint : number, qflg : number, offset : number[],
+                    tcolor : number,  pcolor : number, outalt : number, outtime : number) : number{throw new Error("not implemented");}
 
 /* gpx converter -------------------------------------------------------------*/
-function int convgpx(const char *infile, const char *outfile, gtime_t ts,
-                   gtime_t te, double tint, int qflg, double *offset,
-                   int outtrk, int outpnt, int outalt, int outtime);
+
+/* convert to GPX file ---------------------------------------------------------
+* convert solutions to GPX file [1]
+* args   : char   *infile   I   input solutions file
+*          char   *outfile  I   output google earth kml file ("":<infile>.kml)
+*          gtime_t ts,te    I   start/end time (gpst)
+*          int    tint      I   time interval (s) (0.0:all)
+*          int    qflg      I   quality flag (0:all)
+*          double *offset   I   add offset {east,north,up} (m)
+*          int    outtrk    I   output track    (0:off,1:on)
+*          int    outpnt    I   output waypoint (0:off,1:on)
+*          int    outalt    I   output altitude (0:off,1:elipsoidal,2:geodetic)
+*          int    outtime   I   output time (0:off,1:gpst,2:utc,3:jst)
+* return : status (0:ok,-1:file read,-2:file format,-3:no data,-4:file write)
+*-----------------------------------------------------------------------------*/
+function convgpx(infile : string, outfile : string, ts : Date,
+                   te : Date,  tint : number,  qflg : number, offset : number[],
+                    outtrk : number,  outpnt : number,  outalt : number,  outtime : number) : number{throw new Error("not implemented");}
 
 /* sbas functions ------------------------------------------------------------*/
-function int  sbsreadmsg (const char *file, int sel, sbs_t *sbs);
-function int  sbsreadmsgt(const char *file, int sel, gtime_t ts, gtime_t te,
-                        sbs_t *sbs);
-function void sbsoutmsg(FILE *fp, sbsmsg_t *sbsmsg);
-function int  sbsdecodemsg(gtime_t time, int prn, const unsigned int *words,
-                         sbsmsg_t *sbsmsg);
-function int sbsupdatecorr(const sbsmsg_t *msg, nav_t *nav);
-function int sbssatcorr(gtime_t time, int sat, const nav_t *nav, double *rs,
-                      double *dts, double *var);
-function int sbsioncorr(gtime_t time, const nav_t *nav, const double *pos,
-                      const double *azel, double *delay, double *var);
-function double sbstropcorr(gtime_t time, const double *pos, const double *azel,
-                          double *var);
+
+/* read sbas message file ------------------------------------------------------
+* read sbas message file
+* args   : char     *file   I   sbas message file (wind-card * is expanded)
+*          int      sel     I   sbas satellite prn number selection (0:all)
+*         (gtime_t  ts      I   start time)
+*         (gtime_t  te      I   end time  )
+*          sbs_t    *sbs    IO  sbas messages
+* return : number of sbas messages
+* notes  : sbas message are appended and sorted. before calling the funciton, 
+*          sbs->n, sbs->nmax and sbs->msgs must be set properly. (initially
+*          sbs->n=sbs->nmax=0, sbs->msgs=NULL)
+*          only the following file extentions after wild card expanded are valid
+*          to read. others are skipped
+*          .sbs, .SBS, .ems, .EMS
+*-----------------------------------------------------------------------------*/
+function sbsreadmsg (file : string,  sel : number, sbs : sbs_t) : number{throw new Error("not implemented");}
+
+/* read sbas message file ------------------------------------------------------
+* read sbas message file
+* args   : char     *file   I   sbas message file (wind-card * is expanded)
+*          int      sel     I   sbas satellite prn number selection (0:all)
+*         (gtime_t  ts      I   start time)
+*         (gtime_t  te      I   end time  )
+*          sbs_t    *sbs    IO  sbas messages
+* return : number of sbas messages
+* notes  : sbas message are appended and sorted. before calling the funciton, 
+*          sbs->n, sbs->nmax and sbs->msgs must be set properly. (initially
+*          sbs->n=sbs->nmax=0, sbs->msgs=NULL)
+*          only the following file extentions after wild card expanded are valid
+*          to read. others are skipped
+*          .sbs, .SBS, .ems, .EMS
+*-----------------------------------------------------------------------------*/
+function sbsreadmsgt(file : string,  sel : number,  ts : Date,  te : Date,
+                        sbs : sbs_t ) : number{throw new Error("not implemented");}
+
+/* output sbas messages --------------------------------------------------------
+* output sbas message record to output file in rtklib sbas log format
+* args   : FILE   *fp       I   output file pointer
+*          sbsmsg_t *sbsmsg I   sbas messages
+* return : none
+*-----------------------------------------------------------------------------*/
+function  sbsoutmsg(fp : FILE, sbsmsg : sbsmsg_t) : void{throw new Error("not implemented");}
+
+/* decode sbas message ---------------------------------------------------------
+* decode sbas message frame words and check crc
+* args   : gtime_t time     I   reception time
+*          int    prn       I   sbas satellite prn number
+*          unsigned int *word I message frame words (24bit x 10)
+*          sbsmsg_t *sbsmsg O   sbas message
+* return : status (1:ok,0:crc error)
+*-----------------------------------------------------------------------------*/
+function sbsdecodemsg(time : Date,  prn : number, words : number[],
+                         sbsmsg : sbsmsg_t) : number{throw new Error("not implemented");}
+
+/* update sbas corrections -----------------------------------------------------
+* update sbas correction parameters in navigation data with a sbas message
+* args   : sbsmg_t  *msg    I   sbas message
+*          nav_t    *nav    IO  navigation data
+* return : message type (-1: error or not supported type)
+* notes  : nav->seph must point to seph[NSATSBS*2] (array of seph_t)
+*               seph[prn-MINPRNSBS+1]          : sat prn current epehmeris 
+*               seph[prn-MINPRNSBS+1+MAXPRNSBS]: sat prn previous epehmeris 
+*-----------------------------------------------------------------------------*/
+function sbsupdatecorr(msg :  sbsmsg_t, nav : nav_t) : number{throw new Error("not implemented");}
+
+
+/* sbas satellite ephemeris and clock correction -------------------------------
+* correct satellite position and clock bias with sbas satellite corrections
+* args   : gtime_t time     I   reception time
+*          int    sat       I   satellite
+*          nav_t  *nav      I   navigation data
+*          double *rs       IO  sat position and corrected {x,y,z} (ecef) (m)
+*          double *dts      IO  sat clock bias and corrected (s)
+*          double *var      O   sat position and clock variance (m^2)
+* return : status (1:ok,0:no correction)
+* notes  : before calling the function, sbas satellite correction parameters 
+*          in navigation data (nav->sbssat) must be set by callig
+*          sbsupdatecorr().
+*          satellite clock correction include long-term correction and fast
+*          correction.
+*          sbas clock correction is usually based on L1C/A code. TGD or DCB has
+*          to be considered for other codes
+*-----------------------------------------------------------------------------*/
+function sbssatcorr( time : Date,  sat : number, nav : nav_t, rs: number[],
+                      dts : number, variance: number) : number{throw new Error("not implemented");}
+
+/* sbas ionospheric delay correction -------------------------------------------
+* compute sbas ionosphric delay correction
+* args   : gtime_t  time    I   time
+*          nav_t    *nav    I   navigation data
+*          double   *pos    I   receiver position {lat,lon,height} (rad/m)
+*          double   *azel   I   satellite azimuth/elavation angle (rad)
+*          double   *delay  O   slant ionospheric delay (L1) (m)
+*          double   *var    O   variance of ionospheric delay (m^2)
+* return : status (1:ok, 0:no correction)
+* notes  : before calling the function, sbas ionosphere correction parameters
+*          in navigation data (nav->sbsion) must be set by callig 
+*          sbsupdatecorr()
+*-----------------------------------------------------------------------------*/
+function sbsioncorr( time : Date, nav :  nav_t, pos : number[],
+                      azel : number[], delay : number, variance : number) : number{throw new Error("not implemented");}
+
+/* tropospheric delay correction -----------------------------------------------
+* compute sbas tropospheric delay correction (mops model)
+* args   : gtime_t time     I   time
+*          double   *pos    I   receiver position {lat,lon,height} (rad/m)
+*          double   *azel   I   satellite azimuth/elavation (rad)
+*          double   *var    O   variance of troposphric error (m^2)
+* return : slant tropospheric delay (m)
+*-----------------------------------------------------------------------------*/
+function sbstropcorr(time : Date, pos : number[], azel : number[],
+                          variance: number) : number{throw new Error("not implemented");}
+
 
 /* options functions ---------------------------------------------------------*/
-function opt_t *searchopt(const char *name, const opt_t *opts);
-function int str2opt(opt_t *opt, const char *str);
-function int opt2str(const opt_t *opt, char *str);
-function int opt2buf(const opt_t *opt, char *buff);
-function int loadopts(const char *file, opt_t *opts);
-function int saveopts(const char *file, const char *mode, const char *comment,
-                    const opt_t *opts);
-function void resetsysopts(void);
-function void getsysopts(prcopt_t *popt, solopt_t *sopt, filopt_t *fopt);
-function void setsysopts(const prcopt_t *popt, const solopt_t *sopt,
-                       const filopt_t *fopt);
+
+/* search option ---------------------------------------------------------------
+* search option record
+* args   : char   *name     I  option name
+*          opt_t  *opts     I  options table
+*                              (terminated with table[i].name="")
+* return : option record (NULL: not found)
+*-----------------------------------------------------------------------------*/
+function searchopt(name : string, opts :  opt_t[]) : opt_t {throw new Error("not implemented");}
+
+/* string to option value ------------------------------------------------------
+* convert string to option value
+* args   : opt_t  *opt      O  option
+*          char   *str      I  option value string
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function str2opt(opt : opt_t, str : string) : number{throw new Error("not implemented");}
+
+/* option value to string ------------------------------------------------------
+* convert option value to string
+* args   : opt_t  *opt      I  option
+*          char   *str      O  option value string
+* return : length of output string
+*-----------------------------------------------------------------------------*/
+function opt2str(opt : opt_t, str : string) : number{throw new Error("not implemented");}
+
+
+/* option to string -------------------------------------------------------------
+* convert option to string (keyword=value # comment)
+* args   : opt_t  *opt      I  option
+*          char   *buff     O  option string
+* return : length of output string
+*-----------------------------------------------------------------------------*/
+function opt2buf(opt : opt_t, buff : Buffer) : number{throw new Error("not implemented");}
+
+/* load options ----------------------------------------------------------------
+* load options from file
+* args   : char   *file     I  options file
+*          opt_t  *opts     IO options table
+*                              (terminated with table[i].name="")
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function loadopts(file : string, opts : opt_t) : number{throw new Error("not implemented");}
+
+
+/* save options to file --------------------------------------------------------
+* save options to file
+* args   : char   *file     I  options file
+*          char   *mode     I  write mode ("w":overwrite,"a":append);
+*          char   *comment  I  header comment (NULL: no comment)
+*          opt_t  *opts     I  options table
+*                              (terminated with table[i].name="")
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function saveopts(file : string, mode : string, comment : string,
+                    opts :  opt_t[]) : number{throw new Error("not implemented");}
+
+/* reset system options to default ---------------------------------------------
+* reset system options to default
+* args   : none
+* return : none
+*-----------------------------------------------------------------------------*/
+function resetsysopts(){throw new Error("not implemented");}
+
+/* get system options ----------------------------------------------------------
+* get system options
+* args   : prcopt_t *popt   IO processing options (NULL: no output)
+*          solopt_t *sopt   IO solution options   (NULL: no output)
+*          folopt_t *fopt   IO file options       (NULL: no output)
+* return : none
+* notes  : to load system options, use loadopts() before calling the function
+*-----------------------------------------------------------------------------*/
+function getsysopts(popt : prcopt_t, sopt : solopt_t, fopt : filopt_t) : void{throw new Error("not implemented");}
+
+/* set system options ----------------------------------------------------------
+* set system options
+* args   : prcopt_t *prcopt I  processing options (NULL: default)
+*          solopt_t *solopt I  solution options   (NULL: default)
+*          filopt_t *filopt I  file options       (NULL: default)
+* return : none
+* notes  : to save system options, use saveopts() after calling the function
+*-----------------------------------------------------------------------------*/
+function setsysopts(popt : prcopt_t, sopt :  solopt_t,
+                       fopt :  filopt_t) : void{throw new Error("not implemented");}
 
 /* stream data input and output functions ------------------------------------*/
-function void strinitcom(void);
-function void strinit  (stream_t *stream);
-function void strlock  (stream_t *stream);
-function void strunlock(stream_t *stream);
-function int  stropen  (stream_t *stream, int type, int mode, const char *path);
-function void strclose (stream_t *stream);
-function int  strread  (stream_t *stream, unsigned char *buff, int n);
-function int  strwrite (stream_t *stream, unsigned char *buff, int n);
-function void strsync  (stream_t *stream1, stream_t *stream2);
-function int  strstat  (stream_t *stream, char *msg);
-function int  strstatx (stream_t *stream, char *msg);
-function void strsum   (stream_t *stream, int *inb, int *inr, int *outb, int *outr);
-function int  strgetsel(stream_t *stream, char *sel);
-function int  strsetsel(stream_t *stream, const char *sel);
-function int  strsetsrctbl(stream_t *stream, const char *file);
-function void strsetopt(const int *opt);
-function gtime_t strgettime(stream_t *stream);
-function void strsendnmea(stream_t *stream, const sol_t *sol);
-function void strsendcmd(stream_t *stream, const char *cmd);
-function void strsettimeout(stream_t *stream, int toinact, int tirecon);
-function void strsetdir(const char *dir);
-function void strsetproxy(const char *addr);
+
+/* initialize stream environment -----------------------------------------------
+* initialize stream environment
+* args   : none
+* return : none
+*-----------------------------------------------------------------------------*/
+function strinitcom() : void{throw new Error("not implemented");}
+
+
+/* initialize stream -----------------------------------------------------------
+* initialize stream struct
+* args   : stream_t *stream IO  stream
+* return : none
+*-----------------------------------------------------------------------------*/
+function strinit  (stream : stream_t) : void{throw new Error("not implemented");}
+
+/* lock/unlock stream ----------------------------------------------------------
+* lock/unlock stream
+* args   : stream_t *stream I  stream
+* return : none
+*-----------------------------------------------------------------------------*/
+function strlock  (stream : stream_t) : void{throw new Error("not implemented");}
+
+/* lock/unlock stream ----------------------------------------------------------
+* lock/unlock stream
+* args   : stream_t *stream I  stream
+* return : none
+*-----------------------------------------------------------------------------*/
+function strunlock(stream : stream_t) : void{throw new Error("not implemented");}
+
+/* open stream -----------------------------------------------------------------
+*
+* open stream to read or write data from or to virtual devices.
+*
+* args   : stream_t *stream IO  stream
+*          int type         I   stream type
+*                                 STR_SERIAL   = serial device
+*                                 STR_FILE     = file (record and playback)
+*                                 STR_TCPSVR   = TCP server
+*                                 STR_TCPCLI   = TCP client
+*                                 STR_NTRIPSVR = NTRIP server
+*                                 STR_NTRIPCLI = NTRIP client
+*                                 STR_NTRIPC_S = NTRIP caster server
+*                                 STR_NTRIPC_C = NTRIP caster client
+*                                 STR_UDPSVR   = UDP server (read only)
+*                                 STR_UDPCLI   = UDP client (write only)
+*                                 STR_MEMBUF   = memory buffer (FIFO)
+*                                 STR_FTP      = download by FTP (raed only)
+*                                 STR_HTTP     = download by HTTP (raed only)
+*          int mode         I   stream mode (STR_MODE_???)
+*                                 STR_MODE_R   = read only
+*                                 STR_MODE_W   = write only
+*                                 STR_MODE_RW  = read and write
+*          char *path       I   stream path (see below)
+*
+* return : status (0:error,1:ok)
+*
+* notes  : see reference [1] for NTRIP
+*          STR_FTP/HTTP needs "wget" in command search paths
+*
+* stream path ([] options):
+*
+*   STR_SERIAL   port[:brate[:bsize[:parity[:stopb[:fctr[#port]]]]]]
+*                    port  = COM??  (windows)
+*                            tty??? (linuex, omit /dev/)
+*                    brate = bit rate     (bps)
+*                    bsize = bit size     (7|8)
+*                    parity= parity       (n|o|e)
+*                    stopb = stop bits    (1|2)
+*                    fctr  = flow control (off|rts)
+*                    port  = tcp server port to output received stream
+*
+*   STR_FILE     path[::T][::+start][::xseppd][::S=swap][::P={4|8}]
+*                    path  = file path
+*                            (can include keywords defined by )
+*                    ::T   = enable time tag
+*                    start = replay start offset (s)
+*                    speed = replay speed factor
+*                    swap  = output swap interval (hr) (0: no swap)
+*                    ::P={4|8} = file pointer size (4:32bit,8:64bit)
+*
+*   STR_TCPSVR   :port
+*                    port  = TCP server port to accept
+*
+*   STR_TCPCLI   addr:port
+*                    addr  = TCP server address to connect
+*                    port  = TCP server port to connect
+*
+*   STR_NTRIPSVR [:passwd@]addr[:port]/mponit[:string]
+*                    addr  = NTRIP caster address to connect
+*                    port  = NTRIP caster server port to connect
+*                    passwd= NTRIP caster server password to connect
+*                    mpoint= NTRIP mountpoint
+*                    string= NTRIP server string
+*
+*   STR_NTRIPCLI [user[:passwd]@]addr[:port]/mpoint
+*                    addr  = NTRIP caster address to connect
+*                    port  = NTRIP caster client port to connect
+*                    user  = NTRIP caster client user to connect
+*                    passwd= NTRIP caster client password to connect
+*                    mpoint= NTRIP mountpoint
+*
+*   STR_NTRIPC_S [:passwd@][:port]/mpoint
+*                    port  = NTRIP caster server port to accept
+*                    passwd= NTRIP caster server password to accept
+*                    mpoint= NTRIP mountpoint
+*
+*   STR_NTRIPC_C [user[:passwd]@][:port]/mpoint
+*                    port  = NTRIP caster client port to accept
+*                    user  = NTRIP caster client user to accept
+*                    passwd= NTRIP caster client password to accept
+*                    mpoint= NTRIP mountpoint
+*
+*   STR_UDPSVR   :port
+*                    port  = UDP server port to receive
+*
+*   STR_UDPCLI   addr:port
+*                    addr  = UDP server or broadcast address to send
+*                    port  = UDP server or broadcast port to send
+*
+*   STR_MEMBUF   [size]
+*                    size  = FIFO size (bytes) ("":4096)
+*
+*   STR_FTP      [user[:passwd]@]addr/path[::T=poff[,tint[,toff,tret]]]]
+*                    user  = FTP server user
+*                    passwd= FTP server password
+*                    addr  = FTP server address
+*                    path  = FTP server file path
+*                    poff  = time offset for path extension (s)
+*                    tint  = download interval (s)
+*                    toff  = download time offset (s)
+*                    tret  = download retry interval (s) (0:no retry)
+*
+*   STR_HTTP     addr/path[::T=poff[,tint[,toff,tret]]]]
+*                    addr  = HTTP server address
+*                    path  = HTTP server file path
+*                    poff  = time offset for path extension (s)
+*                    tint  = download interval (s)
+*                    toff  = download time offset (s)
+*                    tret  = download retry interval (s) (0:no retry)
+*
+*-----------------------------------------------------------------------------*/
+function stropen  (stream : stream_t,  type : number,  mode : number, path : string) : number{throw new Error("not implemented");}
+
+
+/* close stream ----------------------------------------------------------------
+* close stream
+* args   : stream_t *stream IO  stream
+* return : none
+*-----------------------------------------------------------------------------*/
+function strclose (stream : stream_t) :  void{throw new Error("not implemented");}
+
+/* read stream -----------------------------------------------------------------
+* read data from stream (unblocked)
+* args   : stream_t *stream I  stream
+*          unsinged char *buff O data buffer
+*          int    n         I  maximum data length
+* return : read data length
+* notes  : if no data, return immediately with no data
+*-----------------------------------------------------------------------------*/
+function  strread  (stream : stream_t, buff : Buffer,  n : number) : number{throw new Error("not implemented");}
+
+/* write stream ----------------------------------------------------------------
+* write data to stream (unblocked)
+* args   : stream_t *stream I   stream
+*          unsinged char *buff I data buffer
+*          int    n         I   data length
+* return : status (0:error,1:ok)
+* notes  : write data to buffer and return immediately
+*-----------------------------------------------------------------------------*/
+function  strwrite (stream : stream_t, buff : Buffer,  n : number) : number{throw new Error("not implemented");}
+
+/* sync streams ----------------------------------------------------------------
+* sync time for streams
+* args   : stream_t *stream1 IO stream 1
+*          stream_t *stream2 IO stream 2
+* return : none
+* notes  : for replay files with time tags
+*-----------------------------------------------------------------------------*/
+function strsync  (stream : stream_t, stream2 : stream_t) :  void{throw new Error("not implemented");}
+
+/* get stream status -----------------------------------------------------------
+* get stream status
+* args   : stream_t *stream I   stream
+*          char   *msg      IO  status message (NULL: no output)
+* return : status (-1:error,0:close,1:wait,2:connect,3:active)
+*-----------------------------------------------------------------------------*/
+function strstat  (stream : stream_t, msg : string) : number{throw new Error("not implemented");}
+
+/* get extended stream status ---------------------------------------------------
+* get extended stream status
+* args   : stream_t *stream I   stream
+*          char   *msg      IO  extended status message
+* return : status (-1:error,0:close,1:wait,2:connect,3:active)
+*-----------------------------------------------------------------------------*/
+function  strstatx (stream : stream_t, msg : string) : number{throw new Error("not implemented");}
+
+/* get stream statistics summary -----------------------------------------------
+* get stream statistics summary
+* args   : stream_t *stream I   stream
+*          int    *inb      IO   bytes of input  (NULL: no output)
+*          int    *inr      IO   bps of input    (NULL: no output)
+*          int    *outb     IO   bytes of output (NULL: no output)
+*          int    *outr     IO   bps of output   (NULL: no output)
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsum   (stream : stream_t, inb : number, inr : number, outb : number, outr : number) : void{throw new Error("not implemented");}
+
+/* get stream selection --------------------------------------------------------
+* get stream selection for ntrip-caster
+* args   : stream_t *stream I   stream
+*          char   *sel      O   selected mountpoint of ntrip-caster
+* return : status (0:error,1:ok)
+*-----------------------------------------------------------------------------*/
+function strgetsel(stream : stream_t, sel : string) : number{throw new Error("not implemented");}
+
+/* set stream selection --------------------------------------------------------
+* set stream selection for ntrip-caster
+* args   : stream_t *stream I   stream
+*          char   *sel      I   selected mountpoint of ntrip-caster ("":all)
+* return : status (0:error,1:ok)
+*-----------------------------------------------------------------------------*/
+function strsetsel(stream : stream_t, sel : string) : number{throw new Error("not implemented");}
+
+/* set ntrip source table to ntrip-caster stream -------------------------------
+* set ntrip source table to ntrip-caster stream
+* args   : stream_t *stream I   stream
+*          char   *file     I   source table file
+* return : status (0:error,1:ok)
+*-----------------------------------------------------------------------------*/
+function strsetsrctbl(stream : stream_t, file : string) : number{throw new Error("not implemented");}
+
+/* set global stream options ---------------------------------------------------
+* set global stream options
+* args   : int    *opt      I   options
+*              opt[0]= inactive timeout (ms) (0: no timeout)
+*              opt[1]= interval to reconnect (ms)
+*              opt[2]= averaging time of data rate (ms)
+*              opt[3]= receive/send buffer size (bytes);
+*              opt[4]= file swap margin (s)
+*              opt[5]= reserved
+*              opt[6]= reserved
+*              opt[7]= reserved
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsetopt(opt : number[]) : void{throw new Error("not implemented");}
+
+/* get stream time -------------------------------------------------------------
+* get stream time
+* args   : stream_t *stream I   stream
+* return : current time or replay time for playback file
+*-----------------------------------------------------------------------------*/
+function strgettime(stream : stream_t) : Date{throw new Error("not implemented");}
+
+/* send nmea request -----------------------------------------------------------
+* send nmea gpgga message to stream
+* args   : stream_t *stream I   stream
+*          sol_t *sol       I   solution
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsendnmea(stream : stream_t, sol : sol_t) : void{throw new Error("not implemented");}
+
+
+/* send receiver command -------------------------------------------------------
+* send receiver commands to stream
+* args   : stream_t *stream I   stream
+*          char   *cmd      I   receiver command strings
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsendcmd(stream : stream_t, cmd : string) : void{throw new Error("not implemented");}
+
+/* set timeout time ------------------------------------------------------------
+* set timeout time
+* args   : stream_t *stream I   stream (STR_TCPCLI,STR_NTRIPCLI,STR_NTRIPSVR)
+*          int     toinact  I   inactive timeout (ms) (0: no timeout)
+*          int     tirecon  I   reconnect interval (ms) (0: no reconnect)
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsettimeout(stream : stream_t,  toinact : number,  tirecon : number) :  void{throw new Error("not implemented");}
+
+/* set local directory ---------------------------------------------------------
+* set local directory path for ftp/http download
+* args   : char   *dir      I   directory for download files
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsetdir(dir : string) : void{throw new Error("not implemented");}
+
+/* set http/ntrip proxy address ------------------------------------------------
+* set http/ntrip proxy address
+* args   : char   *addr     I   http/ntrip proxy address <address>:<port>
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsetproxy(addr : string) : void{throw new Error("not implemented");}
+
 
 /* integer ambiguity resolution ----------------------------------------------*/
-function int lambda(int n, int m, const double *a, const double *Q, double *F,
-                  double *s);
-function int lambda_reduction(int n, const double *Q, double *Z);
-function int lambda_search(int n, int m, const double *a, const double *Q,
-                         double *F, double *s);
+
+
+
+/* lambda/mlambda integer least-square estimation ------------------------------
+* integer least-square estimation. reduction is performed by lambda (ref.[1]),
+* and search by mlambda (ref.[2]).
+* args   : int    n      I  number of float parameters
+*          int    m      I  number of fixed solutions
+*          double *a     I  float parameters (n x 1)
+*          double *Q     I  covariance matrix of float parameters (n x n)
+*          double *F     O  fixed solutions (n x m)
+*          double *s     O  sum of squared residulas of fixed solutions (1 x m)
+* return : status (0:ok,other:error)
+* notes  : matrix stored by column-major order (fortran convension)
+*-----------------------------------------------------------------------------*/
+function lambda( n : number,  m : number, a : number[], Q : number[], F : number[],
+                  s : number[]) : number{throw new Error("not implemented");}
+
+/* lambda reduction ------------------------------------------------------------
+* reduction by lambda (ref [1]) for integer least square
+* args   : int    n      I  number of float parameters
+*          double *Q     I  covariance matrix of float parameters (n x n)
+*          double *Z     O  lambda reduction matrix (n x n)
+* return : status (0:ok,other:error)
+*-----------------------------------------------------------------------------*/
+function lambda_reduction( n : number, Q : number[], Z : number[]) : number{throw new Error("not implemented");}
+
+/* mlambda search --------------------------------------------------------------
+* search by  mlambda (ref [2]) for integer least square
+* args   : int    n      I  number of float parameters
+*          int    m      I  number of fixed solutions
+*          double *a     I  float parameters (n x 1)
+*          double *Q     I  covariance matrix of float parameters (n x n)
+*          double *F     O  fixed solutions (n x m)
+*          double *s     O  sum of squared residulas of fixed solutions (1 x m)
+* return : status (0:ok,other:error)
+*-----------------------------------------------------------------------------*/
+function lambda_search( n : number,  m : number, a : number[], Q : number[],
+                         F : number[], s : number[]) : number{throw new Error("not implemented");}
 
 /* standard positioning ------------------------------------------------------*/
-function int pntpos(const obsd_t *obs, int n, const nav_t *nav,
-                  const prcopt_t *opt, sol_t *sol, double *azel,
-                  ssat_t *ssat, char *msg);
+
+/* single-point positioning ----------------------------------------------------
+* compute receiver position, velocity, clock bias by single-point positioning
+* with pseudorange and doppler observables
+* args   : obsd_t *obs      I   observation data
+*          int    n         I   number of observation data
+*          nav_t  *nav      I   navigation data
+*          prcopt_t *opt    I   processing options
+*          sol_t  *sol      IO  solution
+*          double *azel     IO  azimuth/elevation angle (rad) (NULL: no output)
+*          ssat_t *ssat     IO  satellite status              (NULL: no output)
+*          char   *msg      O   error message for error exit
+* return : status(1:ok,0:error)
+* notes  : assuming sbas-gps, galileo-gps, qzss-gps, compass-gps time offset and
+*          receiver bias are negligible (only involving glonass-gps time offset
+*          and receiver bias)
+*-----------------------------------------------------------------------------*/
+function pntpos(obs : obsd_t ,  n : number, nav :  nav_t ,
+                  opt :  prcopt_t, sol : sol_t, azel : number[],
+                  ssat : ssat_t, msg : string) : number{throw new Error("not implemented");}
+
 
 /* precise positioning -------------------------------------------------------*/
-function void rtkinit(rtk_t *rtk, const prcopt_t *opt);
-function void rtkfree(rtk_t *rtk);
-function int  rtkpos (rtk_t *rtk, const obsd_t *obs, int nobs, const nav_t *nav);
-function int  rtkopenstat(const char *file, int level);
-function void rtkclosestat(void);
-function int  rtkoutstat(rtk_t *rtk, char *buff);
+
+
+/* initialize rtk control ------------------------------------------------------
+* initialize rtk control struct
+* args   : rtk_t    *rtk    IO  rtk control/result struct
+*          prcopt_t *opt    I   positioning options (see rtklib.h)
+* return : none
+*-----------------------------------------------------------------------------*/
+function rtkinit(rtk : rtk_t, opt :  prcopt_t) : void{throw new Error("not implemented");}
+
+/* free rtk control ------------------------------------------------------------
+* free memory for rtk control struct
+* args   : rtk_t    *rtk    IO  rtk control/result struct
+* return : none
+*-----------------------------------------------------------------------------*/
+function rtkfree(rtk : rtk_t ) : void{throw new Error("not implemented");}
+
+/* precise positioning ---------------------------------------------------------
+* input observation data and navigation message, compute rover position by 
+* precise positioning
+* args   : rtk_t *rtk       IO  rtk control/result struct
+*            rtk->sol       IO  solution
+*                .time      O   solution time
+*                .rr[]      IO  rover position/velocity
+*                               (I:fixed mode,O:single mode)
+*                .dtr[0]    O   receiver clock bias (s)
+*                .dtr[1]    O   receiver glonass-gps time offset (s)
+*                .Qr[]      O   rover position covarinace
+*                .stat      O   solution status (SOLQ_???)
+*                .ns        O   number of valid satellites
+*                .age       O   age of differential (s)
+*                .ratio     O   ratio factor for ambiguity validation
+*            rtk->rb[]      IO  base station position/velocity
+*                               (I:relative mode,O:moving-base mode)
+*            rtk->nx        I   number of all states
+*            rtk->na        I   number of integer states
+*            rtk->ns        O   number of valid satellite
+*            rtk->tt        O   time difference between current and previous (s)
+*            rtk->x[]       IO  float states pre-filter and post-filter
+*            rtk->P[]       IO  float covariance pre-filter and post-filter
+*            rtk->xa[]      O   fixed states after AR
+*            rtk->Pa[]      O   fixed covariance after AR
+*            rtk->ssat[s]   IO  sat(s+1) status
+*                .sys       O   system (SYS_???)
+*                .az   [r]  O   azimuth angle   (rad) (r=0:rover,1:base)
+*                .el   [r]  O   elevation angle (rad) (r=0:rover,1:base)
+*                .vs   [r]  O   data valid single     (r=0:rover,1:base)
+*                .resp [f]  O   freq(f+1) pseudorange residual (m)
+*                .resc [f]  O   freq(f+1) carrier-phase residual (m)
+*                .vsat [f]  O   freq(f+1) data vaild (0:invalid,1:valid)
+*                .fix  [f]  O   freq(f+1) ambiguity flag
+*                               (0:nodata,1:float,2:fix,3:hold)
+*                .slip [f]  O   freq(f+1) slip flag
+*                               (bit8-7:rcv1 LLI, bit6-5:rcv2 LLI,
+*                                bit2:parity unknown, bit1:slip)
+*                .lock [f]  IO  freq(f+1) carrier lock count
+*                .outc [f]  IO  freq(f+1) carrier outage count
+*                .slipc[f]  IO  freq(f+1) cycle slip count
+*                .rejc [f]  IO  freq(f+1) data reject count
+*                .gf        IO  geometry-free phase (L1-L2) (m)
+*                .gf2       IO  geometry-free phase (L1-L5) (m)
+*            rtk->nfix      IO  number of continuous fixes of ambiguity
+*            rtk->neb       IO  bytes of error message buffer
+*            rtk->errbuf    IO  error message buffer
+*            rtk->tstr      O   time string for debug
+*            rtk->opt       I   processing options
+*          obsd_t *obs      I   observation data for an epoch
+*                               obs[i].rcv=1:rover,2:reference
+*                               sorted by receiver and satellte
+*          int    n         I   number of observation data
+*          nav_t  *nav      I   navigation messages
+* return : status (0:no solution,1:valid solution)
+* notes  : before calling function, base station position rtk->sol.rb[] should
+*          be properly set for relative mode except for moving-baseline
+*-----------------------------------------------------------------------------*/
+function rtkpos (rtk : rtk_t, obs :  obsd_t,  nobs : number, nav :  nav_t) : number{throw new Error("not implemented");}
+
+/* open solution status file ---------------------------------------------------
+* open solution status file and set output level
+* args   : char     *file   I   rtk status file
+*          int      level   I   rtk status level (0: off)
+* return : status (1:ok,0:error)
+* notes  : file can constain time keywords (%Y,%y,%m...) defined in reppath().
+*          The time to replace keywords is based on UTC of CPU time.
+* output : solution status file record format
+*
+*   $POS,week,tow,stat,posx,posy,posz,posxf,posyf,poszf
+*          week/tow : gps week no/time of week (s)
+*          stat     : solution status
+*          posx/posy/posz    : position x/y/z ecef (m) float
+*          posxf/posyf/poszf : position x/y/z ecef (m) fixed
+*
+*   $VELACC,week,tow,stat,vele,veln,velu,acce,accn,accu,velef,velnf,veluf,accef,accnf,accuf
+*          week/tow : gps week no/time of week (s)
+*          stat     : solution status
+*          vele/veln/velu    : velocity e/n/u (m/s) float
+*          acce/accn/accu    : acceleration e/n/u (m/s^2) float
+*          velef/velnf/veluf : velocity e/n/u (m/s) fixed
+*          accef/accnf/accuf : acceleration e/n/u (m/s^2) fixed
+*
+*   $CLK,week,tow,stat,clk1,clk2,clk3,clk4
+*          week/tow : gps week no/time of week (s)
+*          stat     : solution status
+*          clk1     : receiver clock bias GPS (ns)
+*          clk2     : receiver clock bias GLO-GPS (ns)
+*          clk3     : receiver clock bias GAL-GPS (ns)
+*          clk4     : receiver clock bias BDS-GPS (ns)
+*
+*   $ION,week,tow,stat,sat,az,el,ion,ion-fixed
+*          week/tow : gps week no/time of week (s)
+*          stat     : solution status
+*          sat      : satellite id
+*          az/el    : azimuth/elevation angle(deg)
+*          ion      : vertical ionospheric delay L1 (m) float
+*          ion-fixed: vertical ionospheric delay L1 (m) fixed
+*
+*   $TROP,week,tow,stat,rcv,ztd,ztdf
+*          week/tow : gps week no/time of week (s)
+*          stat     : solution status
+*          rcv      : receiver (1:rover,2:base station)
+*          ztd      : zenith total delay (m) float
+*          ztdf     : zenith total delay (m) fixed
+*
+*   $HWBIAS,week,tow,stat,frq,bias,biasf
+*          week/tow : gps week no/time of week (s)
+*          stat     : solution status
+*          frq      : frequency (1:L1,2:L2,...)
+*          bias     : h/w bias coefficient (m/MHz) float
+*          biasf    : h/w bias coefficient (m/MHz) fixed
+*
+*   $SAT,week,tow,sat,frq,az,el,resp,resc,vsat,snr,fix,slip,lock,outc,slipc,rejc
+*          week/tow : gps week no/time of week (s)
+*          sat/frq  : satellite id/frequency (1:L1,2:L2,...)
+*          az/el    : azimuth/elevation angle (deg)
+*          resp     : pseudorange residual (m)
+*          resc     : carrier-phase residual (m)
+*          vsat     : valid data flag (0:invalid,1:valid)
+*          snr      : signal strength (dbHz)
+*          fix      : ambiguity flag  (0:no data,1:float,2:fixed,3:hold,4:ppp)
+*          slip     : cycle-slip flag (bit1:slip,bit2:parity unknown)
+*          lock     : carrier-lock count
+*          outc     : data outage count
+*          slipc    : cycle-slip count
+*          rejc     : data reject (outlier) count
+*
+*-----------------------------------------------------------------------------*/
+function rtkopenstat(file : string,  level : number) : number{throw new Error("not implemented");}
+
+
+/* close solution status file --------------------------------------------------
+* close solution status file
+* args   : none
+* return : none
+*-----------------------------------------------------------------------------*/
+function rtkclosestat() : void{throw new Error("not implemented");}
+
+/* write solution status to buffer -------------------------------------------*/
+function rtkoutstat(rtk : rtk_t, buff : Buffer) : number{throw new Error("not implemented");}
+
+
 
 /* precise point positioning -------------------------------------------------*/
-function void pppos(rtk_t *rtk, const obsd_t *obs, int n, const nav_t *nav);
-function int pppnx(const prcopt_t *opt);
-function int pppoutstat(rtk_t *rtk, char *buff);
 
-function int ppp_ar(rtk_t *rtk, const obsd_t *obs, int n, int *exc,
-                  const nav_t *nav, const double *azel, double *x, double *P);
+/* precise point positioning -------------------------------------------------*/
+function pppos(rtk : rtk_t, obs :  obsd_t,  n : number, nav :  nav_t) : void{throw new Error("not implemented");}
 
-function int pppcorr_read(pppcorr_t *corr, const char *file);
-function void pppcorr_free(pppcorr_t *corr);
-function int pppcorr_trop(const pppcorr_t *corr, gtime_t time, const double *pos,
-                        double *ztd, double *std);
-function int pppcorr_stec(const pppcorr_t *corr, gtime_t time, const double *pos,
-                        double *ion, double *std);
+/* number of estimated states ------------------------------------------------*/
+function pppnx(opt :  prcopt_t) : number{throw new Error("not implemented");}
+
+/* write solution status for PPP ---------------------------------------------*/
+function pppoutstat(rtk : rtk_t, buff : Buffer) : number{throw new Error("not implemented");}
+
+/* ambiguity resolution in ppp -----------------------------------------------*/
+function ppp_ar(rtk : rtk_t , obs :  obsd_t,  n : number, exc : number[],
+                  nav :  nav_t, azel : number[], x : number, P : number) : number{throw new Error("not implemented");}
+
+/* read ppp corrections --------------------------------------------------------
+* read ppp correction data from external file
+* args   : pppcorr_t *corr  IO  ppp correction data
+*          char   *file     I   file
+* return : status (1:ok,0:error)
+* notes  : file types are recognized by file extenstions as follows.
+*            .stat,.STAT : solution status file by rtklib
+*            .stec,.STEC : stec parameters file by mgest
+*            others      : sinex troposphere file
+*          read data are added to ppp correction data.
+*          To clear data, call pppcorr_free()
+*-----------------------------------------------------------------------------*/
+function pppcorr_read(corr : pppcorr_t, file : string) : number{throw new Error("not implemented");}
+
+/* free ppp corrections --------------------------------------------------------
+* free and clear ppp correction data
+* args   : pppcorr_t *corr  IO  ppp correction data
+* return : none
+*-----------------------------------------------------------------------------*/
+function pppcorr_free(corr : pppcorr_t) : void{throw new Error("not implemented");}
+
+/* get tropospheric correction -------------------------------------------------
+* get tropospheric correction from ppp correcion data
+* args   : pppcorr_t *corr  I   ppp correction data
+*          gtime_t time     I   time (GPST)
+*          double *pos      I   receiver position {lat,lon,heght} (rad,m)
+*          double *trp      O   tropos parameters {ztd,grade,gradn} (m)
+*          double *std      O   standard deviation (m)
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function pppcorr_trop(corr : pppcorr_t,  time : Date, pos : number[],
+                        ztd : number[], std : number[]) : number{throw new Error("not implemented");}
+
+/* get ionospherec correction --------------------------------------------------
+* get ionospheric correction from ppp correction data
+* args   : pppcorr_t *corr  I   ppp correction data
+*          gtime_t time     I   time (GPST)
+*          double *pos      I   receiver ecef position {x,y,z} (m)
+*          double *ion      O   L1 slant ionos delay for each sat (MAXSAT x 1)
+*                               (ion[i]==0: no correction data)
+*          double *std      O   standard deviation (m)
+* return : status (1:ok,0:error)
+*-----------------------------------------------------------------------------*/
+function pppcorr_stec(corr :  pppcorr_t ,  time : Date, pos : number[],
+                        ion : number[], std : number) : number{throw new Error("not implemented");}
 
 /* post-processing positioning -----------------------------------------------*/
-function int postpos(gtime_t ts, gtime_t te, double ti, double tu,
-                   const prcopt_t *popt, const solopt_t *sopt,
-                   const filopt_t *fopt, char **infile, int n, char *outfile,
-                   const char *rov, const char *base);
+
+
+/* post-processing positioning -------------------------------------------------
+* post-processing positioning
+* args   : gtime_t ts       I   processing start time (ts.time==0: no limit)
+*        : gtime_t te       I   processing end time   (te.time==0: no limit)
+*          double ti        I   processing interval  (s) (0:all)
+*          double tu        I   processing unit time (s) (0:all)
+*          prcopt_t *popt   I   processing options
+*          solopt_t *sopt   I   solution options
+*          filopt_t *fopt   I   file options
+*          char   **infile  I   input files (see below)
+*          int    n         I   number of input files
+*          char   *outfile  I   output file ("":stdout, see below)
+*          char   *rov      I   rover id list        (separated by " ")
+*          char   *base     I   base station id list (separated by " ")
+* return : status (0:ok,0>:error,1:aborted)
+* notes  : input files should contain observation data, navigation data, precise 
+*          ephemeris/clock (optional), sbas log file (optional), ssr message
+*          log file (optional) and tec grid file (optional). only the first 
+*          observation data file in the input files is recognized as the rover
+*          data.
+*
+*          the type of an input file is recognized by the file extention as ]
+*          follows:
+*              .sp3,.SP3,.eph*,.EPH*: precise ephemeris (sp3c)
+*              .sbs,.SBS,.ems,.EMS  : sbas message log files (rtklib or ems)
+*              .lex,.LEX            : qzss lex message log files
+*              .rtcm3,.RTCM3        : ssr message log files (rtcm3)
+*              .*i,.*I              : tec grid files (ionex)
+*              .fcb,.FCB            : satellite fcb
+*              others               : rinex obs, nav, gnav, hnav, qnav or clock
+*
+*          inputs files can include wild-cards (*). if an file includes
+*          wild-cards, the wild-card expanded multiple files are used.
+*
+*          inputs files can include keywords. if an file includes keywords,
+*          the keywords are replaced by date, time, rover id and base station
+*          id and multiple session analyses run. refer reppath() for the
+*          keywords.
+*
+*          the output file can also include keywords. if the output file does
+*          not include keywords. the results of all multiple session analyses
+*          are output to a single output file.
+*
+*          ssr corrections are valid only for forward estimation.
+*-----------------------------------------------------------------------------*/
+function postpos(ts : Date, te : Date,  ti : number,  tu : number,
+                   popt :  prcopt_t, sopt :  solopt_t,
+                   fopt : filopt_t, infile : string[],  n : number, outfile : string, 
+                   rov : string, base : string) : number{throw new Error("not implemented");}
 
 /* stream server functions ---------------------------------------------------*/
-function void strsvrinit (strsvr_t *svr, int nout);
-function int  strsvrstart(strsvr_t *svr, int *opts, int *strs, char **paths,
-                        strconv_t **conv, char **cmds, char **cmds_priodic,
-                        const double *nmeapos);
-function void strsvrstop (strsvr_t *svr, char **cmds);
-function void strsvrstat (strsvr_t *svr, int *stat, int *byte, int *bps, char *msg);
-function strconv_t *strconvnew(int itype, int otype, const char *msgs, int staid,
-                             int stasel, const char *opt);
-function void strconvfree(strconv_t *conv);
-function void strsvrsetsrctbl(strsvr_t *svr, const char *file);
+
+
+/* initialize stream server ----------------------------------------------------
+* initialize stream server
+* args   : strsvr_t *svr    IO  stream sever struct
+*          int    nout      I   number of output streams
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsvrinit (svr : strsvr_t,  nout : number) : void{throw new Error("not implemented");}
+
+/* start stream server ---------------------------------------------------------
+* start stream server
+* args   : strsvr_t *svr    IO  stream sever struct
+*          int    *opts     I   stream options
+*              opts[0]= inactive timeout (ms)
+*              opts[1]= interval to reconnect (ms)
+*              opts[2]= averaging time of data rate (ms)
+*              opts[3]= receive/send buffer size (bytes);
+*              opts[4]= server cycle (ms)
+*              opts[5]= nmea request cycle (ms) (0:no)
+*              opts[6]= file swap margin (s)
+*              opts[7]= relay back of output stream (0:no)
+*          int    *strs     I   stream types (STR_???)
+*              strs[0]= input stream
+*              strs[1]= output stream 1
+*              strs[2]= output stream 2
+*              strs[3]= output stream 3
+*          char   **paths   I   stream paths
+*              paths[0]= input stream
+*              paths[1]= output stream 1
+*              paths[2]= output stream 2
+*              paths[3]= output stream 3
+*          strcnv **conv    I   stream converter
+*              conv[0]= output stream 1 converter
+*              conv[1]= output stream 2 converter
+*              conv[2]= output stream 3 converter
+*          char   **cmds    I   start commands (NULL: no cmd)
+*              cmds[0]= input stream command
+*              cmds[1]= output stream 1 command
+*              cmds[2]= output stream 2 command
+*              cmds[3]= output stream 3 command
+*          char   **cmds_periodic I periodic commands (NULL: no cmd)
+*              cmds[0]= input stream command
+*              cmds[1]= output stream 1 command
+*              cmds[2]= output stream 2 command
+*              cmds[3]= output stream 3 command
+*          double *nmeapos  I   nmea request position (ecef) (m) (NULL: no)
+* return : status (0:error,1:ok)
+*-----------------------------------------------------------------------------*/
+function strsvrstart(svr : strsvr_t, opts : number[], strs : number[], paths : string[],
+                        conv : strconv_t[], cmds : string[], cmds_priodic : string[],
+                        nmeapos : number) : number{throw new Error("not implemented");}
+
+/* stop stream server ----------------------------------------------------------
+* start stream server
+* args   : strsvr_t *svr    IO  stream server struct
+*          char  **cmds     I   stop commands (NULL: no cmd)
+*              cmds[0]= input stream command
+*              cmds[1]= output stream 1 command
+*              cmds[2]= output stream 2 command
+*              cmds[3]= output stream 3 command
+* return : none
+*-----------------------------------------------------------------------------*/             
+function strsvrstop (svr : strsvr_t , cmds : string[]) : void{throw new Error("not implemented");}
+
+/* get stream server status ----------------------------------------------------
+* get status of stream server
+* args   : strsvr_t *svr    IO  stream sever struct
+*          int    *stat     O   stream status
+*          int    *byte     O   bytes received/sent
+*          int    *bps      O   bitrate received/sent
+*          char   *msg      O   messages
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsvrstat (svr : strsvr_t, stat : number, byte : number, bps : number, msg : string) :  void{throw new Error("not implemented");}
+
+/* new stream converter --------------------------------------------------------
+* generate new stream converter
+* args   : int    itype     I   input stream type  (STRFMT_???)
+*          int    otype     I   output stream type (STRFMT_???)
+*          char   *msgs     I   output message type and interval (, separated)
+*          int    staid     I   station id
+*          int    stasel    I   station info selection (0:remote,1:local)
+*          char   *opt      I   rtcm or receiver raw options
+* return : stream generator (NULL:error)
+*-----------------------------------------------------------------------------*/
+function strconvnew( itype : number, otype : number, msgs : string, staid : number,
+                              stasel : number, opt : Buffer) : strconv_t {throw new Error("not implemented");}
+
+/* free stream converter -------------------------------------------------------
+* free stream converter
+* args   : strconv_t *conv  IO  stream converter
+* return : none
+*-----------------------------------------------------------------------------*/
+function strconvfree(conv : strconv_t) :  void{throw new Error("not implemented");}
+
+/* set ntrip source table for stream server ------------------------------------
+* set ntrip source table for stream server
+* args   : strsvr_t *svr    IO  stream server struct
+*          char  *file      I   source table file
+* return : none
+*-----------------------------------------------------------------------------*/
+function strsvrsetsrctbl(svr : strsvr_t, file : string) :  void{throw new Error("not implemented");}
 
 /* rtk server functions ------------------------------------------------------*/
-function int  rtksvrinit  (rtksvr_t *svr);
-function void rtksvrfree  (rtksvr_t *svr);
-function int  rtksvrstart (rtksvr_t *svr, int cycle, int buffsize, int *strs,
-                         char **paths, int *formats, int navsel, char **cmds,
-                         char **cmds_periodic, char **rcvopts, int nmeacycle,
-                         int nmeareq, const double *nmeapos, prcopt_t *prcopt,
-                         solopt_t *solopt, stream_t *moni, char *errmsg);
-function void rtksvrstop  (rtksvr_t *svr, char **cmds);
-function int  rtksvropenstr(rtksvr_t *svr, int index, int str, const char *path,
-                          const solopt_t *solopt);
-function void rtksvrclosestr(rtksvr_t *svr, int index);
-function void rtksvrlock  (rtksvr_t *svr);
-function void rtksvrunlock(rtksvr_t *svr);
-function int  rtksvrostat (rtksvr_t *svr, int type, gtime_t *time, int *sat,
-                         double *az, double *el, int **snr, int *vsat);
-function void rtksvrsstat (rtksvr_t *svr, int *sstat, char *msg);
-function int  rtksvrmark(rtksvr_t *svr, const char *name, const char *comment);
+
+/* initialize rtk server -------------------------------------------------------
+* initialize rtk server
+* args   : rtksvr_t *svr    IO rtk server
+* return : status (0:error,1:ok)
+*-----------------------------------------------------------------------------*/
+function rtksvrinit  (svr : rtksvr_t) : number{throw new Error("not implemented");}
+
+/* free rtk server -------------------------------------------------------------
+* free rtk server
+* args   : rtksvr_t *svr    IO rtk server
+* return : none
+*-----------------------------------------------------------------------------*/
+function rtksvrfree  (svr : rtksvr_t) : void{throw new Error("not implemented");}
+
+/* start rtk server ------------------------------------------------------------
+* start rtk server thread
+* args   : rtksvr_t *svr    IO rtk server
+*          int     cycle    I  server cycle (ms)
+*          int     buffsize I  input buffer size (bytes)
+*          int     *strs    I  stream types (STR_???)
+*                              types[0]=input stream rover
+*                              types[1]=input stream base station
+*                              types[2]=input stream correction
+*                              types[3]=output stream solution 1
+*                              types[4]=output stream solution 2
+*                              types[5]=log stream rover
+*                              types[6]=log stream base station
+*                              types[7]=log stream correction
+*          char    *paths   I  input stream paths
+*          int     *format  I  input stream formats (STRFMT_???)
+*                              format[0]=input stream rover
+*                              format[1]=input stream base station
+*                              format[2]=input stream correction
+*          int     navsel   I  navigation message select
+*                              (0:rover,1:base,2:ephem,3:all)
+*          char    **cmds   I  input stream start commands
+*                              cmds[0]=input stream rover (NULL: no command)
+*                              cmds[1]=input stream base (NULL: no command)
+*                              cmds[2]=input stream corr (NULL: no command)
+*          char    **cmds_periodic I input stream periodic commands
+*                              cmds[0]=input stream rover (NULL: no command)
+*                              cmds[1]=input stream base (NULL: no command)
+*                              cmds[2]=input stream corr (NULL: no command)
+*          char    **rcvopts I receiver options
+*                              rcvopt[0]=receiver option rover
+*                              rcvopt[1]=receiver option base
+*                              rcvopt[2]=receiver option corr
+*          int     nmeacycle I nmea request cycle (ms) (0:no request)
+*          int     nmeareq  I  nmea request type
+*                              (0:no,1:base pos,2:single sol,3:reset and single)
+*          double *nmeapos  I  transmitted nmea position (ecef) (m)
+*          prcopt_t *prcopt I  rtk processing options
+*          solopt_t *solopt I  solution options
+*                              solopt[0]=solution 1 options
+*                              solopt[1]=solution 2 options
+*          stream_t *moni   I  monitor stream (NULL: not used)
+*          char   *errmsg   O  error message
+* return : status (1:ok 0:error)
+*-----------------------------------------------------------------------------*/
+function rtksvrstart (svr : rtksvr_t,  cycle : number,  buffsize : number, strs : number[],
+                         paths : string[], formats : number[],  navsel : number, cmds : string[],
+                         cmds_periodic : string[], rcvopts : string[],  nmeacycle : number,
+                          nmeareq : number, nmeapos : number, prcopt : prcopt_t,
+                         solopt : solopt_t, moni : stream_t, errmsg : string):number{throw new Error("not implemented");}
+
+
+/* stop rtk server -------------------------------------------------------------
+* start rtk server thread
+* args   : rtksvr_t *svr    IO rtk server
+*          char    **cmds   I  input stream stop commands
+*                              cmds[0]=input stream rover (NULL: no command)
+*                              cmds[1]=input stream base  (NULL: no command)
+*                              cmds[2]=input stream ephem (NULL: no command)
+* return : none
+*-----------------------------------------------------------------------------*/
+function rtksvrstop  (svr : rtksvr_t, cmds : string[]) : void{throw new Error("not implemented");}
+
+
+/* open output/log stream ------------------------------------------------------
+* open output/log stream
+* args   : rtksvr_t *svr    IO rtk server
+*          int     index    I  output/log stream index
+*                              (3:solution 1,4:solution 2,5:log rover,
+*                               6:log base station,7:log correction)
+*          int     str      I  output/log stream types (STR_???)
+*          char    *path    I  output/log stream path
+*          solopt_t *solopt I  solution options
+* return : status (1:ok 0:error)
+*-----------------------------------------------------------------------------*/
+function rtksvropenstr(svr : rtksvr_t,  index : number,  str : number,path : string,
+                          solopt :  solopt_t) : number{throw new Error("not implemented");}
+
+/* close output/log stream -----------------------------------------------------
+* close output/log stream
+* args   : rtksvr_t *svr    IO rtk server
+*          int     index    I  output/log stream index
+*                              (3:solution 1,4:solution 2,5:log rover,
+*                               6:log base station,7:log correction)
+* return : none
+*-----------------------------------------------------------------------------*/
+function rtksvrclosestr(svr : rtksvr_t,  index : number) : void{throw new Error("not implemented");}
+
+/* lock/unlock rtk server ------------------------------------------------------
+* lock/unlock rtk server
+* args   : rtksvr_t *svr    IO rtk server
+* return : status (1:ok 0:error)
+*-----------------------------------------------------------------------------*/
+function rtksvrlock  (svr : rtksvr_t) : void{throw new Error("not implemented");}
+
+/* lock/unlock rtk server ------------------------------------------------------
+* lock/unlock rtk server
+* args   : rtksvr_t *svr    IO rtk server
+* return : status (1:ok 0:error)
+*-----------------------------------------------------------------------------*/
+function rtksvrunlock(svr : rtksvr_t) : void{throw new Error("not implemented");}
+
+
+/* get observation data status -------------------------------------------------
+* get current observation data status
+* args   : rtksvr_t *svr    I  rtk server
+*          int     rcv      I  receiver (0:rover,1:base,2:ephem)
+*          gtime_t *time    O  time of observation data
+*          int     *sat     O  satellite prn numbers
+*          double  *az      O  satellite azimuth angles (rad)
+*          double  *el      O  satellite elevation angles (rad)
+*          int     **snr    O  satellite snr for each freq (dBHz)
+*                              snr[i][j] = sat i freq j snr
+*          int     *vsat    O  valid satellite flag
+* return : number of satellites
+*-----------------------------------------------------------------------------*/
+function rtksvrostat (svr : rtksvr_t,  type : number, time : Date, sat : number,
+                         az : number, el : number, snr : number[][], vsat : number) : number{throw new Error("not implemented");}
+
+
+/* get stream status -----------------------------------------------------------
+* get current stream status
+* args   : rtksvr_t *svr    I  rtk server
+*          int     *sstat   O  status of streams
+*          char    *msg     O  status messages
+* return : none
+*-----------------------------------------------------------------------------*/
+function rtksvrsstat (svr : rtksvr_t, sstat : number, msg : string) : void{throw new Error("not implemented");}
+
+
+/* mark current position -------------------------------------------------------
+* open output/log stream
+* args   : rtksvr_t *svr    IO rtk server
+*          char    *name    I  marker name
+*          char    *comment I  comment string
+* return : status (1:ok 0:error)
+*-----------------------------------------------------------------------------*/
+function rtksvrmark(svr : rtksvr_t, name : string, comment : string) : number{throw new Error("not implemented");}
+
 
 /* downloader functions ------------------------------------------------------*/
-function int dl_readurls(const char *file, char **types, int ntype, url_t *urls,
-                       int nmax);
-function int dl_readstas(const char *file, char **stas, int nmax);
-function int dl_exec(gtime_t ts, gtime_t te, double ti, int seqnos, int seqnoe,
-                   const url_t *urls, int nurl, char **stas, int nsta,
-                   const char *dir, const char *usr, const char *pwd,
-                   const char *proxy, int opts, char *msg, FILE *fp);
-function void dl_test(gtime_t ts, gtime_t te, double ti, const url_t *urls,
-                    int nurl, char **stas, int nsta, const char *dir,
-                    int ncol, int datefmt, FILE *fp);
+
+
+/* read url address list file of gnss data -------------------------------------
+* read url address list file of gnss data
+* args   : char   *file     I   gnss data url file
+*          char   **types   I   selected types ("*":wildcard)
+*          int    ntype     I   number of selected types
+*          urls_t *urls     O   urls
+*          int    nmax      I   max number of urls
+* return : number of urls (0:error)
+* notes  :
+*    (1) url list file contains records containing the following fields
+*        separated by spaces. if a field contains spaces, enclose it within "".
+*
+*        data_type  url_address       default_local_directory
+*
+*    (2) strings after # in a line are treated as comments
+*    (3) url_address should be:
+*
+*        ftp://host_address/file_path or
+*        http://host_address/file_path
+*
+*    (4) the field url_address or default_local_directory can include the
+*        follwing keywords replaced by date, time, station names and environment
+*        variables.
+*
+*        %Y -> yyyy    : year (4 digits) (2000-2099)
+*        %y -> yy      : year (2 digits) (00-99)
+*        %m -> mm      : month           (01-12)
+*        %d -> dd      : day of month    (01-31)
+*        %h -> hh      : hours           (00-23)
+*        %H -> a       : hour code       (a-x)
+*        %M -> mm      : minutes         (00-59)
+*        %n -> ddd     : day of year     (001-366)
+*        %W -> wwww    : gps week        (0001-9999)
+*        %D -> d       : day of gps week (0-6)
+*        %N -> nnn     : general number
+*        %s -> ssss    : station name    (lower-case)
+*        %S -> SSSS    : station name    (upper-case)
+*        %r -> rrrr    : station name
+*        %{env} -> env : environment variable
+*-----------------------------------------------------------------------------*/
+function dl_readurls(file : string, types : string[], ntype : number, urls : url_t,
+                        nmax : number) : number{throw new Error("not implemented");}
+
+
+/* read station list file ------------------------------------------------------
+* read station list file
+* args   : char   *file     I   station list file
+*          char   **stas    O   stations
+*          int    nmax      I   max number of stations
+* return : number of stations (0:error)
+* notes  :
+*    (1) station list file contains station names separated by spaces.
+*    (2) strings after # in a line are treated as comments
+*-----------------------------------------------------------------------------*/
+function dl_readstas(file : string, stas : string[],  nmax : number) : number{throw new Error("not implemented");}
+
+
+/* execute download ------------------------------------------------------------
+* execute download
+* args   : gtime_t ts,te    I   time start and end
+*          double tint      I   time interval (s)
+*          int    seqnos    I   sequence number start
+*          int    seqnoe    I   sequence number end
+*          url_t  *urls     I   url address list
+*          int    nurl      I   number of urls
+*          char   **stas    I   station list
+*          int    nsta      I   number of stations
+*          char   *dir      I   local directory
+*          char   *remote_p I   previous remote file path
+*          char   *usr      I   login user for ftp
+*          char   *pwd      I   login password for ftp
+*          char   *proxy    I   proxy server address
+*          int    opts      I   download options (or of the followings)
+*                                 DLOPT_FORCE = force download existing file
+*                                 DLOPT_KEEPCMP=keep compressed file
+*                                 DLOPT_HOLDERR=hold on error file
+*                                 DLOPT_HOLDLST=hold on listing file
+*          char   *msg      O   output messages
+*          FILE   *fp       IO  log file pointer (NULL: no output log)
+* return : status (1:ok,0:error,-1:aborted)
+* notes  : urls should be read by using dl_readurl()
+*-----------------------------------------------------------------------------*/
+function dl_exec(ts : Date, te : Date,  ti : number, seqnos : number,  seqnoe : number,
+                    urls : url_t,  nurl : number, stas : string[],  nsta : number,
+                   dir : string, usr : string, pwd : string,
+                   proxy : string,  opts : number, msg : string, fp : FILE) : number{throw new Error("not implemented");}
+
+
+/* execute local file test -----------------------------------------------------
+* execute local file test
+* args   : gtime_t ts,te    I   time start and end
+*          double tint      I   time interval (s)
+*          url_t  *urls     I   download urls
+*          int    nurl      I   number of urls
+*          char   **stas    I   stations
+*          int    nsta      I   number of stations
+*          char   *dir      I   local directory
+*          int    ncol      I   number of column
+*          int    datefmt   I   date format (0:year-dow,1:year-dd/mm,2:week)
+*          FILE   *fp       IO  log test result file pointer
+* return : status (1:ok,0:error,-1:aborted)
+*-----------------------------------------------------------------------------*/
+function dl_test(ts : Date, te : Date,  ti : number, urls :  url_t,
+                     nurl : number, stas : string[],  nsta : number, dir : string,
+                     ncol : number,  datefmt : number, fp : FILE) : void{throw new Error("not implemented");}
+
+
 
 /* gis data functions --------------------------------------------------------*/
-function  gis_read(file : string, gis : gis_t,  layer : number) : number{}
-function gis_free(gis : gis_t) : void{}
+
+/* read gis data from shapefile ------------------------------------------------
+* read gis data from shapefile (ref [1])
+* args   : char   *file     I   shapefile
+*          gis_t  *gis      IO  GIS data
+* return : status (0:error)
+* notes  : only support point, multipoint, polyline and polygon.
+*          only support lat-lon for map projection.
+*-----------------------------------------------------------------------------*/
+function  gis_read(file : string, gis : gis_t,  layer : number) : number{throw new Error("not implemented");}
+
+/* free gis-data ---------------------------------------------------------------
+* free and initialize gis data
+* args   : gis_t  *gis      IO  gis data
+* return : none
+*-----------------------------------------------------------------------------*/
+function gis_free(gis : gis_t) : void{throw new Error("not implemented");}
 
 /* qzss lex functions --------------------------------------------------------*/
-function  lexupdatecorr(msg : lexmsg_t, nav : nav_t, tof : Date ) : number{}
-function  lexreadmsg(file : string,  sel : number, lex : lex_t) : number{}
-function  lexoutmsg(fp : FILE , msg : lexmsg_t) : void{}
-function  lexconvbin(int type, int format, const char *infile,
-                      const char *outfile) : number{}
-function  lexeph2pos(gtime_t time, int sat, const nav_t *nav, double *rs,
-                      double *dts, double *var) : number{}
-function  lexioncorr(gtime_t time, const nav_t *nav, const double *pos,
-                      const double *azel, double *delay, double *var) : number{}
+
+/* update lex corrections ------------------------------------------------------
+* update lex correction parameters in navigation data with a lex message
+* args   : lexmsg_t *msg    I   lex message
+*          nav_t    *nav    IO  navigation data
+*          gtime_t  *tof    O   time of frame
+* return : status (1:ok,0:error or not supported type)
+*-----------------------------------------------------------------------------*/
+function  lexupdatecorr(msg : lexmsg_t, nav : nav_t, tof : Date ) : number{throw new Error("not implemented");}
+
+/* read qzss lex message log file ----------------------------------------------
+* read sbas message file
+* args   : char     *file   I   qzss lex message file
+*          int      sel     I   qzss lex satellite prn number selection (0:all)
+*          qzslex_t *lex    IO  qzss lex messages
+* return : status (1:ok,0:error)
+* notes  : only input file with extension .lex or .LEX.
+*-----------------------------------------------------------------------------*/
+function  lexreadmsg(file : string,  sel : number, lex : lex_t) : number{throw new Error("not implemented");}
+
+/* output lex messages ---------------------------------------------------------
+* output lex message record to output file in rtklib lex log format
+* args   : FILE   *fp       I   output file pointer
+*          lexmsg_t *lexmsg I   lex messages
+* return : none
+* notes  : see ref [1] 5.7.2.1
+*-----------------------------------------------------------------------------*/
+function  lexoutmsg(fp : FILE , msg : lexmsg_t) : void{throw new Error("not implemented");}
+
+/* convert lex binary file to lex message log ----------------------------------
+* convert lex binary file to lex message log
+* args   : int    type      I   output type (0:all)
+*          int    format    I   lex binary format (0:no-headr,1:with-header)
+*          char   *infile   I   input file
+*          char   *outfile  I   output file
+* return : status (1:ok,0:no correction)
+* notes  : see ref [1] 5.7.2.1
+*-----------------------------------------------------------------------------*/
+function  lexconvbin(type : number,  format : number, infile : string,
+                      outfile : string) : number{throw new Error("not implemented");}
+
+/* lex satellite ephemeris and clock correction -------------------------------
+* satellite position by lex ephemeris
+* args   : gtime_t time     I   time (gpst)
+*          int    sat       I   satellite
+*          nav_t  *nav      I   navigation data
+*          double *rs       O   satellite position and velocity
+*                               {x,y,z,vx,vy,vz} (ecef) (m|m/s)
+*          double *dts      O   satellite clock {bias,drift} (s|s/s)
+*          double *var      O   satellite position and clock variance (m^2)
+* return : status (1:ok,0:no correction)
+* notes  : see ref [1] 5.7.2.2.1.2
+*          before calling the function, call lexupdatecorr() to set lex 
+*          corrections to navigation data
+*          dts includes relativistic effect correction
+*          dts does not include code bias correction
+*-----------------------------------------------------------------------------*/
+function  lexeph2pos(time : Date,  sat : number, nav : nav_t, rs : number[],
+                      dts : number[], variance : number) : number{throw new Error("not implemented");}
+
+/* lex ionosphere correction --------------------------------------------------
+* ionosphere correction by lex correction
+* args   : gtime_t  time    I   time
+*          nav_t    *nav    I   navigation data
+*          double   *pos    I   receiver position {lat,lon,height} (rad/m)
+*          double   *azel   I   satellite azimuth/elavation angle (rad)
+*          double   *delay  O   slant ionospheric delay (L1) (m)
+*          double   *var    O   variance of ionospheric delay (m^2)
+* return : status (1:ok, 0:no correction)
+* notes  : see ref [1] 5.7.2.2.1.3
+*          before calling the function, call lexupdatecorr() to set lex 
+*          corrections to navigation data
+*-----------------------------------------------------------------------------*/
+function  lexioncorr(time : Date, nav :  nav_t, pos : number[],
+                      azel : number[], delay : number, variance : number) : number{throw new Error("not implemented");}
 
 /* application defined functions ---------------------------------------------*/
 // function int showmsg(char *format,...);
