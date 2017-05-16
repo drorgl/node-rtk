@@ -2,15 +2,41 @@
   "name": "node-rtk",
   "version": "1.0.0",
   "description": "RTKLib bindings",
+  "author": "Dror Gluska <drorgl@yahoo.com>",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "tsc" : "tsc",
+    "configure": "node-gyp configure",
+    "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
   "license": "BSD-3-Clause",
   "dependencies": {
     "@types/node": "^7.0.18",
-    "typescript": "^2.3.2"
-  }
+    "typescript": "^2.3.2",
+    "node-gyp": "drorgl/node-gyp",
+    "nan": "^2.4.0",
+    "node-overload-resolution": "drorgl/node-overload-resolution",
+    "ts-node": "^1.3.0"
+  },
+  "devDependencies": {
+    "async": "^1.5.0",
+    "chalk": "^1.1.3",
+    "tape": "^3.0.0"
+  },
+  "keywords": [
+    "rtk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drorgl/node-rtk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/drorgl/node-rtk/issues"
+  },
+  "homepage": "https://github.com/drorgl/node-rtk#readme.md",
+  "engines": {
+    "node": ">=0.12"
+  },
+  "gypfile": true
 }
