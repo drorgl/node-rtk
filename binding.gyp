@@ -119,13 +119,20 @@
 		,"src/RTKLIB/src/rcv/ublox.c"
 
 		,"src/rtk_dummy.c"
+
+		,"src/rtk.h"
+		,"src/init.cc"
+		,"src/binding_rtkcmn.cc"
+		,"src/binding_rtkcmn.h"
         ]
 	  , 'dependencies':[
 			#'../ffmpeg/ffmpeg.gyp:swscale',
+			"<!(node -e \"require('node-addon-tracer')\"):node-addon-tracer",
+			"<!(node -e \"require('node-overload-resolution')\"):node-overload-resolution",
 	  ]
       ,'include_dirs': [
 		  "src/RTKLIB/src",
-		"<!(node -e \"require('nan')\")"
+			"<!(node -e \"require('nan')\")"
 		]
 		
       , "conditions": [
