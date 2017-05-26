@@ -124,6 +124,10 @@
 		,"src/init.cc"
 		,"src/binding_rtkcmn.cc"
 		,"src/binding_rtkcmn.h"
+		
+		,"src/returns/satsys_return.h"
+		,"src/returns/satsys_return.cpp"
+		
         ]
 	  , 'dependencies':[
 			#'../ffmpeg/ffmpeg.gyp:swscale',

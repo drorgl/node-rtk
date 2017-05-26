@@ -4,13 +4,11 @@ import * as rtk from "../binding/rtk";
 console.log("starting");
 import tape = require("tape");
 import chalk = require("chalk");
-import util = require("util");
-
+// import util = require("util");
 
 let errorColor = chalk.red.bold;
 let okColor = chalk.green.bold;
 let level = 0;
-
 
 function tablevel() {
 	let retval = "";
@@ -41,25 +39,21 @@ tapestream.on("data", (row: IDataRow) => {
 	// console.log(JSON.stringify(row));
 	if (typeof row === typeof "") {
 		console.log(tablevel() + row);
-	}
-	else if (row.type === "end") {
+	} else if (row.type === "end") {
 		console.log();
 		level--;
-	}
-	else if (row.type === "test") {
+	} else if (row.type === "test") {
 		level++;
 		console.log();
 		console.log(tablevel() + "%d. Testing %s", row.id, row.name);
-	}
-	else {
+	} else {
 		if (row.ok) {
 			results.passed++;
 			console.log(tablevel() + okColor("%d. \t %s \t %s"), row.id, row.ok, row.name);
 			if (row.operator === "throws" && row.actual !== undefined) {
 				console.log(tablevel() + okColor(" threw: %s"), row.actual);
 			}
-		}
-		else {
+		} else {
 			results.failed++;
 			console.log(tablevel() + errorColor("%d. \t %s \t %s"), row.id, row.ok, row.name);
 			console.log(tablevel() + errorColor("\t expected: %s actual: %s"), row.expected, row.actual);
@@ -72,8 +66,6 @@ tapestream.on("end", () => {
 	console.log("failed:", results.failed);
 });
 
-
-
 // function showObject(tobj: any) {
 // 	let objstr = JSON.stringify(tobj, null, "\t");
 // 	let showObjectContents = false;
@@ -84,8 +76,10 @@ tapestream.on("end", () => {
 // 	}
 // }
 
-
-tape("rtkcmn", (t) =>{
+tape("rtkcmn", (t) => {
 	t.equal(33, rtk.satno(rtk.NAVIGATION_SYSTEM.GLO, 1), "satno glo 1");
+	t.deepEqual({prn_slot : 2, sys: 1},rtk.satsys(2),"satsys 2");
+	t.equal(1,rtk.satid2no("G01"),"satid2no G01");
+	t.equal("G01", rtk.satno2id(1),"satno2id 1");
 	t.end();
 });

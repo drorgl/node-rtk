@@ -1313,8 +1313,12 @@ export function satno(sys: number | NAVIGATION_SYSTEM, prn: number): number {
 *          int    *prn      IO  satellite prn/slot number (NULL: no output)
 * return : satellite system (SYS_GPS,SYS_GLO,...)
 *-----------------------------------------------------------------------------*/
-export function satsys(sat: number, prn: number[]): number {
-	throw new Error("not implemented");
+export interface IsatsysReturn{
+	prn_slot: number;
+	sys: number;
+}
+export function satsys(sat: number): IsatsysReturn {
+	return rtklib_module.satsys(sat);
 }
 
 /* satellite id to satellite number --------------------------------------------
@@ -1324,7 +1328,7 @@ export function satsys(sat: number, prn: number[]): number {
 * notes  : 120-138 and 193-195 are also recognized as sbas and qzss
 *-----------------------------------------------------------------------------*/
 export function satid2no(id: string): number {
-	throw new Error("not implemented");
+	return rtklib_module.satid2no(id);
 }
 
 /* satellite number to satellite id --------------------------------------------
@@ -1333,8 +1337,8 @@ export function satid2no(id: string): number {
 *          char   *id       O   satellite id (Gnn,Rnn,Enn,Jnn,Cnn or nnn)
 * return : none
 *-----------------------------------------------------------------------------*/
-export function satno2id(sat: number, id: string): void {
-	throw new Error("not implemented");
+export function satno2id(sat: number): string {
+	return rtklib_module.satno2id(sat);
 }
 
 /* obs type string to obs code -------------------------------------------------
@@ -2246,9 +2250,7 @@ export function tropmapf(time: Date, pos: IPosition | number[], azel: IAzimuthEl
 * notes  : before calling the function, read tec grid data by calling readtec()
 *          return ok with delay=0 and var=VAR_NOTEC if el<MIN_EL or h<MIN_HGT
 *-----------------------------------------------------------------------------*/
-export function iontec(time: Date, nav: nav_t, pos: number[],
-	azel: number[], opt: number, delay: number, variance: number): number { throw new Error("not implemented"); }
-
+export function iontec(time: Date, nav: nav_t, pos: number[], azel: number[], opt: number, delay: number, variance: number): number { throw new Error("not implemented"); }
 
 /* read ionex tec grid file ----------------------------------------------------
 * read ionex ionospheric tec grid file
@@ -2262,7 +2264,6 @@ export function iontec(time: Date, nav: nav_t, pos: number[],
 *-----------------------------------------------------------------------------*/
 export function readtec(file: string, nav: nav_t, opt: number): void { throw new Error("not implemented"); }
 
-
 /* ionospheric correction ------------------------------------------------------
 * compute ionospheric correction
 * args   : gtime_t time     I   time
@@ -2275,9 +2276,7 @@ export function readtec(file: string, nav: nav_t, opt: number): void { throw new
 *          double *var      O   ionospheric delay (L1) variance (m^2)
 * return : status(1:ok,0:error)
 *-----------------------------------------------------------------------------*/
-export function ionocorr(time: Date, nav: nav_t, sat: number, pos: number[],
-	azel: number[], ionoopt: number, ion: number, variance: number): number { throw new Error("not implemented"); }
-
+export function ionocorr(time: Date, nav: nav_t, sat: number, pos: number[], azel: number[], ionoopt: number, ion: number, variance: number): number { throw new Error("not implemented"); }
 
 /* tropospheric correction -----------------------------------------------------
 * compute tropospheric correction
@@ -2290,10 +2289,7 @@ export function ionocorr(time: Date, nav: nav_t, sat: number, pos: number[],
 *          double *var      O   tropospheric delay variance (m^2)
 * return : status(1:ok,0:error)
 *-----------------------------------------------------------------------------*/
-export function tropcorr(time: Date, nav: nav_t, pos: number[],
-	azel: number[], tropopt: number, trp: number, variance: number): number { throw new Error("not implemented"); }
-
-
+export function tropcorr(time: Date, nav: nav_t, pos: number[], azel: number[], tropopt: number, trp: number, variance: number): number { throw new Error("not implemented"); }
 
 /* antenna models ------------------------------------------------------------*/
 
@@ -2309,7 +2305,6 @@ export function tropcorr(time: Date, nav: nav_t, pos: number[],
 *-----------------------------------------------------------------------------*/
 export function readpcv(file: string, pcvs: pcvs_t): number { throw new Error("not implemented"); }
 
-
 /* search antenna parameter ----------------------------------------------------
 * read satellite antenna phase center position
 * args   : int    sat         I   satellite number (0: receiver antenna)
@@ -2318,9 +2313,7 @@ export function readpcv(file: string, pcvs: pcvs_t): number { throw new Error("n
 *          pcvs_t *pcvs       IO  antenna parameters
 * return : antenna parameter (NULL: no antenna)
 *-----------------------------------------------------------------------------*/
-export function searchpcv(sat: number, type: string, time: Date,
-	pcvs: pcvs_t): pcv_t { throw new Error("not implemented"); }
-
+export function searchpcv(sat: number, type: string, time: Date, pcvs: pcvs_t): pcv_t { throw new Error("not implemented"); }
 
 /* receiver antenna model ------------------------------------------------------
 * compute antenna offset by antenna phase center parameters
@@ -3170,7 +3163,6 @@ export function free_cmr(raw: raw_t): void { throw new Error("not implemented");
 */
 export function update_cmr(raw: raw_t, svr: rtksvr_t, obs: obs_t): number { throw new Error("not implemented"); }
 
-
 /* input oem4/oem3 raw data from stream ----------------------------------------
 * fetch next novatel oem4/oem3 raw data and input a mesasge from stream
 * args   : raw_t *raw   IO     receiver raw data control struct
@@ -3247,7 +3239,6 @@ export function input_oem3(raw: raw_t, data: number): number { throw new Error("
 *-----------------------------------------------------------------------------*/
 export function input_ubx(raw: raw_t, data: number): number { throw new Error("not implemented"); }
 
-
 /* input superstar 2 raw message from stream -----------------------------------
 * input next superstar 2 raw message from stream
 * args   : raw_t *raw   IO     receiver raw data control struct
@@ -3259,7 +3250,6 @@ export function input_ubx(raw: raw_t, data: number): number { throw new Error("n
 *          observation data
 *-----------------------------------------------------------------------------*/
 export function input_ss2(raw: raw_t, data: number): number { throw new Error("not implemented"); }
-
 
 /* input cresent raw message ---------------------------------------------------
 * input next crescent raw message from stream
@@ -3296,7 +3286,6 @@ export function input_cres(raw: raw_t, data: number): number { throw new Error("
 *-----------------------------------------------------------------------------*/
 export function input_stq(raw: raw_t, data: number): number { throw new Error("not implemented"); }
 
-
 /* input gw10 raw message ------------------------------------------------------
 * input next gw10 raw message from stream
 * args   : raw_t *raw   IO     receiver raw data control struct
@@ -3312,7 +3301,6 @@ export function input_stq(raw: raw_t, data: number): number { throw new Error("n
 *
 *-----------------------------------------------------------------------------*/
 export function input_gw10(raw: raw_t, data: number): number { throw new Error("not implemented"); }
-
 
 /* input javad raw message from stream -----------------------------------------
 * fetch next javad raw data and input a mesasge from stream
@@ -3355,7 +3343,6 @@ export function input_javad(raw: raw_t, data: number): number { throw new Error(
 *
 *-----------------------------------------------------------------------------*/
 export function input_nvs(raw: raw_t, data: number): number { throw new Error("not implemented"); }
-
 
 /* input binex message from stream ---------------------------------------------
 * fetch next binex data and input a message from stream
@@ -3432,7 +3419,6 @@ export function input_sbf(raw: raw_t, data: number): number { throw new Error("n
 */
 export function input_cmr(raw: raw_t, data: number): number { throw new Error("not implemented"); }
 
-
 /* input lex receiver raw message from stream ----------------------------------
 * fetch next lex receiver raw data and input a mesasge from stream
 * args   : raw_t *raw   IO     receiver raw data control struct
@@ -3441,7 +3427,6 @@ export function input_cmr(raw: raw_t, data: number): number { throw new Error("n
 *                  31: input lex message)
 *-----------------------------------------------------------------------------*/
 export function input_lexr(raw: raw_t, data: number): number { throw new Error("not implemented"); }
-
 
 /* input oem4/oem3 raw data from file ------------------------------------------
 * fetch next novatel oem4/oem3 raw data and input a message from file
@@ -3452,7 +3437,6 @@ export function input_lexr(raw: raw_t, data: number): number { throw new Error("
 *-----------------------------------------------------------------------------*/
 export function input_oem4f(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
 
-
 /* input oem4/oem3 raw data from file ------------------------------------------
 * fetch next novatel oem4/oem3 raw data and input a message from file
 * args   : raw_t  *raw   IO     receiver raw data control struct
@@ -3462,7 +3446,6 @@ export function input_oem4f(raw: raw_t, fp: FILE): number { throw new Error("not
 *-----------------------------------------------------------------------------*/
 export function input_oem3f(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
 
-
 /* input ublox raw message from file -------------------------------------------
 * fetch next ublox raw data and input a message from file
 * args   : raw_t  *raw   IO     receiver raw data control struct
@@ -3470,7 +3453,6 @@ export function input_oem3f(raw: raw_t, fp: FILE): number { throw new Error("not
 * return : status(-2: end of file, -1...9: same as above)
 *-----------------------------------------------------------------------------*/
 export function input_ubxf(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
-
 
 /* input superstar 2 raw message from file -------------------------------------
 * input next superstar 2 raw message from file
@@ -3480,7 +3462,6 @@ export function input_ubxf(raw: raw_t, fp: FILE): number { throw new Error("not 
 *-----------------------------------------------------------------------------*/
 export function input_ss2f(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
 
-
 /* input crescent raw message from file ----------------------------------------
 * input next crescent raw message from file
 * args   : raw_t  *raw   IO     receiver raw data control struct
@@ -3488,7 +3469,6 @@ export function input_ss2f(raw: raw_t, fp: FILE): number { throw new Error("not 
 * return : status(-2: end of file, -1...9: same as above)
 *-----------------------------------------------------------------------------*/
 export function input_cresf(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
-
 
 /* input skytraq raw message from file -----------------------------------------
 * fetch next skytraq raw data and input a message from file
@@ -3498,7 +3478,6 @@ export function input_cresf(raw: raw_t, fp: FILE): number { throw new Error("not
 *-----------------------------------------------------------------------------*/
 export function input_stqf(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
 
-
 /* input gw10 raw message from file --------------------------------------------
 * input next gw10 raw message from file
 * args   : raw_t  *raw   IO     receiver raw data control struct
@@ -3506,7 +3485,6 @@ export function input_stqf(raw: raw_t, fp: FILE): number { throw new Error("not 
 * return : status(-2: end of file, -1...9: same as above)
 *-----------------------------------------------------------------------------*/
 export function input_gw10f(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
-
 
 /* input javad raw message from file -------------------------------------------
 * fetch next javad raw data and input a message from file
@@ -3516,7 +3494,6 @@ export function input_gw10f(raw: raw_t, fp: FILE): number { throw new Error("not
 *-----------------------------------------------------------------------------*/
 export function input_javadf(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
 
-
 /* input NVS raw message from file ---------------------------------------------
 * fetch next NVS raw data and input a message from file
 * args   : raw_t  *raw   IO     receiver raw data control struct
@@ -3525,7 +3502,6 @@ export function input_javadf(raw: raw_t, fp: FILE): number { throw new Error("no
 *-----------------------------------------------------------------------------*/
 export function input_nvsf(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
 
-
 /* input binex message from file -----------------------------------------------
 * fetch next binex data and input a message from file
 * args   : raw_t  *raw   IO     receiver raw data control struct
@@ -3533,7 +3509,6 @@ export function input_nvsf(raw: raw_t, fp: FILE): number { throw new Error("not 
 * return : status(-2: end of file, -1...9: same as above)
 *-----------------------------------------------------------------------------*/
 export function input_bnxf(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
-
 
 /*
 | input_rt17f - Read an RT-17 mesasge from a file 
@@ -3549,7 +3524,6 @@ export function input_bnxf(raw: raw_t, fp: FILE): number { throw new Error("not 
 */
 export function input_rt17f(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
 
-
 /* sbf raw block finder --------------------------------------------------------
 * get to the next sbf raw block from file
 * args   : raw_t  *raw   IO     receiver raw data control struct
@@ -3557,7 +3531,6 @@ export function input_rt17f(raw: raw_t, fp: FILE): number { throw new Error("not
 * return : status(-2: end of file, -1...9: same as above)
 *-----------------------------------------------------------------------------*/
 export function input_sbff(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
-
 
 /*
 | input_cmrf - Read a CMR mesasge from a file 
@@ -3572,7 +3545,6 @@ export function input_sbff(raw: raw_t, fp: FILE): number { throw new Error("not 
 | Supported CMR messages: 0, 1, 2, 3, 4; CMR+ messages 1, 2, 3.
 */
 export function input_cmrf(raw: raw_t, fp: FILE): number { throw new Error("not implemented"); }
-
 
 /* input lex receiver raw message from file ------------------------------------
 * fetch next lex receiver raw data and input a message from file
